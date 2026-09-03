@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社WORKS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客・採用・協力会社視点でのサイト診断 〜</div>
+  <div class="company">株式会社WORKS 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://works0809.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>集客・採用・協力会社募集の全体最適化</td></tr>
+    <tr><td>対応エリア</td><td>関東一円（拠点：埼玉県所沢市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせや応募は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせ・応募まで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>クロス張り替え 埼玉県所沢市（主要）</td><td><b>8位</b></td><td><b>6位</b></td></tr>
+    <tr><td>内装工事 埼玉県所沢市</td><td><b>8位</b></td><td>圏外</td></tr>
+    <tr><td>埼玉県所沢市 内装屋 求人</td><td>圏外</td><td>圏外</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Search Consoleの実データでも、自社名「株式会社works」（表示回数54回・平均<b>7.17位</b>）をはじめ、複数の言葉で1ページ目相当の順位を獲得できています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>集客に直結する言葉ではすでに一定の露出ができている状態です。他社と比較しても良好な結果と言えます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>この良好な順位を、次のStepでご覧いただくクリック率の改善にどうつなげていくか、一緒に考えていきたいポイントです。</p>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>Search Consoleから、月間の表示回数は合計<b>522回</b>であることが分かりました。しかし、そのうちクリックされた回数は<b>0回</b>という結果でした。</p>
+  <table class="data">
+    <tr><th>キーワード</th><th>掲載順位</th><th>表示回数</th><th>クリック率</th></tr>
+    <tr><td>株式会社works（社名）</td><td>7.17位</td><td>54回</td><td>0%</td></tr>
+    <tr><td>クロス張り替え 埼玉県所沢市</td><td>9.36位</td><td>42回</td><td>0%</td></tr>
+    <tr><td>所沢 内装</td><td>10.39位</td><td>23回</td><td>0%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>社名検索を含め、1ページ目相当の良い順位で表示されている言葉が複数あるにもかかわらず、実際にはクリックされていません。検索結果に表示されたときのタイトルや説明文が、見た方に「ここだ」と思ってもらえる内容になっているか、確認する価値があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td><b>30</b></td><td><b>51.72%</b></td><td><b>76.67%</b></td></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>21</b></td><td>36.21%</td><td>42.86%</td></tr>
+    <tr><td>AIアシスタント経由</td><td><b>4</b></td><td>6.9%</td><td>100%</td></tr>
+    <tr><td>他サイト経由（Referral）</td><td><b>3</b></td><td>5.17%</td><td>0%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>検索エンジン経由の新規の出会いは<b>51.72%</b>と半数を超えており、良好な水準です。ChatGPTなどのAIアシスタント経由の訪問はまだ4件と少数ですが、エンゲージメント率100%と質の高い訪問になっています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b>37秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>38</b></td><td>11秒</td></tr>
+    <tr><td>会社概要</td><td><b>28</b></td><td>25秒</td></tr>
+    <tr><td>採用情報 入力</td><td><b>24</b></td><td><b>2分40秒</b></td></tr>
+    <tr><td>お問い合わせ 入力</td><td><b>19</b></td><td>6秒</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>採用情報の入力ページは滞在時間2分40秒と非常にしっかり読み込まれている一方、トップページやお問い合わせ入力ページは短時間で通り過ぎられています。集客面のコンテンツにも、じっくり見ていただける工夫の余地があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>2026年8月は、お問い合わせフォーム経由の反響が<b>1件</b>、採用の応募が<b>2件</b>確認できました。お問い合わせの1件は、事前にお伺いした「有効問い合わせ数はおそらく1件」という感触ともぴったり一致しており、実態を反映した数値と考えられます。</p>
+  <p>母数（Step1）・流入の質（Step3）はいずれも良好ですが、Step2のクリック率に課題があるため、まだ反響につながる機会を十分に活かしきれていない状態です。</p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge mid">改善余地あり</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2023年8月（現在<b>約3年</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ<b>66点</b>／PC<b>96点</b></td></tr>
+    <tr><td>導線・構成</td><td>採用情報の応募動線はしっかり機能。電話番号のタップ導線には改善余地あり</td></tr>
+    <tr><td>コンテンツの充実度</td><td>施工実績はあるが、料金目安・お客様の声等、法人担当者向けの後押しコンテンツが不足</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">見つけてもらえてはいるが、<span class="gold">あと一歩</span>選ばれていない状態です</div>
+
+  <div class="good-point">
+    <b>良い点：</b>集客に直結するキーワードで8位を獲得し、社名検索も含め複数の言葉で1ページ目相当の順位を確保できています。オーガニック検索比率も51.72%と良好で、採用情報ページもしっかり機能しています。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない（アプローチの問題）</h4>
+        <p style="font-size:8.5pt;">検索結果には表示されているものの、クリック率は0%です。タイトル・説明文の見直しで、表示から選択への転換を高める余地があります。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない（コンバージョンの問題）</h4>
+        <p style="font-size:8.5pt;">採用面の受け皿は機能していますが、集客面は料金目安等の後押しコンテンツが不足しており、伸ばせる余地があります。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">母数も流入の質も良好な、伸びしろの大きい状態です。「見つけてもらう」から「選んでもらう」への橋渡しを整えることで、着実に反響を増やしていけます。</p>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>検索結果での見え方の見直し（ページ追加・サイト強化）</h3>
+    <p>複数のキーワードで良好な順位を獲得できているにもかかわらず、クリック率が0%という状態を踏まえ、タイトル・説明文の見直しと、料金目安やお客様の声等、法人担当者の検討を後押しするコンテンツの追加を進めます。</p>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>採用面</h4>
+      <p>採用情報ページはすでにしっかり機能しています。今後は求人媒体の追加等、さらに露出を広げる展開が考えられます。</p>
+    </div>
+    <div class="seed-card">
+      <h4>協力会社</h4>
+      <p>ブログ記事で協力会社の募集実績があります。採用情報と同様に、独立した募集ページを設けることで、より見つけてもらいやすくなる余地があります。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">主要キーワードで8位</div><div class="d">集客に直結する言葉で、すでに良好な順位を獲得しています</div></div>
+    <div class="strength-card"><div class="icon">📈</div><div class="t">オーガニック比率51.72%</div><div class="d">検索エンジン経由の新規の出会いがしっかり生まれています</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">機能する採用ページ</div><div class="d">応募フォームがしっかり読み込まれ、応募にもつながっています</div></div>
+  </div>
+
+  <p>これらの強みを、検索結果でより選ばれる形に整えていくだけでも、まだまだ伸ばせる余地があります。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社WORKS様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
