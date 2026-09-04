@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社島電</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客・採用・協力会社視点でのサイト診断 〜</div>
+  <div class="company">株式会社島電 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://www.simaden.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>集客・採用・協力会社募集の全体最適化</td></tr>
+    <tr><td>対応エリア</td><td>関東一円（拠点：埼玉県八潮市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせや応募は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせ・応募まで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>アンテナ工事 求人 八潮市（採用・主要）</td><td><b>4位</b></td><td><b>1位</b></td></tr>
+    <tr><td>エアコン工事 求人 八潮市（集客）</td><td>圏外</td><td>圏外</td></tr>
+    <tr><td>エアコン工事 求人 草加市（集客）</td><td>圏外</td><td>圏外</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Search Consoleの実データでも、「八潮市 エアコン取り付け」（表示回数36回・平均<b>25.17位</b>）等、集客に直結する言葉はまだ低い順位にとどまっています。一方「協力会社」に関する検索データは、今回のデータからは確認できませんでした。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>採用に直結する言葉ではすでに<b>Google4位・Yahoo1位</b>という良好な順位を獲得できています。一方、集客に関する言葉はまだ多くの方に見つけてもらえていない状態で、同じ「求人」という言葉でも、工事内容によって結果に大きな差が出ています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>協力会社に関する検索データはまだ確認できていません。次回のヒアリングで、どのような協力会社を求めていらっしゃるか、もう少し具体的にお伺いできればと思います。</p>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>Search Consoleから、月間の表示回数は合計<b>310回</b>、クリック数は<b>21回</b>（CTR<b>6.77%</b>）であることが分かりました。</p>
+  <table class="data">
+    <tr><th>キーワード</th><th>掲載順位</th><th>表示回数</th><th>クリック率</th></tr>
+    <tr><td>島電・株式会社島電（社名）</td><td>1.5〜1.9位</td><td>65回</td><td>26.83〜37.5%</td></tr>
+    <tr><td>アンテナ工事 求人 八潮市</td><td>15.23位</td><td><b>47回</b></td><td>0%</td></tr>
+    <tr><td>八潮市 エアコン取り付け</td><td>25.17位</td><td>36回</td><td>0%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>社名で検索された場合はしっかりクリックされていますが、それ以外の一般的な言葉での露出はクリックにつながっていません。特に「アンテナ工事 求人 八潮市」は表示回数が全体で最も多いにもかかわらずクリックされておらず、検索結果に表示されたときのタイトルや説明文を見直す価値がありそうです。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>198</b></td><td><b>62.46%</b></td><td>57.07%</td></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td><b>100</b></td><td><b>31.55%</b></td><td><b>84%</b></td></tr>
+    <tr><td>AIアシスタント経由</td><td><b>10</b></td><td>3.15%</td><td>90%</td></tr>
+    <tr><td>他サイト経由（Referral）</td><td><b>5</b></td><td>1.58%</td><td>60%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>検索エンジン経由の新規の出会いは<b>31.55%</b>で、エンゲージメント率は<b>84%</b>と質は良好です。すでに接点のある方からの訪問が最も多くなっていますが、この中にどのような訪問が含まれているかは、次のStepで反響の実数と合わせて確認します。ChatGPTなどのAIアシスタント経由の訪問はまだ10件と少数ですが、エンゲージメント率90%と質の高い訪問になっています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>セッションあたりの平均エンゲージメント時間：<b>46秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>308</b></td><td>29秒</td></tr>
+    <tr><td>会社概要</td><td><b>161</b></td><td>36秒</td></tr>
+    <tr><td>お問い合わせ 入力</td><td><b>149</b></td><td>27秒</td></tr>
+    <tr><td>採用情報</td><td><b>46</b></td><td><b>1分16秒</b></td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>採用情報ページは滞在時間1分16秒としっかり読み込まれている一方、トップページやお問い合わせ入力ページは短時間で通り過ぎられています。集客面のコンテンツにも、じっくり見ていただける工夫の余地があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>アクセス解析上では、お問い合わせフォームの送信を正確に計測する仕組みがまだ整っておらず、実数を追いにくい状態でした。お問い合わせ完了ページへの到達は月間<b>30回・16名</b>でしたが、平均滞在時間はわずか<b>3秒</b>と短く、事前にお伺いした「有効問い合わせ数はおそらく<b>3件</b>」という感触に近い、実態を反映した少人数の反響だったと考えられます。</p>
+  <p>採用に直結する言葉ではすでに良好な順位（Step1）を獲得できている一方、流入の質・サイト内での進み方（Step3・4）は改善余地がある水準です。実質の反響件数は、この水準と大きく矛盾しない範囲にとどまっています。</p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2019年10月（現在<b>約7年</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ<b>41点</b>／PC<b>55点</b></td></tr>
+    <tr><td>導線・構成</td><td>協力会社向けの専用ページはすでに用意されている。お問い合わせと採用応募は同じフォームで受付</td></tr>
+    <tr><td>コンテンツの充実度</td><td>料金目安・お客様の声等、集客面の後押しコンテンツに追加の余地あり</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">すでに評価されているのに、<span class="gold">もったいない</span>状態です</div>
+
+  <div class="good-point">
+    <b>良い点：</b>採用に直結する言葉で<b>Google4位・Yahoo1位</b>を獲得しているほか、ChatGPTでの「エアコン工事」の相談では<b>5社中1位（評価4.9）</b>で紹介されるなど、対外的な評価はすでに高い状態です。協力会社向けの専用ページもすでに用意されています。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない（アプローチの問題）</h4>
+        <p style="font-size:8.5pt;">集客に関する言葉はまだ低い順位にとどまり、一般的な検索からは見つけてもらいにくい状態です。協力会社に関する検索データも、今回は確認できませんでした。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない（コンバージョンの問題）</h4>
+        <p style="font-size:8.5pt;">反響を継続的に把握する仕組みがまだ整っておらず、実際の反響数を追いにくい状態です。フォームも問い合わせと採用応募が一つにまとまっています。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">採用面・AI検索面ではすでに高い評価を得ている、伸びしろの大きい状態です。届いていない部分・活かしきれていない部分を整えることで、着実に伸ばしていけます。</p>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>表示速度の改善とあわせた集客コンテンツの強化</h3>
+    <p>表示速度（スマホ41点）と、集客に関する言葉の露出不足を踏まえ、まずは表示速度の改善と、料金目安やお客様の声等、検討を後押しするコンテンツの追加を進めます。すでに高く評価されている採用面の強みを、集客面にも広げていくイメージです。</p>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>採用面</h4>
+      <p>すでにGoogle4位・Yahoo1位という良好な順位を獲得しています。今後はIndeed等の求人媒体への掲載等、さらに露出を広げる展開が考えられます。</p>
+    </div>
+    <div class="seed-card">
+      <h4>協力会社</h4>
+      <p>専用ページはすでに用意されています。このページに向けた情報発信（ブログ更新等）を強化することで、より見つけてもらいやすくなる余地があります。</p>
+    </div>
+  </div>
+  <p style="margin-top:12pt;font-size:8.3pt;color:#5c6478;">サイト制作から7年が経ち、表示速度の面でも変化が出てきています。今回のような部分的な強化とあわせて、そろそろサイト全体を見直すタイミングかもしれません。</p>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">採用ワードでGoogle4位・Yahoo1位</div><div class="d">「アンテナ工事 求人 八潮市」ですでに良好な順位を獲得しています</div></div>
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AI検索で5社中1位</div><div class="d">ChatGPTでのエアコン工事の相談で、評価4.9で一番手に紹介されました</div></div>
+    <div class="strength-card"><div class="icon">🤝</div><div class="t">協力会社ページが完備</div><div class="d">「協力業者をお探しの方へ」という専用ページがすでに用意されています</div></div>
+  </div>
+
+  <p>これらの強みを土台に、まだ届いていない部分・活かしきれていない部分を整えていくだけでも、着実に伸ばせる余地があります。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社島電様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
