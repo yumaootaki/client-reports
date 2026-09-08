@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜東葉工業株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用視点を中心としたサイト診断 〜</div>
+  <div class="company">東葉工業株式会社 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://toyo-industry.co.jp/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>採用強化を中心とした集客・協力会社募集の最適化</td></tr>
+    <tr><td>対応エリア</td><td>関東一円（拠点：千葉県茂原市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせや応募は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせ・応募まで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>千葉県茂原市 機械メンテナンス 求人（採用・主要）</td><td><b>5位</b></td><td><b>4位</b></td></tr>
+    <tr><td>千葉県 機械据付（集客）</td><td><b>2位</b></td><td><b>3位</b></td></tr>
+    <tr><td>千葉県市原市 機械メンテナンス 求人</td><td>圏外</td><td>圏外</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Search Consoleの月間データでは、この2語だけで表示回数190回（全体の約20%）を占めています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>採用に直結する言葉ではすでに<b>Google5位・Yahoo4位</b>、集客に関する言葉でも<b>Google2位・Yahoo3位</b>という非常に高い順位を獲得できています。ターゲットの検索画面にはしっかり出ている状態です。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>この良好な順位を、次のStepでご覧いただくクリック率の改善にどうつなげていくか、一緒に考えていきたいポイントです。</p>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>Search Consoleから、月間の表示回数は合計<b>950回</b>であることが分かりました。しかし、そのうちクリックされた回数は<b>7回</b>（CTR<b>0.74%</b>）という結果でした。</p>
+  <table class="data">
+    <tr><th>キーワード</th><th>表示回数</th><th>クリック率</th></tr>
+    <tr><td>千葉県茂原市 機械メンテナンス 求人</td><td><b>120回</b>（全体最大）</td><td>0%</td></tr>
+    <tr><td>千葉県 機械据付</td><td>70回</td><td>0%</td></tr>
+    <tr><td>機械メンテナンス 千葉 転職</td><td>39回</td><td>0%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1で確認した良い順位で表示されているにもかかわらず、表示回数最大のキーワードでもクリックが発生していません。検索結果に表示されたときのタイトルや説明文が、見た方に「ここだ」と思ってもらえる内容になっているか、確認する価値があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td><b>145</b></td><td><b>61.97%</b></td><td><b>70.34%</b></td></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>78</b></td><td>33.33%</td><td>38.46%</td></tr>
+    <tr><td>他サイト経由（Referral）</td><td><b>6</b></td><td>2.56%</td><td>33.33%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>検索エンジン経由の新規の出会いは<b>61.97%</b>と半数を大きく超えており、非常に良好な水準です。エンゲージメント率も70.34%と高く、検索から来ている方の質の良さがうかがえます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>セッションあたりの平均エンゲージメント時間：<b>41秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>会社概要</td><td><b>109</b></td><td>27秒</td></tr>
+    <tr><td>業務案内</td><td><b>46</b></td><td>41秒</td></tr>
+    <tr><td>ブログ記事</td><td><b>36</b></td><td><b>1分15秒</b></td></tr>
+    <tr><td>採用情報</td><td><b>20</b></td><td>23秒</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>ブログ記事は1分15秒としっかり読み込まれている一方、最優先ニーズである採用情報ページは滞在時間23秒とやや短めです。求職者に響く内容になっているか、確認の余地があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>2026年8月のお問い合わせフォーム経由の反響は<b>3件</b>でした。事前にお伺いした「有効問い合わせ数はおそらく<b>0件</b>」という感触に近い、少ない数値です。</p>
+  <p><b>特に、最優先でお伺いしている採用について、「求人応募フォーム」からの反響が期間中0件でした。</b> 検索順位（Step1）・流入の質（Step3）はいずれも良好なだけに、応募フォームがきちんと機能しているか、応募までの流れに離脱の原因がないかを確認したいポイントです。</p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2023年9月（現在<b>約3年</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ<b>62点</b>／PC<b>96点</b></td></tr>
+    <tr><td>導線・構成</td><td>採用情報とは別に「求職者のみなさまへ」ページを設置済み。お問い合わせフォームは一般問い合わせと採用応募が同じフォームの可能性</td></tr>
+    <tr><td>コンテンツの充実度</td><td>ブログでのコラム記事発信は活発。採用ページの内容充実に余地あり</td></tr>
+  </table>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">見つけてもらえているのに、<span class="gold">もったいない</span>状態です</div>
+
+  <div class="good-point">
+    <b>良い点：</b>採用に直結する言葉で<b>Google5位・Yahoo4位</b>、集客に関する言葉でも<b>Google2位・Yahoo3位</b>と非常に高い順位を獲得しています。検索エンジン経由の新規の出会いも61.97%と良好で、母数・流入の質はすでに強い土台があります。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない（アプローチの問題）</h4>
+        <p style="font-size:8.5pt;">良好な順位で表示されているのに、クリック率は0.74%と低い状態です。タイトル・説明文の見直しの余地があります。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない（コンバージョンの問題）</h4>
+        <p style="font-size:8.5pt;">特に採用面で、求人応募フォームからの反響が確認できていません。母数は十分にあるだけに、受け皿側を整えることで大きく伸ばせる余地があります。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">検索での見つかりやすさという最も難しい部分がすでにクリアできている、伸びしろの大きい状態です。受け皿を整えることで、着実に反響を増やしていけます。</p>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>採用の受け皿強化（求人応募フォームの点検・改善）</h3>
+    <p>採用に直結する言葉ですでに良好な順位を獲得しているにもかかわらず、求人応募フォームからの反響が確認できていない状態を踏まえ、応募フォームの動作確認と、応募までの導線を分かりやすく整えることを進めます。</p>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>集客面</h4>
+      <p>「千葉県 機械据付」等ですでに良好な順位があります。タイトル・説明文の見直しでクリック率を改善する展開が考えられます。</p>
+    </div>
+    <div class="seed-card">
+      <h4>協力会社</h4>
+      <p>「協力会社」を探す検索データが一部確認できています。今後、具体的なニーズをすり合わせながら展開を検討できればと思います。</p>
+    </div>
+  </div>
+  <p style="margin-top:12pt;font-size:8.3pt;color:#5c6478;">検索での見つかりやすさという土台はすでに整っているため、サイト全体の作り直しよりも、受け皿側の部分的な改善から着手するのがおすすめです。</p>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">採用ワードでGoogle5位・Yahoo4位</div><div class="d">「千葉県茂原市 機械メンテナンス 求人」ですでに良好な順位を獲得しています</div></div>
+    <div class="strength-card"><div class="icon">📈</div><div class="t">オーガニック比率61.97%</div><div class="d">検索エンジン経由の新規の出会いがしっかり生まれています</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">活発なブログ発信</div><div class="d">コラム記事がしっかり読み込まれ、情報発信が機能しています</div></div>
+  </div>
+
+  <p>これらの強みを土台に、採用の受け皿を整えていくだけでも、着実に伸ばせる余地があります。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>東葉工業株式会社様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
