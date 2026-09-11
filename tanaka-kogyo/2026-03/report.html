@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜田中工業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2d4a82;
+    --gold:#c9a84c;
+    --gold-light:#f3e9cf;
+    --green:#2e8b57;
+    --orange:#d98324;
+    --red:#c0392b;
+    --gray:#666;
+    --line:#d9dee6;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:#222;
+    background:#e8e8e8;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .content-page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:10mm auto;
+    position:relative;
+    overflow:hidden;
+    padding:15mm 16mm;
+    page-break-after:always;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .content-page:last-child{page-break-after:auto;}
+  section, .avoid{page-break-inside:avoid;}
+
+  h1,h2,h3{font-family:'Noto Sans JP',sans-serif;}
+  .page-label{
+    position:absolute; top:8mm; right:16mm;
+    font-size:7pt; color:var(--gray); letter-spacing:1px;
+  }
+  strong{font-weight:700;}
+
+  /* ===== 表紙 ===== */
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .cover .kicker{
+    font-size:10pt; letter-spacing:6px; color:var(--gold); margin-bottom:6mm;
+  }
+  .cover h1{
+    font-size:30pt; font-weight:900; line-height:1.4; margin-bottom:4mm;
+    border-left:6px solid var(--gold); padding-left:6mm;
+  }
+  .cover .subtitle{
+    font-size:13pt; color:var(--gold-light); margin-bottom:16mm; padding-left:6mm;
+  }
+  .cover .company{
+    font-size:16pt; font-weight:700; margin-bottom:8mm;
+  }
+  .cover table{
+    width:100%; border-collapse:collapse; font-size:9.5pt;
+  }
+  .cover table td{
+    padding:3.5mm 0; border-bottom:1px solid rgba(255,255,255,0.25);
+  }
+  .cover table td:first-child{
+    width:32mm; color:var(--gold); font-weight:700;
+  }
+  .cover .footer-note{
+    position:absolute; bottom:14mm; left:16mm; right:16mm;
+    font-size:7.5pt; color:rgba(255,255,255,0.6);
+  }
+
+  /* ===== 見出し共通 ===== */
+  .page-title{
+    font-size:16pt; font-weight:900; color:var(--navy);
+    border-bottom:2.5px solid var(--gold);
+    padding-bottom:3mm; margin-bottom:6mm;
+  }
+  .page-title .en{
+    display:block; font-size:8pt; color:var(--gray); letter-spacing:2px; font-weight:500; margin-bottom:1mm;
+  }
+  .lead{
+    font-size:9.5pt; color:var(--navy); margin-bottom:5mm; font-weight:500;
+  }
+
+  /* ===== Step地図ページ ===== */
+  .funnel-blockrow{display:flex; gap:5mm; margin-bottom:6mm;}
+  .funnel-block{
+    flex:1; border-radius:3mm; padding:4mm 5mm;
+  }
+  .funnel-block.approach{background:#eef2fa; border:1.5px solid var(--navy-light);}
+  .funnel-block.conversion{background:var(--gold-light); border:1.5px solid var(--gold);}
+  .funnel-block .block-title{font-size:10pt; font-weight:700; margin-bottom:2mm;}
+  .funnel-block.approach .block-title{color:var(--navy);}
+  .funnel-block.conversion .block-title{color:#8a6d1f;}
+  .step-card{
+    background:#fff; border:1px solid var(--line); border-radius:2.5mm;
+    padding:3.5mm 4mm; margin-bottom:3mm; display:flex; gap:3mm; align-items:flex-start;
+  }
+  .step-num{
+    width:9mm; height:9mm; border-radius:50%; background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:900; font-size:9pt; flex-shrink:0;
+  }
+  .funnel-block.conversion .step-num{background:var(--gold); color:#3a2e0a;}
+  .step-card .step-text .t{font-weight:700; font-size:9pt; margin-bottom:0.8mm;}
+  .step-card .step-text .d{font-size:8pt; color:var(--gray);}
+  .arrow-down{text-align:center; font-size:14pt; color:var(--gold); margin:2mm 0;}
+
+  /* ===== Stepページ共通 ===== */
+  .step-header{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:5mm;}
+  .step-def{
+    background:#f4f6fa; border-left:4px solid var(--navy); padding:3mm 4mm; font-size:9pt; color:var(--navy); font-weight:600;
+  }
+  .badge{
+    display:inline-block; padding:2mm 6mm; border-radius:20mm; color:#fff; font-weight:700; font-size:9.5pt; white-space:nowrap;
+  }
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+
+  .box-title{font-size:9.5pt; font-weight:700; color:var(--navy); margin:4mm 0 2mm; display:flex; align-items:center; gap:2mm;}
+  .box-title::before{content:""; width:3mm; height:3mm; background:var(--gold); display:inline-block; border-radius:1mm;}
+  .box p, .box li{font-size:8.5pt; line-height:1.6;}
+  .box ul{padding-left:5mm;}
+
+  table.data-tbl{width:100%; border-collapse:collapse; font-size:8.3pt; margin-top:2mm;}
+  table.data-tbl th{background:var(--navy); color:#fff; padding:2mm 2.5mm; text-align:left; font-weight:500;}
+  table.data-tbl td{padding:2mm 2.5mm; border-bottom:1px solid var(--line);}
+  table.data-tbl tr:nth-child(even) td{background:#f7f8fb;}
+
+  .note-box{
+    background:var(--gold-light); border:1px solid var(--gold); border-radius:2.5mm;
+    padding:3mm 4mm; font-size:8.3pt; margin-top:4mm; color:#5c4a13;
+  }
+  .confirm-box{
+    background:#f0f0f0; border:1px dashed #999; border-radius:2.5mm;
+    padding:3mm 4mm; font-size:8.3pt; margin-top:4mm; color:#444;
+  }
+
+  /* ===== 総合診断 ===== */
+  .diag-box{
+    background:var(--navy); color:#fff; border-radius:3mm; padding:6mm; text-align:center;
+    margin-bottom:6mm;
+  }
+  .diag-box .small{font-size:8pt; color:var(--gold-light); letter-spacing:2px; margin-bottom:2mm;}
+  .diag-box .big{font-size:15pt; font-weight:900;}
+  .two-col{display:flex; gap:5mm; margin-top:4mm;}
+  .col-card{flex:1; border-radius:2.5mm; padding:4mm; border:1.5px solid var(--line);}
+  .col-card h4{font-size:9.5pt; color:var(--navy); margin-bottom:2mm; border-bottom:1px solid var(--line); padding-bottom:1.5mm;}
+  .col-card p{font-size:8.3pt; line-height:1.6;}
+  .good-point{
+    background:#eaf6ee; border-left:4px solid var(--green); padding:3mm 4mm; font-size:8.5pt; margin-bottom:4mm;
+  }
+
+  /* ===== 打ち手 ===== */
+  .priority-box{
+    background:linear-gradient(135deg, var(--navy), var(--navy-light));
+    color:#fff; border-radius:3mm; padding:6mm; margin-bottom:5mm;
+    border:2px solid var(--gold);
+  }
+  .priority-box .tag{
+    display:inline-block; background:var(--gold); color:#3a2e0a; font-weight:700; font-size:8pt;
+    padding:1.5mm 4mm; border-radius:10mm; margin-bottom:3mm;
+  }
+  .priority-box h3{font-size:14pt; font-weight:900; margin-bottom:3mm;}
+  .priority-box p{font-size:8.7pt; line-height:1.7;}
+  .seed-list{display:flex; gap:4mm;}
+  .seed-card{
+    flex:1; background:#f7f8fb; border-radius:2.5mm; padding:3.5mm; border:1px solid var(--line);
+  }
+  .seed-card h5{font-size:8.7pt; color:var(--navy); margin-bottom:1.5mm;}
+  .seed-card p{font-size:8pt; color:var(--gray); line-height:1.55;}
+
+  /* ===== まとめ ===== */
+  .closing{
+    background:var(--gold-light); border-radius:3mm; padding:5mm 6mm; margin:4mm 0;
+  }
+  .closing ul{padding-left:5mm;}
+  .closing li{font-size:8.7pt; line-height:1.8;}
+  .final-line{
+    text-align:center; margin-top:10mm; font-size:10pt; color:var(--navy); font-weight:700;
+  }
+
+  @media print{
+    body{background:#fff;}
+    .content-page{margin:0; box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. 表紙 ============ -->
+<div class="content-page cover">
+  <div class="kicker">SITE DIAGNOSIS REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="subtitle">集客・採用の視点で見る、いまのホームページの状態</div>
+  <div class="company">田中工業 様</div>
+  <table>
+    <tr><td>対象サイト</td><td>https://tanakakougyou.work/</td></tr>
+    <tr><td>集計期間</td><td>2026年3月1日 〜 2026年3月31日</td></tr>
+    <tr><td>主な目的</td><td>集客（受注獲得）・採用（現場スタッフ募集）</td></tr>
+    <tr><td>対応エリア</td><td>一都三県（拠点：埼玉県川越市）</td></tr>
+    <tr><td>事業内容</td><td>内装工事・軽天工事・ボード工事</td></tr>
+  </table>
+  <div class="footer-note">本レポートは、現状のデータをもとに「今どこにいるか」を一緒に確認するための診断ツールです。</div>
+</div>
+
+<!-- ============ 2. 全体図 ============ -->
+<div class="content-page">
+  <div class="page-label">02 / 全体像</div>
+  <div class="page-title"><span class="en">HOW INQUIRIES HAPPEN</span>反響が生まれるまでの道すじ</div>
+  <p class="lead">お問い合わせ・ご応募は、この5つのStepを上りきって初めて生まれます。まずは、どこを見ていくかの地図からご説明します。</p>
+
+  <div class="funnel-blockrow">
+    <div class="funnel-block approach">
+      <div class="block-title">アプローチ｜見つけてもらう</div>
+      <div class="step-card"><div class="step-num">1</div><div class="step-text"><div class="t">検索順位・媒体選定</div><div class="d">探しているターゲットの画面に、そもそも出ているか</div></div></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-text"><div class="t">クリック率</div><div class="d">表示されても、"ここだ"と思って選んでもらえているか</div></div></div>
+    </div>
+    <div class="funnel-block conversion">
+      <div class="block-title">コンバージョン｜受け皿で活かす</div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-text"><div class="t">流入の質</div><div class="d">サイトに入ってきているのは、新しく探している人か</div></div></div>
+      <div class="step-card"><div class="step-num">4</div><div class="step-text"><div class="t">サイト内での進み方</div><div class="d">来てくれた人が、迷わず反響まで進めているか</div></div></div>
+      <div class="step-card"><div class="step-num">5</div><div class="step-text"><div class="t">反響</div><div class="d">実際に、お問い合わせ・ご応募という形になっているか</div></div></div>
+    </div>
+  </div>
+  <div class="note-box">
+    この後のページで、Step1つずつ「データで確認できたこと」→「そこから考えられること」の順にご一緒に見ていきます。
+  </div>
+</div>
+
+<!-- ============ 3. Step1 ============ -->
+<div class="content-page">
+  <div class="page-label">03 / STEP 1</div>
+  <div class="step-header">
+    <div class="page-title"><span class="en">STEP 1 - APPROACH</span>検索順位・媒体選定</div>
+    <span class="badge bad">要改善</span>
+  </div>
+  <div class="step-def">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="box-title">データで確認できたこと</div>
+  <table class="data-tbl">
+    <tr><th>目的</th><th>キーワード</th><th>順位</th></tr>
+    <tr><td>集客（指名）</td><td>川越市 田中工業</td><td><strong>1位</strong></td></tr>
+    <tr><td>集客（指名）</td><td>株式会社田中工業</td><td><strong>3.5位</strong></td></tr>
+    <tr><td>集客（一般語）</td><td>川越市 内装工事</td><td><strong>圏外</strong></td></tr>
+    <tr><td>採用（一般語）</td><td>川越市 内装工事 求人</td><td><strong>圏外</strong></td></tr>
+    <tr><td>採用（一般語）</td><td>埼玉県 軽天工事 求人</td><td><strong>38.88位</strong></td></tr>
+  </table>
+
+  <div class="box-title">そこから考えられること</div>
+  <p>「田中工業」という社名や地域名とセットの言葉では、しっかり見つけていただけています。一方で、まだ御社を知らない方が使う「川越市 内装工事」「内装工事 求人」といった一般的な言葉では、検索結果の中に出てきていない状態です。この2つのキーワードは、ポータルサイトや大手求人媒体が上位を占めやすい競合の強い領域であることも背景にあります。</p>
+
+  <div class="confirm-box"><strong>確認したいこと：</strong>集客・採用それぞれで、御社を「まだ知らない方」がどんな言葉で検索しているかを、あらためて一緒に整理していきたいポイントです。</div>
+</div>
+
+<!-- ============ 4. Step2 ============ -->
+<div class="content-page">
+  <div class="page-label">04 / STEP 2</div>
+  <div class="step-header">
+    <div class="page-title"><span class="en">STEP 2 - APPROACH</span>クリック率</div>
+    <span class="badge bad">要改善</span>
+  </div>
+  <div class="step-def">表示されても、"ここだ"と思って選んでもらえているか</div>
+
+  <div class="box-title">データで確認できたこと</div>
+  <table class="data-tbl">
+    <tr><th>キーワード</th><th>掲載順位</th><th>表示回数</th><th>クリック率</th></tr>
+    <tr><td>株式会社田中工業</td><td>3.5位</td><td>2回</td><td><strong>50%</strong></td></tr>
+    <tr><td>川越市 田中工業</td><td><strong>1位</strong></td><td>38回</td><td><strong>0%</strong></td></tr>
+    <tr><td>田中工業</td><td>7.6位</td><td>12回</td><td>0%</td></tr>
+  </table>
+
+  <div class="box-title">そこから考えられること</div>
+  <p>「株式会社田中工業」で検索された際はクリック率50%と、しっかり選んでいただけています。一方、「川越市 田中工業」は<strong>1位</strong>に表示されながらクリック率が<strong>0%</strong>という結果でした。上位に表示されているのにクリックされていない状態は、タイトルや説明文の見せ方に確認の余地があることを示すサインの一つです。ただし表示回数自体がまだ38回と少なく、今後の推移も合わせて見ていく必要があります。</p>
+
+  <div class="confirm-box"><strong>確認したいこと：</strong>検索結果に表示されるタイトル・説明文が、クリックしたくなる内容になっているかを見直せる余地があります。</div>
+</div>
+
+<!-- ============ 5. Step3 ============ -->
+<div class="content-page">
+  <div class="page-label">05 / STEP 3</div>
+  <div class="step-header">
+    <div class="page-title"><span class="en">STEP 3 - CONVERSION</span>流入の質</div>
+    <span class="badge bad">要改善</span>
+  </div>
+  <div class="step-def">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="box-title">データで確認できたこと</div>
+  <table class="data-tbl">
+    <tr><th>流入経路</th><th>セッション数</th><th>比率</th></tr>
+    <tr><td>すでに接点のある方からの訪問</td><td>36</td><td><strong>70.59%</strong></td></tr>
+    <tr><td>検索エンジン経由（オーガニック）</td><td>10</td><td><strong>19.61%</strong></td></tr>
+    <tr><td>他サイト経由（リファラル）</td><td>4</td><td>7.84%</td></tr>
+    <tr><td>SNS経由</td><td>1</td><td>1.96%</td></tr>
+  </table>
+
+  <div class="box-title">そこから考えられること</div>
+  <p>期間中のサイトへの訪問のうち、検索エンジンから新しく探して来てくださった方は<strong>19.61%</strong>にとどまります。残りの多くは、すでに御社との接点がある方（お名刺・ご紹介・現場などを通じてすでに社名をご存じの方）からの訪問と考えられます。新しい出会いの比率を増やしていくことが、今後の伸びしろになります。</p>
+
+  <div class="confirm-box"><strong>確認したいこと：</strong>この訪問がどのくらいお問い合わせ・ご応募につながっているかは、次のページで合わせてご確認いただけます。</div>
+</div>
+
+<!-- ============ 6. Step4 ============ -->
+<div class="content-page">
+  <div class="page-label">06 / STEP 4</div>
+  <div class="step-header">
+    <div class="page-title"><span class="en">STEP 4 - CONVERSION</span>サイト内での進み方</div>
+    <span class="badge mid">改善余地あり</span>
+  </div>
+  <div class="step-def">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="box-title">データで確認できたこと</div>
+  <p>サイト全体の平均エンゲージメント時間は<strong>31秒</strong>でした。経路別に見ると、検索エンジン経由の方は<strong>1分30秒</strong>としっかりサイトをご覧いただけている一方、すでに接点のある方からの訪問は<strong>3秒</strong>ほどで離脱する傾向が見られました。</p>
+  <table class="data-tbl">
+    <tr><th>よく見られているページ</th><th>閲覧数</th></tr>
+    <tr><td>トップページ</td><td>19</td></tr>
+    <tr><td>会社概要</td><td>11（平均29秒）</td></tr>
+    <tr><td>採用情報</td><td>7（平均20秒）</td></tr>
+    <tr><td>施工実績</td><td>6（平均30秒）</td></tr>
+  </table>
+
+  <div class="box-title">そこから考えられること</div>
+  <p>検索から新しく来てくださった方は、実は<strong>きちんとサイトを読んでくださっている</strong>ことが分かります。つまり、受け皿自体は一定のポテンシャルを持っている可能性があり、Step1・2で入口を広げることができれば、その効果がより出やすい状態と考えられます。</p>
+</div>
+
+<!-- ============ 7. Step5 + サイト診断 ============ -->
+<div class="content-page">
+  <div class="page-label">07 / STEP 5 & サイト診断</div>
+  <div class="step-header">
+    <div class="page-title"><span class="en">STEP 5 - RESULT</span>反響・サイトの現状診断</div>
+  </div>
+
+  <div class="box-title">Step5：反響（期間中の実績）</div>
+  <p>期間中、サイトのフォームから送信が行われた回数は<strong>8件</strong>でした（入力を開始した件数は13件）。お電話でのお問い合わせについては、今回のデータの範囲では件数を確認できておらず、<strong>確認が必要な項目</strong>です。また、この8件のうち実際に工事のご依頼・採用応募につながったものがどの程度かは、今回は判定材料がないため、実際の内容と照らし合わせてご確認いただきたいポイントです。Step3・4がまだ伸びしろのある水準であることを踏まえると、「受け皿はすでに十分」と決めつけず、引き続き確認していくのがよいと考えます。</p>
+
+  <div class="box-title">サイトの現状診断</div>
+  <p><strong>導線：</strong>スマホ画面には電話・地図・メールへのボタンが常に固定表示されており、迷わず連絡できる作りになっています。</p>
+  <p><strong>コンテンツ：</strong>トップページには代表からのご挨拶、スタッフ求人の訴求、施工実績・業務案内へのバナー、最新のブログ記事などが並んでいます。会社の想いは伝わりやすい一方、施工実績の見せ方（件数・写真等）にはさらに充実させられる余地があります。</p>
+  <p><strong>表示速度（PageSpeed）：</strong>スマホでのスコアは<strong>47点</strong>（別ページでは25点）と、改善の余地がある結果でした。</p>
+  <p><strong>制作からの期間：</strong>現在のサイトは2020年9月の制作から<strong>約5年半</strong>が経過しています。この間にスマホでの閲覧やAI検索の広がりなど、探し方の環境も変化しており、入口を増やす前に「受け皿」であるサイト自体を見直すタイミングに来ている可能性があります。</p>
+</div>
+
+<!-- ============ 8. 総合診断 ============ -->
+<div class="content-page">
+  <div class="page-label">08 / 総合診断</div>
+  <div class="page-title"><span class="en">OVERALL DIAGNOSIS</span>いまの状態を一言でいうと</div>
+
+  <div class="diag-box">
+    <div class="small">DIAGNOSIS</div>
+    <div class="big">「動いてはいる。でも、まだ知らない人に届いていない」</div>
+  </div>
+
+  <div class="good-point">
+    <strong>良い点：</strong>社名・地域名での指名検索はしっかり上位表示されており、検索から新しく来てくださった方は1分30秒としっかりサイトを読んでくださっています。もったいないのは、その「新しい出会い」の母数自体がまだ小さいことです。
+  </div>
+
+  <div class="two-col">
+    <div class="col-card">
+      <h4>① まだ知らない人に届いていない（アプローチ）</h4>
+      <p>集客・採用ともに、一般的な言葉での検索順位はまだ圏外に近く、御社を知らない方の目に触れる機会自体が少ない状態です。ここには、あと一歩の伸びしろがあります。</p>
+    </div>
+    <div class="col-card">
+      <h4>② 来た人を活かしきれていない（コンバージョン）</h4>
+      <p>新しい出会いの比率がまだ小さく、サイト自体も制作から5年半が経過しています。入口を広げる前に、受け皿を今の環境に合わせておくことで、効果をより活かせる状態になります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 9. これからの打ち手 ============ -->
+<div class="content-page">
+  <div class="page-label">09 / これからの打ち手</div>
+  <div class="page-title"><span class="en">NEXT STEPS</span>これからの打ち手</div>
+
+  <div class="priority-box">
+    <div class="tag">最優先</div>
+    <h3>サイト全体の見直し</h3>
+    <p>制作から5年半が経過し、表示速度のスコアも改善余地がある状態に加え、検索順位・クリック率・流入の質という入口側の指標が重なって伸びしろを示しています。まずは今の閲覧環境（スマホ中心・AI検索の広がり）に合わせて、ページ構成やデザインといった「受け皿」自体を見直していくことが、遠回りに見えて一番の近道と考えられます。</p>
+  </div>
+
+  <div class="box-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h5>集客</h5>
+      <p>エリアページや施工事例の充実など、受け皿を整える中で少しずつ広げていける展開です。</p>
+    </div>
+    <div class="seed-card">
+      <h5>採用</h5>
+      <p>求職者向けのPRページやスタッフ紹介など、御社の魅力をより伝えるページが今後の展開として見えてきます。</p>
+    </div>
+    <div class="seed-card">
+      <h5>協力会社</h5>
+      <p>現状は募集のための情報がまだない状態です。募集要項ページなど、土台づくりから始められる余地があります。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 10. まとめ ============ -->
+<div class="content-page">
+  <div class="page-label">10 / まとめ</div>
+  <div class="page-title"><span class="en">SUMMARY</span>まず、ここから</div>
+
+  <p class="lead">御社にはすでに、活かしきれていない強みがたくさんあります。</p>
+
+  <div class="closing">
+    <ul>
+      <li><strong>16年以上</strong>の業歴を持つ代表による、丁寧で迅速な施工力</li>
+      <li>誰もが知る有名商業施設での施工実績</li>
+      <li>スタッフとそのご家族を大切にする、あたたかい社風</li>
+      <li>月1本ペースで続けてきたブログでの情報発信の積み重ね</li>
+      <li>社名・地域名での検索ではすでに上位に表示されている実績</li>
+    </ul>
+  </div>
+
+  <p style="font-size:8.7pt; line-height:1.8;">これらの強みを、まだ御社を知らない方に「見せていく」だけで、伸ばせる余地が十分にあります。今回の診断は、そのための現在地の確認です。</p>
+
+  <div class="final-line">ご不明な点や、進め方について、いつでもご相談ください。</div>
+</div>
+
+</body>
+</html>
