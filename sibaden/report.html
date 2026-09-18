@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社柴電設工業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客視点でのサイト診断 〜</div>
+  <div class="company">株式会社柴電設工業 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://sibadensetukougyou.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>採用の強化（人増やしたい）</td></tr>
+    <tr><td>対応エリア</td><td>全国（拠点：茨城県下妻市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>下妻市 電気工事士 求人（本拠地）</td><td>11位以下</td><td>8位</td></tr>
+    <tr><td>結城市 電気工事士 求人</td><td><b>7位</b></td><td><b>7位</b></td></tr>
+    <tr><td>つくば市 電気工事士 求人</td><td>11位以下</td><td>11位以下</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※title・meta keywordsで打ち出している3つの言葉すべてで確認しています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>title・description・h1・meta keywordsのすべてで「電気工事士の求人」を強く打ち出しているサイトです。3キーワード中「結城市」は両エンジンで7位と良好な結果でした。一方で、<b>本拠地である「下妻市」を含む2キーワードがGoogleで圏外</b>という結果でした。本拠地での検索露出に課題があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>インデックス数282件と、本セッションで確認した中でも多い部類です。露出につながっていない原因を一緒に探っていきたいポイントです。</p>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データについて</div>
+  <p>本プロパティはSearch Console未連携のため、クエリ単位のクリック数・表示回数・CTRデータは今回確認できませんでした。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1で確認した通り、本拠地である「下妻市」を含む2キーワードがGoogleで圏外にあり、表示機会自体が乏しいと推測されます。「結城市」は7位という位置にあるため一定の表示・クリックが発生している可能性がありますが、全体としては露出が限定的と考えられます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>Search Consoleを連携することで、今後は実際の表示回数・クリック率を継続的に確認できるようになります。</p>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>323</b></td><td><b>66.6%</b></td><td style="color:var(--red);">23.84%</td></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td>157</td><td>32.37%</td><td><b>57.96%</b></td></tr>
+    <tr><td>他サイト経由（Referral）</td><td>3</td><td>0.62%</td><td>33.33%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>オーガニック検索比率は32.37%で「改善余地あり」の基準に該当します。<b>セッションの66.6%を占めるDirectチャネルは、エンゲージメント率わずか23.84%・平均滞在時間5秒と極端に低く</b>、通常のダイレクトアクセスとは考えにくい不自然な数値です。一方Organic Search経由はエンゲージメント率57.96%・滞在時間1分07秒と質は非常に高くなっています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b style="color:var(--red);">28秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>81</b></td><td>13秒</td></tr>
+    <tr><td>お問い合わせ入力（/contact）</td><td><b>63</b></td><td>15秒</td></tr>
+    <tr><td>お知らせ（/information）</td><td><b>32</b></td><td>10秒</td></tr>
+    <tr><td>採用情報（/recruit）</td><td><b>15</b></td><td><b>53秒</b></td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>28秒は「要改善」のレッドライン（30秒）をわずかに下回る水準です。<b>採用情報ページ（/recruit）は53秒とまずまずの滞在時間があり、採用情報への一定の関心はうかがえます。</b></p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>GA4上のキーイベントは期間中41件記録されていますが、事前にお伺いした「有効問い合わせ数はおそらく0件」という実感と大きく乖離しています。<b>フォームの導線は入力(63)→確認(18)→完了(42)と、確認ページの2倍以上の表示回数が完了ページに記録されるという、本セッションで確認した中でも最も極端な逆転が発生しており、完了ページは表示回数・ユーザー数・キーイベント数がほぼ一致、滞在時間も0秒です。さらにキーイベント41件すべて（100%）が滞在時間5秒のDirectチャネルから発生しています。スパムや自動送信の可能性が極めて高いパターンと考えられます。</b></p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2022年2月（現在<b>約4年7ヶ月</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ60点／PC72点</td></tr>
+    <tr><td>コンテンツの更新状況</td><td>お知らせ・ブログは<b>2026.09.15〜09.18（本日）と直近まで頻繁に更新</b>されている</td></tr>
+    <tr><td>ブログのテーマ</td><td>直近の記事は「下妻・筑西」の求人向けが中心だが、「取手市」等、主力3エリア以外の内容も一部含まれる</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">土台は<span class="gold">健全</span>、本拠地での見え方と求人情報の整理がカギです</div>
+
+  <div class="good-point">
+    <b>良い点：</b>サイトのデザインは古さを感じさせず、お知らせ・ブログも本日（2026年9月18日）まで継続的に更新されています。表示速度も致命的な遅さではなく（スマホ60点）、サイトの土台自体には大きな問題は見られません。AI検索（ChatGPT）の「電気工事士としての就職先」という質問では、<b>3社中トップとして紹介</b>されており、採用面での訴求力もすでに備わっています。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① 本拠地「下妻市」で見つけてもらえていない</h4>
+        <p style="font-size:8.5pt;">主力3キーワード中2つ（下妻市・つくば市）がGoogleで圏外。Search Console未連携で実際の表示・クリック状況も確認できません。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② フォームに不自然な挙動</h4>
+        <p style="font-size:8.5pt;">完了ページが確認ページの2倍以上記録され、滞在時間0秒。キーイベント100%がDirectチャネルに集中しており、スパム・自動送信の疑いがあります。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">サイトの土台とAI検索での採用面の訴求力はすでに備わっているため、本拠地キーワードでの見え方の見直しと、求人情報の鮮度・一貫性の整備、フォームの技術的な確認を並行して進めることが近道と考えられます。</p>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>求人情報の鮮度・一貫性の整備</h3>
+    <p>「人増やしたい」というご意向がある中、AI検索（ChatGPT）ではすでに就職先候補としてトップに紹介されるという強みがあります。しかしAIからは、確認できたハローワーク求人の掲載期限（2026年7月31日）がすでに過ぎている点、従業員数の記載が公式サイト（3名）とハローワーク求人（4名）で異なる点、未経験者の可否に関する記載が両者で食い違っている点が指摘されています。すでにある強みを活かすためにも、求人情報の更新・一貫性の整理をまず優先することをおすすめします。</p>
+  </div>
+
+  <div class="warn-box">
+    <b>特記事項：</b>お問い合わせフォームの完了ページのアクセスパターンに、本セッションで確認した中でも最も強い異常が見られます（確認ページの2倍以上の完了ページ表示、滞在時間0秒、キーイベント100%が滞在時間5秒のDirectチャネルに集中）。求人・集客施策とは別に、<b>フォームのスパム対策（reCAPTCHA等の有無）を早急にご確認いただくことをおすすめします。</b>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>集客面</h4>
+      <p>ブログは本日まで毎日更新されていますが、直近の記事テーマに主力3エリア（下妻市・結城市・つくば市）以外の内容も含まれています。本拠地「下妻市」に絞ったコンテンツを強化し、あわせてSearch Consoleを連携することで、伸びしろが見込めます。</p>
+    </div>
+    <div class="seed-card">
+      <h4>協力会社面</h4>
+      <p>サイト内で協力会社の募集がすでに明記されており、ご意向（あり）に対応する受け皿はできています。情報発信の継続で、認知をさらに広げられる可能性があります。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AI検索での高評価</div><div class="d">ChatGPTの就職先候補で3社中トップに紹介されています</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">継続的なコンテンツ更新</div><div class="d">ブログ・お知らせが本日まで毎日更新されています</div></div>
+    <div class="strength-card"><div class="icon">⚡</div><div class="t">健全なサイトの土台</div><div class="d">表示速度・デザインともに大きな問題は見られません</div></div>
+  </div>
+
+  <p>サイトを更新し続ける体制と、AI検索で選ばれるだけの採用面の訴求力は、すでにできています。その強みを活かすために、求人情報の鮮度・一貫性を整えること、本拠地「下妻市」での見え方を見直すこと、そしてフォームまわりの技術的な確認を行うことで、着実に改善が見込める状態と考えられます。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社柴電設工業 様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
