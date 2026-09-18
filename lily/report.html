@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社Lily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客視点でのサイト診断 〜</div>
+  <div class="company">株式会社Lily 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://lily-ltd.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>集客・採用・協力会社募集の強化</td></tr>
+    <tr><td>対応エリア</td><td>関東全域（拠点：埼玉県さいたま市大宮区）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>さいたま市大宮区 トイレ修理</td><td>10位</td><td>10位</td></tr>
+    <tr><td>さいたま市大宮区 水漏れ 修理</td><td><b>6位</b></td><td><b>6位</b></td></tr>
+    <tr><td>さいたま市大宮区 水道 緊急</td><td><b style="color:var(--green);">2位</b></td><td>9位</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※title・meta keywordsで打ち出している3つの言葉すべてで確認しています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p><b>3キーワードすべてが両エンジンで10位以内に入っており、本セッションで確認した中でも非常に良好な検索順位です。</b>特に「さいたま市大宮区 水道 緊急」はGoogle2位。ブログ・お知らせが自社の商圏（さいたま市・埼玉県）に直接関連したテーマで頻繁に更新されていることが、この良好な順位を支えていると考えられます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>これだけ良好な順位が取れている土台を、次のStep2（クリック率）でどう活かせているかを確認していきます。</p>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <p>本プロパティはSearch Console未連携のため、クエリ単位のクリック数・表示回数・CTRデータは今回確認できませんでした。</p>
+  <p>Step1で確認した通り、3キーワードすべてが10位以内という良好な順位にあります。オーガニック検索セッションが669件（全体の66.97%）と多いことから、一定のクリックは発生していると推測されますが、実際のCTR水準は確認できていません。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>良好な順位という土台はすでにありますが、実際のクリック率を裏付けるデータが取得できていないため、確認と改善の余地があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+
+  <div class="block-title">確認したいこと</div>
+  <p>Search Consoleを連携することで、今後は3キーワードでの実際の表示回数・クリック率を継続的に確認できるようになります。</p>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td><b>669</b></td><td><b>66.97%</b></td><td><b>57.25%</b></td></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td>306</td><td>30.63%</td><td>20.59%</td></tr>
+    <tr><td>他サイト経由（Referral）</td><td>24</td><td>2.4%</td><td>70.83%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>オーガニック検索比率は66.97%で「良好」の基準（50%以上）を大きく上回り、本セッションで確認した中でも最も高い水準です。Organic Search経由はエンゲージメント率57.25%・滞在時間59秒と質も高くなっています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b>46秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>170</b></td><td>32秒</td></tr>
+    <tr><td>コラム記事（/archives/1661）</td><td><b>144</b></td><td>47秒</td></tr>
+    <tr><td>コラム記事（/archives/1654）</td><td><b>49</b></td><td><b>1分45秒</b></td></tr>
+    <tr><td>料金・見積（/price）</td><td><b>41</b></td><td>43秒</td></tr>
+    <tr><td>採用情報（/recruit）</td><td><b>18</b></td><td>11秒</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p><b>ブログ・コラム記事の多くが40秒〜1分45秒と高いエンゲージメント時間を記録しており、コンテンツがしっかり読まれています。</b>一方トップページは32秒、採用情報ページは11秒とやや短めです。全体としては合格ラインにあと一歩の水準です。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>お問い合わせフォームの完了は期間中5件記録されていますが、事前にお伺いした「有効問い合わせ数はおそらく1件」という実感に近い状態です。フォームの導線は入力(41)→確認(3)→完了(5)と、<b>確認ページより完了ページの表示回数がやや多いという軽度の逆転が見られます。また/contact/errorページに6件のアクセスがあり、入力41件に対し約15%の割合でフォーム送信時にエラーが発生しています。</b></p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2022年12月（現在<b>約2年9ヶ月</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ<b style="color:var(--green);">73点</b>／PC73点</td></tr>
+    <tr><td>コンテンツの更新状況</td><td>お知らせ・ブログは<b>2026.09.15〜09.18（本日）までほぼ毎日更新</b></td></tr>
+    <tr><td>ブログのテーマ</td><td>すべて「さいたま市」「埼玉県」等、自社の商圏・サービスに直結した内容</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">土台は<span class="gold">非常に良好</span>、あと一歩の詰めで伸びる状態です</div>
+
+  <div class="good-point">
+    <b>良い点：</b>主力3キーワードすべて10位以内（本セッション最良）、オーガニック比率66.97%（本セッション最高）、PageSpeed73点（本セッション最良）、ブログは本日まで毎日更新かつ自社の商圏に的確に絞った内容。AI検索でも採用目的の質問でLilyが第一候補として明確に推薦されています。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① 見つけてもらう土台は非常に強い</h4>
+        <p style="font-size:8.5pt;">検索順位・オーガニック比率・表示速度・コンテンツ更新のすべてが本セッションで最良クラスです。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② フォームでわずかに取りこぼしている</h4>
+        <p style="font-size:8.5pt;">確認ページより完了ページの表示が多い逆転や、エラーページへのアクセスが見られます。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">本セッションで確認した中でも特に良好な結果です。土台がすでに強いからこそ、Search Console連携によるデータ可視化とフォームの最終確認という、小さな詰めで着実に伸ばせる状態と考えられます。</p>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>Search Console連携によるデータ可視化</h3>
+    <p>主力キーワードはすべて10位以内という非常に良好な順位で、ブログも自社の商圏・サービスに的確に絞った内容で頻繁に更新されています。この強みをさらに正確に把握・改善していくために、Search Consoleを連携し、実際のクリック率・表示回数を継続的に確認できる状態を整えることが有効です。</p>
+  </div>
+
+  <div class="warn-box">
+    <b>特記事項：</b>お問い合わせフォームの完了ページのアクセスパターンに軽度の異常が見られます（確認ページより完了ページの表示がやや多い、/contact/errorページへの一定のアクセス）。良好な集客ができている分、この取りこぼしを解消できれば反響増加に直結しやすいため、<b>フォームの技術的な確認（エラーの発生原因等）をおすすめします。</b>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>採用面</h4>
+      <p>AI検索では就職先の第一候補として明確に推薦されていますが、サイト内の/recruitページ自体の滞在時間は11秒とやや短めです。AI検索上で評価されている求人内容を、サイト内でも同様に見やすく訴求する余地があります。</p>
+    </div>
+    <div class="seed-card">
+      <h4>協力会社面</h4>
+      <p>サイト内で協力会社（一人親方も歓迎）の同時募集が明記されており、受け皿はすでにできています。この情報がAI検索や一般検索でも見つけてもらいやすくなるよう、露出を強化する余地があります。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、本セッションの中でも際立って優れた土台が整っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">主力キーワード全て10位以内</div><div class="d">本セッションで確認した中で最も良好な検索順位です</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">本日まで毎日更新</div><div class="d">自社の商圏に的確に絞ったブログを継続しています</div></div>
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AI検索で採用の第一候補</div><div class="d">求人内容が具体的に評価され推薦されています</div></div>
+  </div>
+
+  <p>集客・コンテンツ更新という土台はすでに非常に強固です。Search Console連携によるデータの可視化と、お問い合わせフォームの最終確認という小さな詰めを行うことで、この強みをさらに確実な反響へつなげられる状態と考えられます。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社Lily 様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
