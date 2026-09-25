@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社オヨカワ設備工業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客視点でのサイト診断 〜</div>
+  <div class="company">株式会社オヨカワ設備工業 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://oyokawa-setsubi.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>BtoB（工務店等）の新規取引先開拓</td></tr>
+    <tr><td>対応エリア</td><td>千葉県内（拠点：匝瑳市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>匝瑳市 水道工事</td><td>8位</td><td>8位</td></tr>
+    <tr><td>匝瑳市 設備工事</td><td>4位</td><td>6位</td></tr>
+    <tr><td>匝瑳市 配管工事</td><td><b>2位</b></td><td><b>2位</b></td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※title・meta keywordsで打ち出している3つの言葉すべてで確認しています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p><b>3キーワードすべてが両エンジンで10位以内にランクインしており、本セッションで確認した中でも最も良好な結果でした。</b>特に「匝瑳市 配管工事」は2位と優秀です。地域名＋工事種別というシンプルな構成のtitle・meta keywordsが、着実に評価されていると考えられます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと（Search Console・クエリレポート全87件）</div>
+  <table class="data">
+    <tr><th>クエリ（一部）</th><th>クリック数</th><th>表示回数</th><th>平均掲載順位</th></tr>
+    <tr><td>匝瑳市 水道工事</td><td><b>1</b></td><td>44 (4.99%)</td><td><b>1.41</b></td></tr>
+    <tr><td>農業集落排水 下水道 違い</td><td>2</td><td>133 (15.1%)</td><td>9.00</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※合計：クリック数12件、表示回数881件、CTR 1.36%、平均掲載順位25.11。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1の検索順位は良好でしたが、全体のCTRは1.36%と低水準でした。<b>特に「匝瑳市 水道工事」は平均掲載順位1.41位という非常に良い位置にありながら、表示回数44回に対しクリックはわずか1回にとどまっています。</b>検索結果に表示されても選ばれていない状態で、タイトル・ディスクリプションの見せ方に改善余地があります。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>361</b></td><td><b>83.18%</b></td><td style="color:var(--red);">42.94%</td></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td>64</td><td>14.75%</td><td><b>87.5%</b></td></tr>
+    <tr><td>他サイト経由（Referral）</td><td>8</td><td>1.84%</td><td>75%</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>オーガニック検索比率は14.75%で「要改善」の基準に該当します。<b>セッションの83.18%を占めるDirectチャネルは、エンゲージメント率わずか42.94%・平均滞在時間2秒と極端に低く</b>、通常のダイレクトアクセスとは考えにくい数値です。一方Organic Search経由はエンゲージメント率87.5%・滞在時間39秒と質は非常に高くなっています。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b style="color:var(--red);">8秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>お問い合わせ入力（/contact）</td><td><b>115</b></td><td>7秒</td></tr>
+    <tr><td>トップページ</td><td><b>108</b></td><td>6秒</td></tr>
+    <tr><td>コラム（/archives/1557）</td><td><b>70</b></td><td>19秒</td></tr>
+    <tr><td>業務案内（/work）</td><td><b>18</b></td><td><b>24秒</b></td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>8秒は「要改善」のレッドライン（30秒）を大きく下回る、本セッションで確認した中でも低い水準です。<b>業務案内ページ（/work）は24秒とまずまずの滞在時間があり、事業内容への一定の関心はうかがえます。</b></p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>お問い合わせフォームのキーイベントは期間中34件記録されていますが、事前にお伺いした「有効問い合わせ数はおそらく4件」という実感と大きく乖離しています。<b>フォームの導線は入力(115)→確認(35)→完了(62)と、確認ページより完了ページの表示回数が1.77倍多いという通常ではあり得ない逆転が発生しており、完了ページはキーイベント34件すべて（100%）を占め、滞在時間も0秒です。さらにそのうち85.29%が滞在時間2秒のDirectチャネルから発生しています。スパムや自動送信の可能性が高いパターンと考えられます。</b></p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2021年9月（現在<b>約5年</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ52点／PC69点</td></tr>
+    <tr><td>デザイン</td><td>カスタムイラストを使った洗練されたデザイン</td></tr>
+    <tr><td>コンテンツの更新状況</td><td>ブログは<b>2026年2月が最終更新（約7ヶ月経過）</b>、コラムは2024年10月が最終更新</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">土台は<span class="gold">非常に優秀</span>、活かし方を整えるタイミングです</div>
+
+  <div class="good-point">
+    <b>良い点：</b>Step1の検索順位は本セッションで確認した中でも最良の結果（3キーワードすべて10位以内）。デザインもカスタムイラストを使った洗練された内容で、視覚的な古さは見られません。会社概要ページには建設業許可・指定給水装置工事事業者など、BtoBの取引先が重視する許認可情報もすでに詳細に掲載されています。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① 良い順位が選ばれることにつながっていない</h4>
+        <p style="font-size:8.5pt;">「匝瑳市 水道工事」は平均掲載順位1.41位ながらCTR2.27%。表示されても選ばれていません。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② フォームに不自然な挙動</h4>
+        <p style="font-size:8.5pt;">完了ページが確認ページの1.77倍記録され、キーイベントの85%が2秒滞在のDirectチャネルに集中。スパムの疑いがあります。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">サイトの土台（検索順位・デザイン・許認可情報）はすでに非常に優れているため、その強みをBtoB向けにどう見せるか、そしてフォームの技術的な確認を並行して進めることが近道と考えられます。</p>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>工務店向けの訴求強化と施工実績の拡充</h3>
+    <p>会社概要ページには建設業許可・電気工事業届出・浄化槽工事業届出・指定給水装置工事事業者（八匝水道企業団・多古町・旭市・香取市）・下水道排水設備指定工事店（旭市・香取市）といった、工務店が外注先を選ぶ際に重視するであろう許認可情報がすでに詳細に掲載されています。しかしトップページでのBtoB向けメッセージは末尾の一文にとどまり、施工実績ページにも法人・公共工事の事例が見当たりません。AI検索（ChatGPT）でも「工務店から発注できる会社」の主要候補には挙がっていませんでした。すでにある強み（約20年の業歴・豊富な許認可）を、工務店が意思決定する際に見る場所に、もっと前面に打ち出すことをおすすめします。</p>
+  </div>
+
+  <div class="warn-box">
+    <b>特記事項：</b>お問い合わせフォームの完了ページのアクセスパターンに強い異常が見られます（確認ページより完了ページの表示が1.77倍多い、キーイベント100%がこのページに集中、うち85%が2秒滞在のDirectチャネル由来）。クライアントの実感「4件」とGA4上の「34件」の乖離は、この異常パターンで大部分説明できると考えられます。<b>フォームのスパム対策（reCAPTCHA等の有無）を早急にご確認いただくことをおすすめします。</b>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>採用面</h4>
+      <p>「経験者を優遇」「実力に応じた高待遇」など、クライアントの意向（実力のある経験者の採用）に沿った訴求がすでに明確に行われています。現状の内容を継続することをおすすめします。</p>
+    </div>
+    <div class="seed-card">
+      <h4>クリック率の改善</h4>
+      <p>Step1の順位は良好なため、タイトル・ディスクリプションの見せ方を見直すことで、CTRの伸びしろが大きく見込めます。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🏆</div><div class="t">本セッション最良の検索順位</div><div class="d">主力3キーワードすべてが10位以内にランクインしています</div></div>
+    <div class="strength-card"><div class="icon">📋</div><div class="t">豊富な許認可・資格</div><div class="d">建設業許可・指定給水装置工事事業者など詳細な実績があります</div></div>
+    <div class="strength-card"><div class="icon">🎨</div><div class="t">洗練されたデザイン</div><div class="d">カスタムイラストを使った視覚的に古さのない仕上がりです</div></div>
+  </div>
+
+  <p>検索順位・デザイン・許認可情報という「土台」はすでに非常に優れた状態にあります。あとは、その強みをBtoB（工務店）の目線でどう見せるか、そしてクリック率・フォームまわりの技術的な確認を行うことで、着実に成果へつながる伸びしろが大きい状態と考えられます。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社オヨカワ設備工業 様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
