@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社グロース</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1ページ目：表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 集客視点でのサイト診断 〜</div>
+  <div class="company">株式会社グロース 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://growth2006.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>元請けの増加／板金系協力会社の獲得</td></tr>
+    <tr><td>対応エリア</td><td>一都三県（拠点：埼玉県越谷市）</td></tr>
+  </table>
+</div>
+
+<!-- 2ページ目：全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探しているターゲットの画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず反響まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3ページ目：Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているターゲットの画面に、そもそも出ているか</div>
+
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>越谷市 外壁工事</td><td>11位以下</td><td>11位以下</td></tr>
+    <tr><td>越谷市 外壁リフォーム</td><td>11位以下</td><td>11位以下</td></tr>
+    <tr><td>越谷市 サイディング工事</td><td><b>1位</b></td><td><b>1位</b></td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※title・meta keywordsで打ち出している3つの言葉すべてで確認しています。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>3キーワード中2つ（外壁工事・外壁リフォーム）が圏外ですが、<b>「越谷市 サイディング工事」は両エンジンで1位と非常に優秀です。</b>制作から約10ヶ月という若いサイトでこの結果は高く評価できます。専門性の高いキーワードではすでに高評価を得ている一方、より間口の広いキーワードでの評価はこれからという状態です。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4ページ目：Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+
+  <div class="block-title">データで確認できたこと（Search Console・クエリレポート全13件）</div>
+  <table class="data">
+    <tr><th>クエリ（一部）</th><th>クリック数</th><th>表示回数</th><th>平均掲載順位</th></tr>
+    <tr><td>外壁 リフォーム 越谷</td><td><b style="color:var(--red);">0</b></td><td>19</td><td>34.37</td></tr>
+    <tr><td>越谷 サイディング</td><td>0</td><td>4</td><td>13.75</td></tr>
+    <tr><td>その他11件</td><td>すべて0</td><td>-</td><td>-</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※合計：クリック数0件、表示回数198件、CTR 0%、平均掲載順位21.16。</p>
+
+  <div class="block-title">そこから考えられること</div>
+  <p><b>月間198回の表示機会に対し、クリックは1件も発生していません（CTR0%）。本セッションで確認した中でも最も厳しい結果です。</b>表示回数の上位は「捨てシールとは」「捨て板とは」といった施工部材の解説クエリで、依頼につながる検索意図とは限りません。一方「外壁リフォーム越谷」等の依頼につながりやすいクエリは平均掲載順位28〜34位と低く、表示機会自体が少ない状態です。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5ページ目：Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td><b>22</b></td><td><b>44.9%</b></td><td style="color:var(--red);">22.73%</td></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td>22</td><td>44.9%</td><td><b>77.27%</b></td></tr>
+    <tr><td>他サイト経由（Referral）</td><td>5</td><td>10.2%</td><td><b>80%</b></td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p>オーガニック検索比率は44.9%で「改善余地あり」の基準に該当します。<b>Organic Search・Referralともにエンゲージメント率77.27%／80%、滞在時間1分44秒／1分37秒と非常に質が高い結果でした。</b>月間セッション数49件と絶対数はまだ少ないものの、質の高い流入が着実にある状態です。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6ページ目：Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず反響まで進めているか</div>
+
+  <div class="block-title">データで確認できたこと（2026年8月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b style="color:var(--green);">1分04秒</b></p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>41</b></td><td>18秒</td></tr>
+    <tr><td>お知らせ（/information）</td><td><b>21</b></td><td>32秒</td></tr>
+    <tr><td>業務案内（/work）</td><td><b>13</b></td><td><b>2分38秒</b></td></tr>
+    <tr><td>お問い合わせ（/form/inquiry）</td><td><b>11</b></td><td>13秒</td></tr>
+  </table>
+
+  <div class="block-title">そこから考えられること</div>
+  <p><b>1分04秒は「良好」の基準（1分〜1分30秒）に該当し、本セッションで確認した中でも良好な水準です。</b>特に業務案内ページ（/work）は2分38秒と突出しており、事業内容をじっくり読み込んでいるユーザーが一定数いると考えられます。</p>
+
+  <div class="block-title">評価</div>
+  <span class="badge good">良好</span>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7ページ目：Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>GA4上のキーイベントは期間中0件で、事前にお伺いした「有効問い合わせ数はおそらく0件」という実感と完全に一致しています。お問い合わせフォームは単一URL（/form/inquiry）で完結する構造で、他クライアントで見られたような入力・確認・完了ページ間の異常な逆転パターンは確認されませんでした。スパムではなく、純粋にまだ反響が発生していない状態と考えられます。</p>
+  <div style="text-align:center;margin:8pt 0;"><span class="badge bad">要改善</span></div>
+
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイト制作年</td><td>2025年11月（現在<b>約10ヶ月</b>経過）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ55点／PC72点</td></tr>
+    <tr><td>デザイン</td><td>カスタムイラストを使った洗練されたデザイン</td></tr>
+    <tr><td>コンテンツの更新状況</td><td>ブログは約2ヶ月に1回のペースで更新（直近から約3.5ヶ月経過）</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8ページ目：総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+
+  <div class="diag-box">土台は<span class="gold">健全</span>、露出と訴求の作り込みがカギです</div>
+
+  <div class="good-point">
+    <b>良い点：</b>制作から約10ヶ月という若いサイトながら、得意分野の「サイディング工事」で検索1位を獲得。デザインも洗練されており視覚的な古さはなく、サイト内のエンゲージメント時間も1分04秒と本セッションで最も良好な水準です。
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① 得意分野の1位がAI検索・CTRにつながっていない</h4>
+        <p style="font-size:8.5pt;">「サイディング工事」で1位でもAI検索では候補に挙がらず、Search Console全体のCTRは0%です。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 協力会社募集に「板金」の言葉がない</h4>
+        <p style="font-size:8.5pt;">募集工種は金属サイディング・外壁補修等のみで、欲しい「板金系」という言葉が使われていません。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">サイトの土台（制作時期・表示速度・デザイン）は非常に健全なため、露出の拡大と、元請け・協力会社それぞれに向けた訴求の作り込みに注力することが近道と考えられます。</p>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9ページ目：これからの打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>法人向け実績の可視化と協力会社募集内容の見直し</h3>
+    <p>トップページの本文では「マンション・工場・オフィス等の施工実績」に言及していますが、施工実績ページ上ではその裏付けとなる事例が確認できませんでした。元請けとして選ばれるために、法人・大型物件の事例を具体的に見せることをおすすめします。あわせて、協力会社募集ページの募集工種に「板金」という言葉自体が使われていないため、板金系の協力会社を求めるのであれば、募集内容に明記することをおすすめします。</p>
+  </div>
+
+  <div class="warn-box">
+    <b>特記事項：</b>ChatGPTでの確認時、「株式会社グロースという社名は全国に複数存在する」という注意喚起がありました。検索結果や問い合わせの取り違えを防ぐためにも、<b>法人番号・所在地を明記した情報発信を意識すると安心です。</b>
+  </div>
+
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>一般キーワードでの露出拡大</h4>
+      <p>「外壁工事」「外壁リフォーム」という間口の広いキーワードは現状圏外です。得意分野で1位を獲得した実績を活かし、コンテンツの幅を広げる余地があります。</p>
+    </div>
+    <div class="seed-card">
+      <h4>メディア掲載の活用</h4>
+      <p>2026年6月に「建設円陣PLUS」への掲載実績があります。この実績を元請け向けの訴求材料としてさらに活用できる可能性があります。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10ページ目：まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、伸ばしていくための材料がしっかりと揃っています。</p>
+
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🥇</div><div class="t">得意分野で検索1位</div><div class="d">「サイディング工事」で本拠地キーワード1位を獲得しています</div></div>
+    <div class="strength-card"><div class="icon">⏱️</div><div class="t">良好なエンゲージメント</div><div class="d">滞在時間1分04秒と本セッションで最も良好な水準です</div></div>
+    <div class="strength-card"><div class="icon">🎨</div><div class="t">洗練されたデザイン</div><div class="d">制作間もなく視覚的な古さは一切ありません</div></div>
+  </div>
+
+  <p>制作から10ヶ月というまだ若いサイトでありながら、専門分野での検索順位・デザイン・エンゲージメントという「土台」はすでに非常に健全な状態にあります。あとは、元請け・協力会社それぞれに向けた訴求を具体的に作り込み、露出を広げていくことで、着実に成果へつながる伸びしろが大きい状態と考えられます。まずは今回確認したデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で進め方を考えていければと思います。</p>
+
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社グロース 様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
