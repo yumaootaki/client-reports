@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜四井空調</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<!-- 1 表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE ANALYSIS REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">集客視点（業務用・法人のご依頼を増やすために）</div>
+  <div class="company">四井空調 様</div>
+  <table>
+    <tr><td>対象サイト</td><td>https://yotsui-kuutyou.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年8月1日〜8月31日</td></tr>
+    <tr><td>主な目的</td><td>業務用・法人のエアコン工事／冷媒配管工事のご依頼増加（推定）</td></tr>
+    <tr><td>対応エリア</td><td>関東一円（拠点：埼玉県川口市）</td></tr>
+  </table>
+</div>
+
+<!-- 2 全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせは、この5つのStepを上りきって初めて生まれます。本レポートでは、1つずつ順番に現状を確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>アプローチ（見つけてもらう）</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探している人の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>コンバージョン（受け皿で活かす）</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">入ってきているのは、新しく探している人か</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず問い合わせまで進めているか</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせにつながっているか</div></div>
+    </div>
+  </div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>2</span></div>
+</div>
+
+<!-- 3 Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1 検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">探しているお客様の画面に、そもそも出ているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <table class="data">
+      <tr><th>キーワード</th><th>Google</th><th>Yahoo!</th></tr>
+      <tr><td>エアコン工事 埼玉県川口市</td><td><b>11位以下</b></td><td><b>11位以下</b></td></tr>
+      <tr><td>冷媒配管工事 埼玉県川口市</td><td><b>2位</b></td><td><b>2位</b></td></tr>
+      <tr><td>エアコン ガス回収 業者 埼玉県川口市</td><td><b>2位</b></td><td><b>4位</b></td></tr>
+    </table>
+    <p>「冷媒配管工事」「ガス回収 業者」という専門性の高い言葉では、開設から約<b>1年6ヶ月</b>のサイトで<b>2位</b>に入っています。一方、いちばん多くの人が使う「エアコン工事 川口市」では<b>11位以下</b>で、1ページ目に表示されていません。</p>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>専門分野については、すでにGoogleから「詳しい会社」として評価されています。いっぽうで「エアコン工事」は家電量販店や専門店、比較サイトが強い言葉です。四井空調さんの得意な「業務用」「冷媒配管」を切り口にした情報を増やしていくと、入口の広い言葉にも近づいていけます。</p>
+    <p>ブログは全<b>7本</b>で、最後の更新（2025年4月18日）から約<b>5.5ヶ月</b>止まっています。</p>
+  </section>
+  <p style="margin-top:10pt">評価：<span class="badge bad">要改善</span></p>
+  <div class="warn-box"><b>確認したいこと</b>：検索ボリューム（月に何回検索されているか）は今回取得できませんでした。商談時に一緒に確認させてください。</div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>3</span></div>
+</div>
+
+<!-- 4 Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2 クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <p>今回は Search Console（Googleの検索データ）を確認できる状態になっておらず、表示回数やクリック率のデータを取得できませんでした。</p>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>専門ワードで<b>2位</b>に表示されていても、実際にクリックされているかどうかで打ち手が変わります。タイトルや説明文が「業務用のエアコン工事を任せたい」という方に刺さっているかを、データで確かめたいポイントです。</p>
+  </section>
+  <p style="margin-top:10pt">評価：<span class="badge na">データなし</span></p>
+  <div class="warn-box"><b>確認が必要な項目</b>：Search Console の閲覧権限を設定いただければ、次回からこのStepも数値で確認できます。</div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>4</span></div>
+</div>
+
+<!-- 5 Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3 流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <section>
+    <div class="block-title">データで確認できたこと（2026年8月）</div>
+    <table class="data">
+      <tr><th>流入経路</th><th>訪問数</th><th>割合</th><th>しっかり見た割合</th><th>平均時間</th></tr>
+      <tr><td>検索（オーガニック）</td><td><b>20</b></td><td><b>64.52%</b></td><td><b>65%</b></td><td><b>36秒</b></td></tr>
+      <tr><td>すでに接点のある方</td><td><b>7</b></td><td><b>22.58%</b></td><td><b>42.86%</b></td><td><b>8秒</b></td></tr>
+      <tr><td>他サイトからのリンク</td><td><b>4</b></td><td><b>12.9%</b></td><td><b>75%</b></td><td><b>20秒</b></td></tr>
+      <tr><td><b>合計</b></td><td><b>31</b></td><td>100%</td><td><b>61.29%</b></td><td><b>28秒</b></td></tr>
+    </table>
+    <p>訪問の<b>64.52%</b>が検索から来ています。名刺やご紹介など、すでに接点のある方からの訪問は<b>22.58%</b>です。</p>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>サイトに来ている人の中心は「新しく探している人」で、流入の質は健全です。ただし月の訪問数は<b>31</b>とまだ少なく、この入口を広げることが次のテーマになります。</p>
+  </section>
+  <p style="margin-top:10pt">評価：<span class="badge good">良好</span></p>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>5</span></div>
+</div>
+
+<!-- 6 Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4 サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わずお問い合わせまで進めているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <p>1人あたりの平均閲覧時間は<b>35秒</b>です。</p>
+    <table class="data">
+      <tr><th>よく見られているページ</th><th>表示回数</th><th>平均時間</th></tr>
+      <tr><td>トップページ</td><td><b>22</b></td><td><b>27秒</b></td></tr>
+      <tr><td>会社概要</td><td><b>18</b></td><td><b>22秒</b></td></tr>
+      <tr><td>業務案内</td><td><b>5</b></td><td><b>7秒</b></td></tr>
+      <tr><td>料金表</td><td><b>4</b></td><td><b>13秒</b></td></tr>
+      <tr><td>ご依頼の流れ</td><td><b>3</b></td><td><b>11秒</b></td></tr>
+    </table>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>「どんな会社か」（会社概要）はよく見られていますが、「何をお願いできるか」を伝える業務案内は<b>5回・7秒</b>とほとんど読まれていません。また、施工事例（実績）を見られるページがないため、業務用の工事をお願いしたい方が「この会社に任せて大丈夫か」を判断する材料が不足している可能性があります。</p>
+  </section>
+  <p style="margin-top:10pt">評価：<span class="badge mid">改善余地あり</span></p>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>6</span></div>
+</div>
+
+<!-- 7 Step5 + 現状診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5 反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <section>
+    <div class="block-title">反響（2026年8月）</div>
+    <p>フォームからのお問い合わせは<b>1件</b>でした（電話は計測の仕組みがないため件数不明）。この1件は、すでに接点のある方からの訪問によるもので、検索で新しく来た方からのお問い合わせは<b>0件</b>でした。</p>
+    <p>訪問数<b>31</b>・平均<b>35秒</b>という状況から見ると、この結果は自然な数字です。入口と受け皿の両方を整えれば、伸ばせる余地があります。</p>
+    <p>評価：<span class="badge bad">要改善</span></p>
+    <div class="warn-box"><b>確認したいこと</b>：8月のお問い合わせ1件の中身と、月の電話でのお問い合わせ件数を教えてください。</div>
+  </section>
+  <section>
+    <div class="block-title">サイトの現状診断</div>
+    <table class="data">
+      <tr><th style="width:28mm">項目</th><th>状況</th></tr>
+      <tr><td>導線</td><td>電話・メール・LINEの3つの窓口が常に表示されていて分かりやすい</td></tr>
+      <tr><td>強みの伝え方</td><td>関東<b>7都県</b>での第一種フロン類充填回収業者登録、新築・改修・リフォーム対応、「速さより丁寧さ」の方針が明記されている</td></tr>
+      <tr><td>不足している情報</td><td>施工事例（業務用・店舗・ビル）、業務用エアコン・冷媒配管の詳しいページ、採用・取引先向けのページ</td></tr>
+      <tr><td>表示速度</td><td>スマホ <b>62点</b>／PC <b>65点</b>（不要なプログラムの削減で改善できる範囲）</td></tr>
+      <tr><td>制作年</td><td>2024年3月開設（約<b>1年6ヶ月</b>）。デザインは新しく、作り直しの必要はない</td></tr>
+      <tr><td>AI検索</td><td>「四井空調」と社名で聞くと正しく紹介される一方、「川口市 エアコン工事 おすすめ」では候補に出ない</td></tr>
+    </table>
+  </section>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>7</span></div>
+</div>
+
+<!-- 8 総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">専門分野ではすでに上位。<span class="gold">入口の広さと実績の見せ方</span>が伸びしろです</div>
+  <div class="good-point"><b>良い点</b>：開設約1年半で「冷媒配管工事」「ガス回収 業者」が<b>2位</b>。訪問の<b>64.52%</b>が検索からで、AIも会社の情報を正しく理解しています。土台はしっかりできています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない（アプローチ）</h4>
+        <p>「エアコン工事 川口市」では<b>11位以下</b>、月の訪問は<b>31</b>。専門ワード以外の入口がまだ狭い状態です。ブログも約<b>5.5ヶ月</b>止まっています。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない（コンバージョン）</h4>
+        <p>平均<b>35秒</b>で、業務案内まで進む人が少なく、施工事例もありません。新しく来た方からのお問い合わせは<b>0件</b>で、あと一歩の「もったいない状態」です。</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>8</span></div>
+</div>
+
+<!-- 9 打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>施工事例と「業務用エアコン・冷媒配管」の専門ページで受け皿をつくる</h3>
+    <p>なぜ：専門ワードで<b>2位</b>に表示されているのに、来た人が「任せられるか」を判断する実績ページがなく、平均<b>35秒</b>で離れているためです（Step1・Step4）。</p>
+    <p>何をする：業務用・店舗・ビルの施工事例と、得意な工事を詳しく伝えるページを追加し、あわせてブログを再開して入口を広げます。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>口コミ・地域での見つかりやすさ</h4>AI検索では口コミの多い会社が紹介されやすい傾向があります。Googleの口コミを増やしていくことも入口づくりになります。</div>
+    <div class="seed-card"><h4>採用</h4>人手を増やしたい場合は、求人PRページがあるとAI検索や求人検索で見つけてもらいやすくなります。</div>
+    <div class="seed-card"><h4>取引先・協力会社</h4>冷媒配管の専門性は届いているので、元請けの設備会社向けの窓口ページも選択肢になります。</div>
+  </div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>9</span></div>
+</div>
+
+<!-- 10 まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">四井空調さんには、すでに見せられる強みがそろっています。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🏅</div><div class="t">関東7都県の登録</div><div class="d">第一種フロン類充填回収業者として関東一円に対応</div></div>
+    <div class="strength-card"><div class="icon">🔧</div><div class="t">専門ワードで2位</div><div class="d">「冷媒配管工事」「ガス回収 業者」で上位表示</div></div>
+    <div class="strength-card"><div class="icon">🏢</div><div class="t">幅広い建物に対応</div><div class="d">戸建て・マンション・ビル・商業施設まで</div></div>
+  </div>
+  <p>これらを施工事例とあわせて見せていくだけで、「業務用のエアコン工事なら四井空調」と選んでもらえる余地は十分にあります。</p>
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>四井空調 様｜サイト現状分析レポート</span><span>10</span></div>
+</div>
+
+</body>
+</html>
