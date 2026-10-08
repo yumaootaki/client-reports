@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI検索 対応状況レポート｜株式会社エーステクニカ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;font-size:9pt;color:#26324a;background:#ddd;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;background:#fff;margin:0 auto 6mm;position:relative;overflow:hidden;page-break-after:always;page-break-inside:avoid;padding:14mm 15mm}
+.page:last-child{page-break-after:auto}
+h1,h2,h3{margin:0}p{margin:0 0 4pt;line-height:1.6;font-size:8.5pt}b,strong{font-weight:700}
+.cover{background:#1a2f5e;color:#fff;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.cover .k{letter-spacing:.3em;font-size:9pt;color:#c9a84c;margin-bottom:14pt}
+.cover h1{font-size:28pt;letter-spacing:.06em;margin-bottom:10pt}.cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:34pt}
+.cover .co{font-size:15pt;font-weight:700;border-top:1px solid #c9a84c;border-bottom:1px solid #c9a84c;padding:10pt 24pt;margin-bottom:28pt}
+.cover table{border-collapse:collapse;width:135mm;font-size:9.5pt}.cover td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,.25);text-align:left}.cover td:first-child{color:#c9a84c;width:32mm}
+.ph{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid #1a2f5e;padding-bottom:6pt;margin-bottom:10pt}
+.ph h2{font-size:14pt;color:#1a2f5e}.ph span{font-size:8pt;color:#1a2f5e}
+.bt{font-size:10pt;font-weight:700;color:#1a2f5e;margin:10pt 0 5pt;padding-left:8pt;border-left:4pt solid #1a2f5e}
+table.t{width:100%;border-collapse:collapse;font-size:8pt;margin-bottom:5pt}
+table.t th{background:#1a2f5e;color:#fff;padding:4.5pt 5pt;font-weight:500;text-align:left}
+table.t td{padding:4.5pt 5pt;border-bottom:1px solid #dfe3ea;vertical-align:top;line-height:1.5}
+table.t tr:nth-child(even) td{background:#f7f8fb}.c{text-align:center}.nw{white-space:nowrap}.sm{font-size:7.3pt;color:#5c6478}
+.bd{display:inline-block;font-weight:700;font-size:8pt;padding:2.5pt 9pt;border-radius:12pt;color:#fff;white-space:nowrap}
+.bd.ok{background:#2e8b57}.bd.mid{background:#d98c1e}.bd.ng{background:#c0392b}.bd.na{background:#8b93a3}
+.lead{font-size:9pt;color:#1a2f5e;margin-bottom:10pt}
+.blocks{display:flex;gap:8pt;margin:14pt 0}.blk{flex:1;border-radius:6pt;padding:10pt;border:1px solid #c7d3ee;background:#eef2fb}
+.blk.g{background:#fbf5e8;border-color:#ecdcb2}.blk h3{font-size:10.5pt;color:#1a2f5e;margin-bottom:5pt}.blk .no{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;background:#1a2f5e;color:#fff;font-size:8.5pt;margin-right:5pt}
+.arrow{text-align:center;color:#8b93a3;font-size:9pt;margin:2pt 0 8pt}
+.big{font-size:44pt;color:#1a2f5e;font-weight:900;line-height:1}.bigwrap{text-align:center;margin:6pt 0 4pt}
+.state{text-align:center;background:#1a2f5e;color:#fff;border-radius:6pt;padding:8pt;font-size:11pt;font-weight:700;margin-bottom:10pt}
+.bar{height:11pt;background:#e8ebf2;border-radius:6pt;overflow:hidden}.fill{height:100%}
+.brow{display:flex;align-items:center;gap:8pt;margin-bottom:6pt;font-size:8.5pt}.brow .l{width:48mm}.brow .bw{flex:1}.brow .v{width:22mm;text-align:right}
+.flow{display:flex;flex-direction:column;gap:0}
+.step{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 11pt;background:#fff}.step .tag{display:inline-block;font-size:7.5pt;font-weight:700;color:#fff;background:#1a2f5e;border-radius:10pt;padding:1.5pt 8pt;margin-bottom:4pt}
+.step.f{background:#fbf5e8;border-color:#ecdcb2}.step.f .tag{background:#c9a84c;color:#1a2f5e}
+.ar{text-align:center;color:#aab2c3;font-size:12pt;line-height:1;margin:3pt 0}
+.fn{position:absolute;bottom:8mm;left:15mm;right:15mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between}
+.note{font-size:7.3pt;color:#5c6478}
+@media print{@page{size:A4 portrait;margin:0}body{background:#fff}.page{margin:0}}
+</style></head><body>
+
+<div class="page cover">
+<div class="k">AI SEARCH READINESS REPORT</div><h1>AI検索 対応状況レポート</h1><div class="sub">AIに"紹介される会社"になっているか</div>
+<div class="co">株式会社エーステクニカ 様</div>
+<table><tr><td>対象サイトURL</td><td>https://ace-tekunika.co.jp/</td></tr><tr><td>業種</td><td>電気工事・空調工事・通信工事／分析機器・実験器具の販売・修理</td></tr><tr><td>対応エリア</td><td>埼玉県熊谷市</td></tr><tr><td>調査日</td><td>2026年10月8日</td></tr></table>
+</div>
+
+<div class="page">
+<div class="ph"><h2>このレポートで確認すること</h2><span>2 / 6</span></div>
+<p class="lead">業者を探すとき、Googleで検索するだけでなく、ChatGPTなどのAIに「熊谷市でおすすめの業者は？」と質問して候補を絞る人が増えてきています。このレポートでは、AIに質問したときに御社がどう扱われているかを、次の3つのブロックで確認します。</p>
+<div class="blocks">
+<div class="blk g"><h3><span class="no">1</span>現状</h3><p><b>AIに紹介されているか</b>（結果）</p><p class="sm">ChatGPT・Gemini・Googleの「AIによる概要」で、合計9回の質問をしました。</p></div>
+<div class="blk"><h3><span class="no">2</span>サイトの中の準備</h3><p><b>AIが紹介したくなる情報が、サイトにあるか</b></p><p class="sm">信用できる根拠・施工事例・料金の目安・よくある質問・Googleに会社情報を正しく伝える設定を見ます。</p></div>
+<div class="blk"><h3><span class="no">3</span>サイトの外の準備</h3><p><b>AIが参考にする評判・掲載があるか</b></p><p class="sm">Googleマップの登録と口コミ、第三者のおすすめ記事への掲載を見ます。</p></div>
+</div>
+<div class="arrow">サイトの中の準備 ＋ サイトの外の準備　▼　が整っているほど、AIに紹介されやすくなります　▼</div>
+<div class="step f" style="text-align:center"><span class="tag">結果</span><br><b>現状：AIに紹介されているか</b></div>
+<p class="note" style="margin-top:14pt">このページは、これから何を見ていくかの案内です。評価は3ページ目以降に記載しています。<br>AIの回答は質問の仕方や時期によって変わることがあります。本レポートは調査日（2026/10/08）時点の結果です。</p>
+<div class="fn"><span>株式会社エーステクニカ 様 AI検索 対応状況レポート</span><span>2 / 6</span></div>
+</div>
+
+<div class="page">
+<div class="ph"><h2>現状：AIでの紹介状況と、社名での説明</h2><span>3 / 6</span></div>
+<div class="bt">AIでの紹介状況　<span class="bd ng">× できていない</span></div>
+<table class="t"><tr><th>AIの種類</th><th>質問した内容</th><th>御社の紹介</th><th>代わりに紹介された会社</th></tr><tr><td class="nw">ChatGPT<br><span class="sm">おすすめ型</span></td><td>熊谷市で電気工事・空調工事のおすすめの会社を教えて</td><td class="c">紹介なし</td><td>株式会社アイレス、（株）福道電気、新和機設（株）</td></tr><tr><td class="nw">ChatGPT<br><span class="sm">費用・悩み型</span></td><td>熊谷市 電気工事 空調工事 通信工事 費用</td><td class="c">紹介なし</td><td>（株）電工、（株）福道電気、栄明電気（株）</td></tr><tr><td class="nw">Gemini<br><span class="sm">おすすめ型</span></td><td>熊谷市で電気工事・空調工事のおすすめの会社を教えて</td><td class="c">紹介なし</td><td>（株）福道電気、株式会社ガスペック、ヨシムラデンキ</td></tr><tr><td class="nw">Gemini<br><span class="sm">費用・悩み型</span></td><td>熊谷市 電気工事 空調工事 通信工事 費用</td><td class="c">紹介なし</td><td>熊谷電気工事店、株式会社ガスペック</td></tr><tr><td class="nw">AIによる概要<br><span class="sm">おすすめ型</span></td><td>熊谷市で電気工事・空調工事のおすすめの会社を教えて</td><td class="c">紹介なし</td><td>SOAR株式会社、株式会社アイレス、株式会社沼尻電機</td></tr><tr><td class="nw">AIによる概要<br><span class="sm">費用・悩み型</span></td><td>熊谷市 電気工事 空調工事 通信工事 費用</td><td class="c">紹介なし</td><td>熊谷電気工事店、株式会社ガスペック、EPARKくらしのレスキュー</td></tr></table>
+<p>6回のテストのうち、御社が紹介されたのは<b>0回</b>でした。参考にされたサイトの一覧に御社のサイトが含まれていた回は、確認できた範囲では<b>0回</b>でした。</p>
+<p>福道電気さんは6回中<b>3回</b>、ガスペックさんは6回中<b>3回</b>、アイレスさんは6回中<b>2回</b>紹介されていました。なお、GoogleのAIによる概要は、2回とも表示されました。</p>
+<div class="bt">社名で聞いたときの説明　<span class="bd ok">○ できている</span></div>
+<table class="t"><tr><th>AIの種類</th><th>説明された内容</th><th>正確さ</th></tr><tr><td class="nw">ChatGPT</td><td>熊谷市柿沼を拠点に、電気・空調・通信工事と研究・実験機器の販売・修理を行う会社と説明。設立1997年7月16日、資本金1,000万円、代表者名、建設業許可、所属団体、保有資格、2019年の埼玉県知事賞受賞まで説明されていた。<br><span class="sm">補足：対応エリアの説明はなし（サイト自体にも市区町村単位の対応エリア記載なし）。</span></td><td class="c nw">正確</td></tr><tr><td class="nw">Gemini</td><td>熊谷市に本社を置き、研究・実験設備の販売施工と電気・空調・通信工事を行う会社と説明。設立・代表者・資本金・建設業許可・東京電力PG引込線請負工事店・ダイキン特約店の内容も説明されていた。<br><span class="sm">補足：「従業員数約2〜3名」との説明があるが、自社サイトに従業員数の記載はなく、外部サイト由来の情報と考えられる。対応エリアの説明はなし。</span></td><td class="c nw">正確</td></tr><tr><td class="nw">AIによる概要</td><td>熊谷市に本社を置き、研究施設向けの機器販売・設備工事や電気・空調・通信工事を行う企業と説明。所在地（柿沼567-1）、設立日、代表者、資本金が表示されていた。<br><span class="sm">補足：表示された範囲（「もっと見る」の手前まで）は正確。対応エリアの記載はなし。</span></td><td class="c nw">正確</td></tr></table>
+<p>3つのAIに「株式会社エーステクニカはどんな会社？」と質問した結果、業種・所在地・設立年などは、御社のサイトの内容と一致して説明されていました。</p>
+<div class="fn"><span>株式会社エーステクニカ 様 AI検索 対応状況レポート</span><span>3 / 6</span></div>
+</div>
+
+<div class="page">
+<div class="ph"><h2>AIに紹介してもらうための準備は、いまこの状態です</h2><span>4 / 6</span></div>
+<div class="bt">サイトの中の準備（5項目）</div>
+<table class="t"><tr><th style="width:25%">項目</th><th>御社の状態</th><th style="width:19%">判定</th></tr>
+<tr><td>信用できる根拠</td><td>会社案内ページに代表取締役のあいさつ文（大澤智章）はあるが、顔写真はありません。保有資格（第一種電気工事士・1級電気工事施工管理技士・1級冷凍空気調和機器施工技能士など）は資格名で具体的に掲載、1997年設立と取扱メーカー400社超の記載、建設業許可番号（埼玉県知事許可 般-6 第63364号）も掲載されています。スタッフ紹介のページはありません（5点中3点）。</td><td class="c"><span class="bd mid">△ 一部できている</span></td></tr>
+<tr><td>施工事例</td><td>施工事例のページはありません。業務案内ページに事業内容の一覧と、取扱メーカー名・工事の種類は載っていますが、工事ごとの事例（地域・内容・工期）の掲載は0件です。トップページのお知らせは2019年11月の1件のみです。</td><td class="c"><span class="bd ng">× できていない</span></td></tr>
+<tr><td>料金の目安</td><td>料金の目安に関する記載はありません。トップ・業務案内・会社案内・採用情報のいずれのページにも金額の記載はありません。</td><td class="c"><span class="bd ng">× できていない</span></td></tr>
+<tr><td>よくある質問</td><td>よくある質問のページ・コーナーはありません（0問）。※同じ会社の別サイト（採用向け・ace-tekunika.jp）には「よくある質問」のページがありますが、今回の対象サイトにはありません。</td><td class="c"><span class="bd ng">× できていない</span></td></tr>
+<tr><td>Googleに会社情報を正しく伝える設定</td><td>ページのソースに会社情報の設定は書かれておらず（トップ・業務案内・会社案内・採用情報の4ページを確認）、Googleの確認ツール（トップページ）でも「アイテムが検出されませんでした」と表示されました。※別サイト（採用向け・ace-tekunika.jp）には設定が1件ありますが、今回の対象サイトではありません。</td><td class="c"><span class="bd ng">× できていない</span></td></tr></table>
+<div class="bt">サイトの外の準備（2項目）</div>
+<table class="t"><tr><th style="width:25%">項目</th><th>御社の状態</th><th style="width:19%">判定</th></tr>
+<tr><td>Googleマップの登録と口コミ</td><td>Googleマップには「（株）エーステクニカ」（電気工）が登録されています。口コミは4件、平均評価は1.8です（直近の口コミは1年前・4年前）。営業時間は未入力で、オーナーによる写真・投稿・口コミへの返信は確認できませんでした。比較として、AIに紹介された「光和空調」は口コミ20件・平均5.0、「福道電気」は口コミ1件・平均5.0で営業時間・オーナー写真・投稿が入っています。</td><td class="c"><span class="bd mid">△ 一部できている</span></td></tr>
+<tr><td>第三者のおすすめ記事への掲載</td><td>「熊谷市 電気工事 空調工事 おすすめ」のGoogle検索上位10件のうち、おすすめ・比較・一覧系のページは7件（くらしのマーケット、ミツモア、ゼヒトモ、生活110番、life-techs.jp、EPARKくらしのレスキュー、ツクリンク）でした。自社が載っていたのは、ツクリンクの「熊谷市で空調設備工事に対応できる建設業者一覧」の1件です（建設業者を並べた一覧ページで、おすすめ・ランキング形式ではありません）。</td><td class="c"><span class="bd mid">△ 一部できている</span></td></tr></table>
+<div class="fn"><span>株式会社エーステクニカ 様 AI検索 対応状況レポート</span><span>4 / 6</span></div>
+</div>
+
+<div class="page">
+<div class="ph"><h2>AIに紹介されやすさ スコア</h2><span>5 / 6</span></div>
+<div class="bigwrap"><span class="big">24</span><span style="font-size:16pt;color:#1a2f5e"> 点 / 100点</span></div>
+<div class="state">AIの紹介対象にほぼ入っていない状態</div>
+<div class="brow"><div class="l">現状</div><div class="bw"><div class="bar"><div class="fill" style="width:25%;background:#1a2f5e"></div></div></div><div class="v"><b>10</b> / <b>40</b>点</div></div>
+<div class="brow"><div class="l">サイトの中の準備</div><div class="bw"><div class="bar"><div class="fill" style="width:10%;background:#c9a84c"></div></div></div><div class="v"><b>4</b> / <b>40</b>点</div></div>
+<div class="brow"><div class="l">サイトの外の準備</div><div class="bw"><div class="bar"><div class="fill" style="width:50%;background:#2c4576"></div></div></div><div class="v"><b>10</b> / <b>20</b>点</div></div>
+<div class="bt">点数の内訳</div>
+<table class="t"><tr><th>項目</th><th class="c" style="width:22%">判定</th><th class="c" style="width:20%">得点 / 配点</th></tr>
+<tr><td>現状① AIでの紹介状況（紹介1回につき5点）</td><td class="c"><span class="bd ng">× できていない</span></td><td class="c"><b>0</b> / <b>30</b></td></tr>
+<tr><td>現状② 社名で聞いたときの説明</td><td class="c"><span class="bd ok">○ できている</span></td><td class="c"><b>10</b> / <b>10</b></td></tr>
+<tr><td>内部① 信用できる根拠</td><td class="c"><span class="bd mid">△ 一部できている</span></td><td class="c"><b>4</b> / <b>8</b></td></tr>
+<tr><td>内部② 施工事例</td><td class="c"><span class="bd ng">× できていない</span></td><td class="c"><b>0</b> / <b>8</b></td></tr>
+<tr><td>内部③ 料金の目安</td><td class="c"><span class="bd ng">× できていない</span></td><td class="c"><b>0</b> / <b>8</b></td></tr>
+<tr><td>内部④ よくある質問</td><td class="c"><span class="bd ng">× できていない</span></td><td class="c"><b>0</b> / <b>8</b></td></tr>
+<tr><td>内部⑤ Googleに会社情報を正しく伝える設定</td><td class="c"><span class="bd ng">× できていない</span></td><td class="c"><b>0</b> / <b>8</b></td></tr>
+<tr><td>外部① Googleマップの登録と口コミ</td><td class="c"><span class="bd mid">△ 一部できている</span></td><td class="c"><b>5</b> / <b>10</b></td></tr>
+<tr><td>外部② 第三者のおすすめ記事への掲載</td><td class="c"><span class="bd mid">△ 一部できている</span></td><td class="c"><b>5</b> / <b>10</b></td></tr></table>
+<div class="bt">サイトの中と外の準備（60点満点）の比較</div>
+<div class="brow"><div class="l">御社</div><div class="bw"><div class="bar"><div class="fill" style="width:23%;background:#1a2f5e"></div></div></div><div class="v"><b>14</b> / <b>60</b>点</div></div>
+<div class="brow"><div class="l">福道電気さん（簡易チェック）</div><div class="bw"><div class="bar"><div class="fill" style="width:15%;background:#8b93a3"></div></div></div><div class="v"><b>9</b> / <b>60</b>点</div></div>
+<p class="note">福道電気さんは6回中3回紹介されていた会社です。施工事例の掲載件数は今回確認できず、0点として計算しています。<br>点数の見方：80点以上＝AIに紹介されやすい状態／60〜79点＝紹介される可能性はあるが、競合に先を越されやすい状態／40〜59点＝AIに紹介されにくい状態／39点以下＝AIの紹介対象にほぼ入っていない状態</p>
+<div class="fn"><span>株式会社エーステクニカ 様 AI検索 対応状況レポート</span><span>5 / 6</span></div>
+</div>
+
+<div class="page">
+<div class="ph"><h2>いまの状態が続いた場合に、考えられること</h2><span>6 / 6</span></div>
+<div class="flow">
+<div class="step"><span class="tag">① 業者の探し方の変化（事実）</span><p>業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに「熊谷市でおすすめの会社は？」と質問して候補を絞る人が増えてきています。</p></div><div class="ar">▼</div>
+<div class="step"><span class="tag">② 御社の現状（事実）</span><p>今回の6回のテスト（ChatGPT・Gemini・Googleの「AIによる概要」×2パターン）では、御社が紹介された回数は0回でした。一方で、社名を直接聞いた3回では、3つのAIとも事業内容・所在地・設立年などを正しく説明していました。代わりに紹介されていた会社は、福道電気さん（6回中3回）、ガスペックさん（6回中3回）、アイレスさん（6回中2回）などです。合計点は24点／100点で「AIの紹介対象にほぼ入っていない状態」です。</p></div><div class="ar">▼</div>
+<div class="step"><span class="tag">③ 確認できたこと（事実）</span><p>サイトの中では、施工事例のページ、料金の目安、よくある質問、Googleに会社情報を正しく伝える設定が「できていない」状態で、信用できる根拠（5点中3点）は「一部できている」状態です。サイトの外では、Googleマップの口コミが4件（平均1.8）、第三者のおすすめ記事への掲載は建設業者一覧の1件のみで、どちらも「一部できている」状態です。</p></div><div class="ar">▼</div>
+<div class="step f"><span class="tag">④ 考えられること（推測）</span><p>AIで業者を探す人が増えるにつれて、そうした方々の候補に御社が入りにくく、AIに繰り返し紹介されている会社へ相談が流れやすくなる可能性があると考えられます。ただし、社名を知っている方がAIで御社を調べた場合には、正しい内容が説明される状態です。</p></div>
+</div>
+<p style="margin-top:14pt;text-align:center;color:#1a2f5e">各項目の詳しい見方については、担当よりご説明いたします。</p>
+<div class="fn"><span>株式会社エーステクニカ 様 AI検索 対応状況レポート</span><span>6 / 6</span></div>
+</div>
+</body></html>
