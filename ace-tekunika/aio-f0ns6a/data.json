@@ -238,40 +238,7 @@
       "score": 5
     }
   },
-  "competitor": {
-    "name": "（株）福道電気（簡易チェック）",
-    "internal": {
-      "trust": {
-        "judge": "△"
-      },
-      "cases": {
-        "judge": "未確認"
-      },
-      "price": {
-        "judge": "×"
-      },
-      "faq": {
-        "judge": "×"
-      },
-      "jsonld": {
-        "judge": "×"
-      }
-    },
-    "external": {
-      "gbp": {
-        "judge": "△"
-      },
-      "articles": {
-        "judge": "×"
-      }
-    },
-    "note": "福道電気は6回中3回紹介。施工事例ページはあるが掲載件数は動的表示のため未確認（0点扱い）。おすすめ記事の掲載数は集計していない。",
-    "scores": {
-      "internal": 4,
-      "external": 5,
-      "prep60": 9
-    }
-  },
+  "competitor": null,
   "scores": {
     "current": 10,
     "internal": 12,
