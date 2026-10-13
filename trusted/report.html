@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社trusteD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  .warn-box{background:#fbf0ee;border:1px solid #ecc4bc;border-radius:6pt;padding:9pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+  .warn-box b{color:var(--red);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<!-- 1 表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE ANALYSIS REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">採用視点(現場スタッフ・協力会社に選ばれるために)</div>
+  <div class="company">株式会社trusteD 様</div>
+  <table>
+    <tr><td>対象サイト</td><td>https://truste-d.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年9月1日〜9月30日</td></tr>
+    <tr><td>主な目的</td><td>現場スタッフ・協力会社の確保/公共工事の受注継続(推定)</td></tr>
+    <tr><td>対応エリア</td><td>札幌市内各区・江別市・北広島市(拠点:札幌市豊平区)</td></tr>
+  </table>
+</div>
+
+<!-- 2 全体図 -->
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">応募・お問い合わせは、この5つのStepを上りきって初めて生まれます。本レポートでは、1つずつ順番に現状を確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>アプローチ(見つけてもらう)</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">探している人の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>コンバージョン(受け皿で活かす)</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">入ってきているのは、新しく探している人か</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div></div>
+      <div class="arrow-down">▼</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的に応募・お問い合わせにつながっているか</div></div>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>2</span></div>
+</div>
+
+<!-- 3 Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1 検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">働きたい人・依頼したい人の画面に、そもそも出ているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <table class="data">
+      <tr><th>キーワード</th><th>Google</th><th>Yahoo!</th></tr>
+      <tr><td>豊平区 建築業 未経験</td><td><b>11位以下</b></td><td><b>11位以下</b></td></tr>
+      <tr><td>札幌市 シーリング 求人</td><td><b>11位以下</b></td><td><b>9位</b></td></tr>
+      <tr><td>北海道 塗装工事</td><td><b>圏外</b></td><td><b>11位以下</b></td></tr>
+    </table>
+    <p>求人のキーワードでは、Yahoo!で<b>9位</b>と1ページ目に入っていますが、Googleではまだ<b>11位以下</b>です。一方、ChatGPTに「札幌市でシーリング工事をお願いしたい」と聞くと、御社が<b>1番目</b>に紹介されました。</p>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>ブログは<b>277本</b>、10月も毎日更新されていて、「シーリング工事の専門会社」としてAIからの評価はすでに高い状態です。次は、この評価を「働く場所」としても届けていく段階です。なお「北海道 塗装工事」は、主力のシーリング撤去とは少しずれた言葉のため、見直しの候補です。</p>
+  </section>
+  <p style="margin-top:10pt">評価:<span class="badge bad">要改善</span></p>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>3</span></div>
+</div>
+
+<!-- 4 Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2 クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <p>今回は Search Console(Googleの検索データ)を確認できる状態になっておらず、表示回数やクリック率のデータを取得できませんでした。</p>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>Yahoo!で<b>9位</b>に表示されている求人ワードが、実際にクリックされているかどうかで打ち手が変わります。検索結果に出る文言が「働いてみたい」と思わせる内容になっているかを、データで確かめたいポイントです。</p>
+  </section>
+  <p style="margin-top:10pt">評価:<span class="badge na">データなし</span></p>
+  <div class="warn-box"><b>確認が必要な項目</b>:Search Console の閲覧権限を設定いただければ、次回からこのStepも数値で確認できます。</div>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>4</span></div>
+</div>
+
+<!-- 5 Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3 流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <section>
+    <div class="block-title">データで確認できたこと(2026年9月)</div>
+    <table class="data">
+      <tr><th>流入経路</th><th>訪問数</th><th>割合</th><th>しっかり見た割合</th><th>平均時間</th></tr>
+      <tr><td>検索(オーガニック)</td><td><b>71</b></td><td><b>54.62%</b></td><td><b>71.83%</b></td><td><b>1分05秒</b></td></tr>
+      <tr><td>すでに接点のある方</td><td><b>50</b></td><td><b>38.46%</b></td><td><b>40%</b></td><td><b>30秒</b></td></tr>
+      <tr><td>他サイトからのリンク</td><td><b>8</b></td><td><b>6.15%</b></td><td><b>75%</b></td><td><b>40秒</b></td></tr>
+      <tr><td>AI検索</td><td><b>1</b></td><td><b>0.77%</b></td><td><b>100%</b></td><td><b>1分09秒</b></td></tr>
+      <tr><td><b>合計</b></td><td><b>130</b></td><td>100%</td><td><b>60%</b></td><td><b>50秒</b></td></tr>
+    </table>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>訪問の<b>54.62%</b>が検索からで、しかも平均<b>1分05秒</b>としっかり読まれています。毎日のブログ更新が、新しく探している人を連れてきてくれている状態です。AI検索からの訪問も出始めています。</p>
+  </section>
+  <p style="margin-top:10pt">評価:<span class="badge good">良好</span></p>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>5</span></div>
+</div>
+
+<!-- 6 Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4 サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div>
+  <section>
+    <div class="block-title">データで確認できたこと</div>
+    <p>1人あたりの平均閲覧時間は<b>58秒</b>です(検索から来た人は<b>1分05秒</b>)。</p>
+    <table class="data">
+      <tr><th>よく見られているページ</th><th>表示回数</th><th>平均時間</th></tr>
+      <tr><td>トップページ</td><td><b>74</b></td><td><b>23秒</b></td></tr>
+      <tr><td>会社概要</td><td><b>39</b></td><td><b>13秒</b></td></tr>
+      <tr><td>業務案内</td><td><b>16</b></td><td><b>23秒</b></td></tr>
+      <tr><td>採用情報</td><td><b>12</b></td><td><b>50秒</b></td></tr>
+      <tr><td>よく読まれたブログ記事</td><td><b>8</b></td><td><b>3分07秒</b></td></tr>
+    </table>
+  </section>
+  <section>
+    <div class="block-title">そこから考えられること</div>
+    <p>採用情報は<b>50秒</b>読まれていて関心はありますが、表示は月<b>12回</b>です。募集要項には「アルバイト」「募集期間3〜11月」とあり、冬の働き方や長く働けるかどうかを知りたい人には、判断材料が少し足りない可能性があります。</p>
+  </section>
+  <p style="margin-top:10pt">評価:<span class="badge mid">改善余地あり</span></p>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>6</span></div>
+</div>
+
+<!-- 7 Step5 + 現状診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5 反響 + サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <section>
+    <div class="block-title">反響(2026年9月)</div>
+    <p>お問い合わせは<b>4件</b>でした(フォーム<b>2件</b>・電話<b>2件</b>)。そのうち<b>2件</b>は検索で新しく来た方からです。訪問<b>130</b>の規模から見て自然な数字で、受け皿はある程度機能しています。</p>
+    <p>評価:<span class="badge mid">改善余地あり</span></p>
+    <div class="warn-box"><b>確認したいこと</b>:9月の4件が、求人への応募か、工事のご依頼かを教えてください。</div>
+  </section>
+  <section>
+    <div class="block-title">サイトの現状診断</div>
+    <table class="data">
+      <tr><th style="width:28mm">項目</th><th>状況</th></tr>
+      <tr><td>導線</td><td>電話・フォームが常に表示されていて分かりやすい(「営業電話お断り」も明記)</td></tr>
+      <tr><td>強み</td><td>学校・団地・病院など公共工事の施工実績(令和3〜7年度)、アットホームで残業ほぼなし</td></tr>
+      <tr><td>不足している情報</td><td>1日の流れ・スタッフ紹介・冬の働き方、施工実績の写真、協力会社募集の専用ページ</td></tr>
+      <tr><td>表示速度</td><td>スマホ <b>64点</b>/PC <b>93点</b></td></tr>
+      <tr><td>制作年</td><td>2023年10月開設(約<b>2年</b>)。作り直しの必要はない</td></tr>
+      <tr><td>AI検索</td><td>工事の相談先では<b>1位</b>。就職先の質問では候補に出ず、正社員求人や休日を公開している会社が紹介される</td></tr>
+    </table>
+  </section>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>7</span></div>
+</div>
+
+<!-- 8 総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">工事の相談先としてはAI検索で1位。<span class="gold">「働く場所」としての見つかりやすさ</span>が伸びしろです</div>
+  <div class="good-point"><b>良い点</b>:ブログ<b>277本</b>・毎日更新で、検索からの訪問が<b>54.62%</b>。ChatGPTでは「札幌市 シーリング工事」で<b>1番目</b>に紹介され、社名で聞いても会社の情報を正確に説明します。土台は非常にしっかりしています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない(アプローチ)</h4>
+        <p>求人のキーワードはGoogleで<b>11位以下</b>。ChatGPTに「札幌市でシーリングの会社に就職したい」と聞くと、御社は候補に出てきません。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない(コンバージョン)</h4>
+        <p>採用情報は<b>50秒</b>読まれていますが、表示は月<b>12回</b>。冬の働き方やどんな人と働くかが見えると、応募の後押しになる「あと一歩」の状態です。</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>8</span></div>
+</div>
+
+<!-- 9 打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>求職者に向けたPRページで「ここで働きたい」の決め手をつくる</h3>
+    <p>なぜ:検索とAIからの評価は高いのに、就職先としては候補に出ず、採用情報も<b>50秒</b>で止まっているためです(Step1・Step4)。</p>
+    <p>何をする:1日の流れ、一緒に働くスタッフ、冬(12〜2月)の働き方、アットホームな雰囲気を伝えるページを追加し、毎日のブログからつなげます。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>協力会社さま向けページ</h4>今はトップと採用情報に同居している協力会社募集を、取引条件や短期応援の内容が分かる専用ページにすると、問い合わせの質が上がります。</div>
+    <div class="seed-card"><h4>施工実績の見せ方</h4>会社概要の実績一覧に写真や作業内容を添えると、元請けさまへの信頼材料が増えます。</div>
+    <div class="seed-card"><h4>キーワードの見直し</h4>「北海道 塗装工事」をシーリング撤去の言葉に替えると、狙いがよりはっきりします。</div>
+  </div>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>9</span></div>
+</div>
+
+<!-- 10 まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">株式会社trusteDさんには、すでに見せられる強みがそろっています。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🏫</div><div class="t">公共工事の実績</div><div class="d">学校・団地・病院・公共施設の修繕に多数参加</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">ブログ277本</div><div class="d">毎日の更新でAI検索1位の評価</div></div>
+    <div class="strength-card"><div class="icon">😊</div><div class="t">働きやすさ</div><div class="d">アットホームで残業ほぼなし、直行直帰</div></div>
+  </div>
+  <p>この働きやすさを、求職者に伝わる形で見せていくだけで、「札幌でシーリングの仕事をするならtrusteD」と選んでもらえる余地は十分にあります。</p>
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社trusteD 様|サイト現状分析レポート</span><span>10</span></div>
+</div>
+
+</body>
+</html>
