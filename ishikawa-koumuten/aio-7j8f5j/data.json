@@ -1,0 +1,296 @@
+{
+  "company": {
+    "name": "株式会社石川工務店",
+    "url": "https://ishikawa-koumuten2024.com/",
+    "industry": "リフォーム・新築工事（工務店）",
+    "services": "水回り・内装・外装・外構リフォーム、リノベーション、新築工事",
+    "area": "八千代市・佐倉市・四街道市・鎌ヶ谷市・白井市・印西市・我孫子市・柏市・船橋市・習志野市・千葉市など（本社：千葉県八千代市大和田）",
+    "date": "2026-10-16",
+    "competitor_hint": "",
+    "job_title": "大工"
+  },
+  "slug": "aio-7j8f5j",
+  "unconfirmed": [
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する（今回は表示された範囲のみ確認）"
+    },
+    {
+      "item": "おすすめ記事の全件",
+      "confirm_how": "リフォーム評価ナビ・リショップナビなどは表示された範囲（一部の業者のみ）で確認した。全件を開いて掲載有無を確認する"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "八千代市でリフォームのおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "ケアフルリフォーム八千代・船橋支店",
+          "オカムラホームのリフォーム",
+          "ナゴミ工務店",
+          "株式会社Reホームラフテル"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "八千代市 リフォーム 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "ケアフルリフォーム八千代・船橋支店",
+          "オカムラホームのリフォーム"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "八千代市でリフォームのおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社ぱっとホーム",
+          "株式会社Reホームラフテル",
+          "株式会社ナカノペインターズ"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "八千代市 リフォーム 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場と市の補助制度の説明のみで、会社名の紹介はなかった"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "八千代市でリフォームのおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false,
+        "note": "AIによる概要が表示されず"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "八千代市 リフォーム 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false,
+        "note": "AIによる概要が表示されず"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "八千代市で大工として就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 1,
+        "others": [
+          "上原子建工株式会社",
+          "鈴木健工務店"
+        ],
+        "cited_self": true,
+        "note": "3社中1番目に紹介。AIが参考にしたサイトに採用サイトが含まれていた"
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "八千代市で大工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "上原子建工株式会社",
+          "三裕建設工業株式会社",
+          "株式会社Team高建"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "八千代市で大工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false,
+        "note": "AIによる概要が表示されず（求人サイトの一覧が表示）"
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "ケアフルリフォーム八千代・船橋支店",
+        "count": 2
+      },
+      {
+        "name": "オカムラホームのリフォーム",
+        "count": 2
+      },
+      {
+        "name": "株式会社Reホームラフテル",
+        "count": 2
+      },
+      {
+        "name": "上原子建工株式会社",
+        "count": 2
+      }
+    ],
+    "judge": "△",
+    "score": 3,
+    "hit_count": 1,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 1,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "八千代市大和田に拠点を置き、新築住宅・アパートの建築とリフォームを行う工務店と説明。代表者名、所在地、設立2024年7月、資本金、建設業許可番号、電話番号、20年以上の施工経験、採用サイトの内容まで説明されていた。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していた。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "八千代市大和田の地域密着型の工務店として、新築・水回り・内装・外装・外構・リノベーション、自社責任施工、複数プラン提案、無料見積りなどを説明。代表者名・所在地・設立・資本金も説明されていた。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していた。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "AIによる概要は表示されなかった（検索結果には公式サイトとGoogleマップの登録情報が表示）。",
+        "accuracy": "情報なし・誤情報",
+        "issues": "AIによる説明が表示されなかった。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "○",
+      "facts": "会社案内に建設業許可（千葉県知事許可（般-7）第57960号）と代表挨拶文。選ばれる理由に「地域密着で20年以上の施工実績」。採用サイトのスタッフ紹介に代表取締役（石川卓）の顔写真とメッセージ、役員1名の紹介。保有資格の記載はなし。2サイト合わせて5点中4点。",
+      "checks": {
+        "rep_photo_message": true,
+        "qualifications": false,
+        "numbers": true,
+        "license": true,
+        "staff": true
+      },
+      "score": 8
+    },
+    "cases": {
+      "judge": "×",
+      "facts": "施工実績は6件（2025年8月〜2026年5月）。本文はほぼなく、写真が中心（ドアノブ交換は2文、無垢の天井壁は説明なし）。工事内容・地域・工期の説明はない。",
+      "count": 6,
+      "has_text": false,
+      "latest": "2026-05-22",
+      "score": 0
+    },
+    "price": {
+      "judge": "×",
+      "facts": "料金の目安の記載なし。「現地調査・お見積りは無料」とのみ記載。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "△",
+      "facts": "会社のサイトによくある質問はない。採用サイトに求職者向けの3問（応募の流れ・重視すること・年齢層）がある。",
+      "count": 3,
+      "score": 4
+    },
+    "jsonld": {
+      "judge": "○",
+      "facts": "会社のサイトのソースに会社情報（Organization）・サイト情報・パンくずリストの設定がある。採用サイトには地域のお店（LocalBusiness）・よくある質問（FAQPage）の設定がある。",
+      "types": [
+        "Organization",
+        "WebSite",
+        "BreadcrumbList",
+        "LocalBusiness",
+        "FAQPage"
+      ],
+      "errors": "",
+      "score": 8
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップに「株式会社石川工務店」（業種：リフォーム業）として登録あり。口コミ3件・平均5.0。電話番号は090-5392-5983と表示され、サイトの047-769-7643とは異なる。",
+      "reviews": 3,
+      "rating": 5,
+      "replies": null,
+      "competitors": [
+        {
+          "name": "ケアフルリフォーム八千代・船橋支店",
+          "reviews": 69,
+          "rating": 4.6
+        },
+        {
+          "name": "株式会社Reホームラフテル",
+          "reviews": 3,
+          "rating": 5
+        }
+      ],
+      "score": 5
+    },
+    "articles": {
+      "judge": "×",
+      "facts": "「八千代市 リフォーム おすすめ」の上位10件のうち、一覧・比較系のページは7件（SUUMO、まいぷれ、リショップナビ、リフォームガイド、リフォーム評価ナビ、biz.ne.jp、ホームプロ）。御社はいずれにも掲載されていなかった。株式会社ぱっとホームは4件に掲載。",
+      "articles_in_top10": 7,
+      "self_listed": [],
+      "competitor_listed": [
+        {
+          "name": "株式会社ぱっとホーム",
+          "count": 4
+        },
+        {
+          "name": "株式会社Reホームラフテル",
+          "count": 2
+        }
+      ],
+      "score": 0
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 8,
+    "internal": 20,
+    "external": 5,
+    "total": 33,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 25,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "今回の9回のテストで、御社が紹介されたのは1回（ChatGPTの求職者目線の質問で1番目）でした。お客様目線の6回では紹介されず、ケアフルリフォームさん・オカムラホームさん・Reホームラフテルさん（各9回中2回）などが挙げられていました。Googleの「AIによる概要」は3回とも表示されませんでした。社名を直接聞いた質問では、ChatGPTとGeminiがサイトの内容と一致して説明していました。合計点は33点／100点で「AIの紹介対象にほぼ入っていない状態」です。",
+    "causes": "サイトの中の準備では、施工事例（6件・写真中心）と料金の目安が「できていない」、よくある質問（採用サイトの3問のみ）が「一部できている」でした。サイトの外の準備では、第三者のおすすめ記事への掲載がなく「できていない」、Googleマップは口コミ3件で「一部できている」でした。信用できる根拠と「Googleに会社情報を正しく伝える設定」は「できている」でした。",
+    "forecast": "AIは社名を聞かれれば御社を正しく説明できる一方で、「八千代市でおすすめのリフォーム会社は？」という質問では、施工事例や口コミ、おすすめ記事への掲載が多い会社を挙げる傾向が見られます。AI経由で業者を探す人が増えるにつれて、そうした方々の候補に御社が入りにくく、競合に相談が流れやすくなる可能性があると考えられます。"
+  }
+}
