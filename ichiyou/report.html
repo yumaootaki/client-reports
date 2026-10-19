@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜合同会社一葉</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用視点でのサイト診断 〜</div>
+  <div class="company">合同会社一葉 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://ichiyou.pro/</td></tr>
+    <tr><td>集計期間</td><td>2026年9月1日〜9月30日</td></tr>
+    <tr><td>主な目的</td><td>採用（現場工事スタッフ2名）</td></tr>
+    <tr><td>対応エリア</td><td>神奈川県内中心（拠点：神奈川県綾瀬市）</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>応募が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">応募やお問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">仕事を探している方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的に応募・お問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。今回は「現場工事スタッフを2名採用したい」というご要望を軸に見ていきます。</p>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">仕事を探している方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th><th>Yahoo!順位</th></tr>
+    <tr><td>綾瀬市 合同会社一葉（社名）</td><td><b>1位</b></td><td><b>1位</b></td></tr>
+    <tr><td>綾瀬市 土木工事 求人</td><td>11位以下</td><td>11位以下</td></tr>
+    <tr><td>綾瀬市 外構工事 求人</td><td><b>9位</b></td><td><b>9位</b></td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※ホームページに設定されているキーワード3つで、SEOチェキにより確認しました（2026年10月19日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>社名で検索されたときは<b>1位</b>で見つけてもらえています。また「綾瀬市 外構工事 求人」では<b>9位</b>と、あと一歩で上位に入れる位置にいます。一方で「綾瀬市 土木工事 求人」ではまだ<b>11位以下</b>で、土木の仕事を探している方の画面には出づらい状態です。</p>
+  <p>求人のキーワードは Indeed や求人ボックスなどの求人サイトが上位に並びやすいため、自社のホームページでは「綾瀬市の土木・外構」で働くことの中身（仕事内容・1日の流れ・先輩の様子）を厚くしていくことが、見つけてもらう近道になります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Indeed・求人ボックスからは、いまどのくらいの応募がありますか？ 求人サイトとホームページの役割分担を考えるうえで、ぜひお聞かせください。</p>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1で「綾瀬市 外構工事 求人」が<b>9位</b>に表示されていることは確認できています。9位前後は、タイトルや説明文の書き方しだいでクリックされる数が大きく変わる位置です。実際に何回表示され、何回選ばれているかを確認できると、改善の手がかりがはっきりします。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年9月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>78</b></td><td><b>67.24%</b></td><td><b>2秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>32</b></td><td><b>27.59%</b></td><td><b>23秒</b></td></tr>
+    <tr><td>他サイトのリンク</td><td><b>6</b></td><td><b>5.17%</b></td><td><b>1分00秒</b></td></tr>
+    <tr><td>合計</td><td><b>116</b></td><td>100%</td><td><b>11秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>9月にサイトを訪れたのは<b>116</b>回で、そのうち検索から来た方は<b>27.59%</b>（<b>32</b>回）でした。検索から来た方は平均<b>23秒</b>見ていて、内容を読もうとしている様子がうかがえます。</p>
+  <p>いちばん多い「直接」の訪問（<b>67.24%</b>）は、すでに会社名をご存じの方からの訪問が中心と考えられます。ただし平均<b>2秒</b>とかなり短く、中身が見られていない訪問も混ざっている可能性があります。新しく仕事を探している方との出会いを増やすには、検索からの訪問を伸ばしていくことがポイントです。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募まで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年9月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>11秒</b>でした。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>65</b></td><td><b>6秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>47</b></td><td><b>3秒</b></td></tr>
+    <tr><td>会社概要</td><td><b>30</b></td><td><b>18秒</b></td></tr>
+    <tr><td>ブログ「【未経験OK】土木工事の現場スタッフ！」</td><td><b>11</b></td><td><b>17秒</b></td></tr>
+    <tr><td>採用情報</td><td><b>9</b></td><td><b>10秒</b></td></tr>
+    <tr><td>求職者のみなさまへ</td><td><b>7</b></td><td><b>10秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>採用のための大切なページである「採用情報」「求職者のみなさまへ」は、ひと月の表示が<b>9</b>回・<b>7</b>回と、まだ多くの方に届いていません。見られたときも平均<b>10秒</b>ほどで、じっくり読まれる前に離れている様子です。</p>
+  <p>一方で、求人のブログ記事は<b>17秒</b>と比較的長く読まれています。「どんな現場で、どんな人と、どう成長できるか」が伝わる情報は、求職者にしっかり読まれる傾向があります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的に応募・お問い合わせまで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>9月にお問い合わせフォームから送られたのは<b>4件</b>でした（GA4で計測。お電話は含みません）。応募とお問い合わせが同じフォームのため、このうち何件が応募だったかは今回のデータからは分かりません。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>フォームからの送信はある一方で、採用ページを見ている方は少なく、応募につながっているかは確認が必要です。4件の中身（応募・お問い合わせ・営業の連絡など）を教えていただけると、より正確に判断できます。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:26%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>ヘッダーに電話番号があり、「採用情報」「求職者のみなさまへ」が独立したページになっています。応募はお問い合わせフォームと共用です。</td></tr>
+    <tr><td>採用コンテンツ</td><td>給与（見習い日給<b>9,000</b>円→<b>1万</b>円〜）・休日・保険・選考の流れが載っています。1日の流れ・先輩の声・現場写真の説明・資格取得の支援内容はまだありません。</td></tr>
+    <tr><td>実績・会社情報</td><td>建設業許可番号と2級土木施工管理技士の記載があります。施工事例のページはなく、設立年・従業員数・代表のあいさつも載っていません。</td></tr>
+    <tr><td>表示速度</td><td>スマホ<b>32</b>点／PC<b>43</b>点（PageSpeed Insights）。スマホで表示に時間がかかりやすい状態です。</td></tr>
+    <tr><td>制作年</td><td><b>2022</b>年<b>5</b>月の開設から約<b>4</b>年<b>5</b>か月が経っています。</td></tr>
+  </table>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">AIにも<span class="gold">「綾瀬市で働くならここ」</span>と名前が挙がる会社なのに、<br>自社サイトの受け皿がまだ追いついていない、もったいない状態です</div>
+  <div class="good-point"><b>良い点：</b>ChatGPTに「綾瀬市で土木・外構の現場スタッフとして就職したい」と質問すると、御社が<b>1番目</b>に紹介されました。「綾瀬市 外構工事 求人」でも<b>9位</b>と、あと一歩の位置にいます。仕事を探している方に名前が届き始めています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① まだ知らない人に届いていない（アプローチ）</h4>
+        <p>「綾瀬市 土木工事 求人」は<b>11位以下</b>、検索からの訪問は月<b>32</b>回です。土木の仕事を探している方には、まだ見つけてもらいにくい状態です。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 来た人を活かしきれていない（コンバージョン）</h4>
+        <p>採用情報ページは月<b>9</b>回・平均<b>10秒</b>。サイト全体の平均も<b>11秒</b>で、働くイメージが伝わる前に離れてしまっています。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：AIが紹介している条件が、ホームページと違います</h4>
+    <p>ChatGPTは御社を紹介する際、求人サイトの情報をもとに「月給<b>23万〜40万</b>円」と説明していました。ホームページの採用情報（見習い日給<b>9,000</b>円→<b>1万</b>円〜、月<b>19.8万</b>円〜）とは異なります。どちらが最新かをそろえておくと、応募前の不安やミスマッチを防げます。</p></div>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>求職者に「ここで働きたい」と思ってもらえる受け皿づくり</h3>
+    <p>採用情報ページの表示が月<b>9</b>回・平均<b>10秒</b>（Step4）で、せっかく名前を知った求職者が、働くイメージを持てないまま離れている可能性があります。制作から約<b>4</b>年が経ち、スマホの表示速度も<b>32</b>点のため、採用ページを中心にサイト全体を見直すタイミングかもしれません。</p>
+    <p>具体的には、「求職者のみなさまへ」の充実（1日の流れ・先輩の声・現場写真）、未経験者向け・経験者向けの求人ページ、働く環境や資格取得支援のページを用意し、Indeed・求人ボックスと条件をそろえていくイメージです。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>求人サイトとの連携</h4><p>Indeed・求人ボックスの掲載から自社サイトへ誘導し、仕事の中身をしっかり読んでもらう流れが作れます。</p></div>
+    <div class="seed-card"><h4>ブログでの情報発信</h4><p>「綾瀬市 土木工事 求人」などの言葉で見つけてもらうため、現場の様子を伝える記事を積み重ねていく方法があります。</p></div>
+    <div class="seed-card"><h4>施工事例</h4><p>宅地造成・外構の施工事例は、お客様だけでなく「どんな仕事をするのか」を知りたい求職者にも役立ちます。</p></div>
+  </div>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、採用を伸ばすための材料がそろっています。これを求職者にしっかり見せていくだけで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AIに名前が挙がる</div><div class="d">ChatGPTで「綾瀬市で就職」と聞くと1番目に紹介</div></div>
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">あと一歩の検索順位</div><div class="d">「綾瀬市 外構工事 求人」で9位</div></div>
+    <div class="strength-card"><div class="icon">🏗️</div><div class="t">信頼の土台</div><div class="d">建設業許可・2級土木施工管理技士</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">読まれる求人記事</div><div class="d">未経験OKの記事は平均17秒読まれている</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>9月のお問い合わせ<b>4件</b>の中身（応募かどうか）</td><td>社長にお聞きします</td></tr>
+    <tr><td>Indeed・求人ボックスからの応募数と掲載条件</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>合同会社一葉様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
