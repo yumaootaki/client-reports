@@ -1,0 +1,273 @@
+{
+  "company": {
+    "name": "株式会社関根設備",
+    "url": "https://www.sekinesetsubi-koshigaya.com/",
+    "industry": "給排水衛生設備工事",
+    "services": "給排水衛生設備工事、空調換気設備工事、消火設備工事、水回り内装リフォーム、内装解体",
+    "area": "越谷市・春日部市・さいたま市・川口市・草加市・吉川市・松伏町・足立区など（本社：埼玉県越谷市砂原）",
+    "area_short": "越谷市",
+    "date": "2026-10-16",
+    "competitor_hint": "",
+    "job_title": "配管工"
+  },
+  "slug": "aio-6vqxyc",
+  "unconfirmed": [
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する（今回は表示された範囲のみ確認）"
+    },
+    {
+      "item": "越谷・松伏水道企業団の指定給水装置工事事業者一覧（地区別PDF）への掲載",
+      "confirm_how": "地区別PDFを開いて確認する（公的な事業者一覧のため、おすすめ記事の数には含めていない）"
+    }
+  ],
+  "score_note": "Googleオーバービューが表示されなかった回は、紹介なしと同じ扱いで計算しています。",
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "越谷市で給排水設備工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社新興設備",
+          "有限会社田中水道工業所",
+          "株式会社協和設備"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "越谷市 給排水設備工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社田中水道工業所",
+          "株式会社新興設備"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "越谷市で給排水設備工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "アーアイ水道センター",
+          "エスピーアール（SPR）",
+          "さつき水道サービス"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "越谷市 給排水設備工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "越谷市で給排水設備工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "越谷市 給排水設備工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "越谷市で配管工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社須賀",
+          "株式会社新興設備",
+          "株式会社協和設備"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "越谷市で配管工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社東部設備",
+          "有限会社弘洋建設",
+          "株式会社晴輝工業"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "越谷市で配管工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": false
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "株式会社新興設備",
+        "count": 3
+      },
+      {
+        "name": "有限会社田中水道工業所",
+        "count": 2
+      },
+      {
+        "name": "株式会社協和設備",
+        "count": 2
+      }
+    ],
+    "judge": "×",
+    "score": 0,
+    "hit_count": 0,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 0,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "越谷市を拠点に、マンション・病院・福祉施設などの給排水衛生・空調換気・消火設備工事を行う設備工事会社と説明されていました。代表者名・所在地・設立2014年3月・資本金・従業員20名・施工実績（病院・学校・マンションなど）・千間台営業所まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "越谷市砂原に本社を置く給排水衛生設備・空調換気工事の会社と説明されていました。新築マンション・介護施設・学校・病院の工事、リフォーム・解体、対応エリア（越谷市・春日部市・さいたま市・川口市・足立区など）、設立、有資格者の在籍まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "Googleオーバービューは表示されませんでした（検索結果には公式サイトと、Googleマップの登録情報が表示されました）。",
+        "accuracy": "情報なし・誤情報",
+        "issues": "AIによる説明が表示されませんでした。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "△",
+      "facts": "会社案内に、一級管工事施工管理技士1名・二級管工事施工管理技士3名・甲種消防設備士1名などの資格と、設立2014年3月・従業員20名・36件の施工実績が掲載されています。代表者の顔写真とメッセージ（あいさつ文はありますが写真はありません）、建設業許可番号、スタッフ紹介はありません（5点中2点）。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": true,
+        "numbers": true,
+        "license": false,
+        "staff": false
+      },
+      "score": 4
+    },
+    "cases": {
+      "judge": "△",
+      "facts": "会社案内に36件の施工実績（2014年4月〜2025年4月、工事名と年月のみ）が掲載されています。文章付きの施工事例は5件で、日付が確認できる最新は2023年7月です。",
+      "count": 36,
+      "has_text": false,
+      "latest": "2025-04",
+      "score": 4
+    },
+    "price": {
+      "judge": "×",
+      "facts": "工事の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "△",
+      "facts": "各ページに設定はありますが、内容はサイト名とURLのみです。会社情報（所在地・電話番号など）の設定はありません。",
+      "types": [
+        "WebSite"
+      ],
+      "errors": "",
+      "score": 4
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップに「株式会社関根設備 本社」と「千間台営業所」の2件が登録されています（業種：建設会社）。口コミはどちらも0件です。比較として、AIに紹介された株式会社新興設備は口コミ2件・平均5.0です。",
+      "reviews": 0,
+      "rating": null,
+      "replies": null,
+      "competitors": [
+        {
+          "name": "株式会社新興設備",
+          "reviews": 2,
+          "rating": 5
+        }
+      ],
+      "score": 5
+    },
+    "articles": {
+      "judge": "△",
+      "facts": "「越谷市 給排水設備工事 おすすめ」のGoogle検索上位10件のうち、一覧・比較系のページは5件（マイナビの水まわり、リショップナビ、ツクリンク、水道修理ナビ、越谷松伏管工事業協同組合の組合員一覧）でした。御社が載っていたのは、ツクリンクの「越谷市で水道工事に対応できる建設業者一覧」（1番目に掲載）の1件です。なお、検索上位10件には御社のホームページも含まれていました。",
+      "articles_in_top10": 5,
+      "self_listed": [
+        "ツクリンク「越谷市で水道工事に対応できる建設業者一覧」"
+      ],
+      "competitor_listed": [],
+      "score": 5
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 5,
+    "internal": 12,
+    "external": 10,
+    "total": 27,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 22,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "AIは社名を聞かれれば御社を正しく説明できる一方で、「越谷市でおすすめの設備工事会社は？」「越谷市で配管工として働きたい」という質問では、御社以外の会社を挙げていました。施工事例の文章や料金・よくある質問、口コミなど、AIが判断に使える情報が少ないままだと、AIで依頼先や就職先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくい状態が続く可能性があると考えられます。"
+  }
+}
