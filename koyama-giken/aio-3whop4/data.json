@@ -1,0 +1,267 @@
+{
+  "company": {
+    "name": "有限会社小山技建",
+    "url": "https://www.koyamagiken-hp.com/",
+    "industry": "金属製建具工事",
+    "services": "アルミサッシ・カーテンウォール・ルーバー・アルミパネルの取付工事、改修・耐震補強工事",
+    "area": "東京都内全域(千葉県など近郊も対応。本社:東京都江戸川区春江町)",
+    "area_short": "江戸川区",
+    "date": "2026-10-20",
+    "competitor_hint": "",
+    "job_title": "金属建具工"
+  },
+  "slug": "aio-3whop4",
+  "unconfirmed": [
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する(今回は表示された範囲のみ確認)"
+    },
+    {
+      "item": "Googleマップの「㈱小山技建 東京本部」が同じ会社かどうか",
+      "confirm_how": "社名(株式会社)・電話番号(080-4119-6104)がサイトと異なるため別の会社と判断した。社長に確認する"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "江戸川区で金属製建具工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社カネコ建装",
+          "幸洋サッシ工業株式会社",
+          "タカオ総建株式会社"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "江戸川区 金属製建具工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社カネコ建装",
+          "株式会社サカベ"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "江戸川区で金属製建具工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社中沢硝子建窓",
+          "三恵メタル工業株式会社",
+          "株式会社伊東精観堂"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "江戸川区 金属製建具工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "江戸川区で金属製建具工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社カネコ建装",
+          "株式会社技建",
+          "新協建設工業株式会社"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "江戸川区 金属製建具工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場と区の制度の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "江戸川区で金属建具工として就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 2,
+        "others": [
+          "有限会社カネコ建装",
+          "B-NETサービス株式会社"
+        ],
+        "cited_self": true,
+        "note": "3社中2番目に紹介。AIが参考にしたサイトに御社のサイトと求人情報が含まれていました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "江戸川区で金属建具工として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "古川オール株式会社",
+          "株式会社D・H・R"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "江戸川区で金属建具工として就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 2,
+        "others": [
+          "有限会社カネコ建装",
+          "有限会社メタル技研",
+          "株式会社裕心"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "2番目に紹介。AIが参考にしたのは求人ボックスで、御社のサイトは含まれていませんでした"
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "有限会社カネコ建装",
+        "count": 5
+      }
+    ],
+    "judge": "△",
+    "score": 7,
+    "hit_count": 2,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 2,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "江戸川区で、マンションやオフィスビルのアルミサッシ・カーテンウォール・金属パネル・ルーバーを取り付ける専門工事会社と説明されていました。代表者名・所在地・建設業許可番号・電話番号・資格取得支援まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "江戸川区に拠点を置き、大型建築物の金属製建具(サッシ・外壁パネル)の取付工事を行う専門会社と説明されていました。代表者名・所在地・設立1997年4月・都内中心の対応エリアまで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "江戸川区の金属製建具施工を専門とする建設会社として、代表者名・所在地・建設業許可・事業内容(新築マンション・オフィスビルのサッシ・カーテンウォール等)・採用の取り組みが表示されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      }
+    ],
+    "judge": "○",
+    "score": 10
+  },
+  "internal": {
+    "trust": {
+      "judge": "△",
+      "facts": "会社概要に設立1997年4月、建設業許可番号(第119447号)、代表あいさつ文が掲載されています。トップページには「独立を果たした社員は6名以上」の記載があります。代表者の顔写真(あいさつの画像はイメージ写真です)、保有資格(資格取得支援の記載はあります)、スタッフ紹介はありません(5点中2点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": true,
+        "license": true,
+        "staff": false
+      },
+      "score": 4
+    },
+    "cases": {
+      "judge": "×",
+      "facts": "ギャラリーに施工写真が4件ありますが、工事名・場所・内容の説明や掲載日はありません。",
+      "count": 4,
+      "has_text": false,
+      "latest": "2025-06",
+      "score": 0
+    },
+    "price": {
+      "judge": "×",
+      "facts": "工事の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "△",
+      "facts": "トップページに設定はありますが、内容はサイト名とURLのみです。会社情報(所在地・電話番号など)の設定はありません。",
+      "types": [
+        "WebSite"
+      ],
+      "errors": "",
+      "score": 4
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "×",
+      "facts": "Googleマップで「有限会社小山技建」の登録は確認できませんでした(社名で検索すると、社名・電話番号の異なる「㈱小山技建 東京本部」が表示されます)。",
+      "reviews": null,
+      "rating": null,
+      "replies": null,
+      "competitors": [],
+      "score": 0
+    },
+    "articles": {
+      "judge": "△",
+      "facts": "「江戸川区 金属製建具工事 おすすめ」のGoogle検索上位10件のうち、一覧・比較系のページは8件(ツクリンク2件、建設マップ、家仲間コム、マピオン電話帳、biz.ne.jp、リフォーム評価ナビ、内装工事のおすすめ記事)でした。御社が載っていたのは、建設マップの「東京都江戸川区の建具工事会社 一覧」の1件です。",
+      "articles_in_top10": 8,
+      "self_listed": [
+        "建設マップ「東京都江戸川区の建具工事会社 一覧」"
+      ],
+      "competitor_listed": [],
+      "score": 5
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 17,
+    "internal": 8,
+    "external": 5,
+    "total": 30,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 13,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "求職者がAIに質問した場面では、御社が2番目に紹介されることがあります。一方で、「江戸川区で金属製建具工事のおすすめの会社は?」という質問では、施工事例やGoogleマップの情報が多いカネコ建装さんなどが挙げられていました。AIが判断に使える施工事例・口コミが少ないままだと、AIで依頼先や就職先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくい状態が続く可能性があると考えられます。"
+  }
+}
