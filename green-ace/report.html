@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ブログ対策 成果レポート｜株式会社グリーンエース</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<style>
+  .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:9pt;margin:10pt 0;}
+  .kpi{border:1px solid #c7d3ee;background:#eef2fb;border-radius:7pt;padding:10pt 12pt;}
+  .kpi.g{background:#fbf5e8;border-color:#ecdcb2;}
+  .kpi .t{font-size:9pt;font-weight:700;color:var(--navy);margin-bottom:4pt;}
+  .kpi .v{font-size:10pt;color:#5c6478;}
+  .kpi .v b{font-size:20pt;color:var(--navy);font-weight:900;}
+  .kpi .v .arrow{color:var(--gold);font-size:14pt;margin:0 6pt;}
+  .kpi .n{font-size:7.6pt;color:#5c6478;margin-top:4pt;line-height:1.5;}
+  .tl{position:relative;margin:8pt 0 0 6pt;padding-left:16pt;border-left:3px solid #c7d3ee;}
+  .tl .it{position:relative;margin-bottom:11pt;}
+  .tl .it:before{content:"";position:absolute;left:-23pt;top:2pt;width:11pt;height:11pt;border-radius:50%;background:var(--navy);}
+  .tl .it.g:before{background:var(--gold);}
+  .tl .d{font-size:8pt;font-weight:700;color:var(--gold);}
+  .tl .h{font-size:10pt;font-weight:700;color:var(--navy);margin:1pt 0 2pt;}
+  .bars{margin:6pt 0 10pt;}
+  .bars .row{display:flex;align-items:center;gap:8pt;margin-bottom:5pt;font-size:8.5pt;}
+  .bars .m{width:22mm;}
+  .bars .b{flex:1;height:13pt;background:#e8ebf2;border-radius:6pt;overflow:hidden;}
+  .bars .f{height:100%;background:var(--navy);}
+  .bars .f.g{background:var(--gold);}
+  .bars .v{width:30mm;text-align:right;}
+  .note2{font-size:7.4pt;color:#5c6478;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<div class="page cover">
+  <div class="kicker">BLOG  RESULT  REPORT</div>
+  <h1>ブログ対策 成果レポート</h1>
+  <div class="sub">〜 2026年7月〜10月のデータ比較 〜</div>
+  <div class="company">株式会社グリーンエース 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://green-ace.net/</td></tr>
+    <tr><td>比較期間</td><td>2026年7月／8月／9月／10月（10月は1日〜20日）</td></tr>
+    <tr><td>主な目的</td><td>外構・エクステリア工事の集客</td></tr>
+    <tr><td>対応エリア</td><td>八千代市を中心に千葉県内</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これまでの取り組み</h2><span class="plain-tag">経緯</span></div>
+  <p class="lead">7月にお伺いした時点では、ブログは<b>2025年2月</b>を最後に更新が止まっていました。そこで8月から3か月間、ブログ記事の作成を無料でお手伝いし、その効果をデータで確認してきました。</p>
+  <div class="tl">
+    <div class="it"><div class="d">2026年7月</div><div class="h">サイトの状態を確認</div><p>ブログの更新は<b>2025年2月27日</b>が最後で、約<b>1年5か月</b>止まっていました。ブログパック（<b>396,000</b>円）をご提案しました。</p></div>
+    <div class="it g"><div class="d">2026年8月〜10月</div><div class="h">月20記事×3か月＝60記事の無料サービス</div><p>八千代市・佐倉市・船橋市などの地域名と、「費用相場」「業者の選び方」「カーポート」「目隠しフェンス」など、お客様が実際に調べる言葉で記事を公開しました。</p>
+      <table class="data" style="margin-top:4pt;width:85%">
+        <tr><th>月</th><th>公開した記事数</th></tr>
+        <tr><td>7月（取り組み前）</td><td><b>0</b>記事</td></tr>
+        <tr><td>8月</td><td><b>25</b>記事（8/5〜）</td></tr>
+        <tr><td>9月</td><td><b>20</b>記事</td></tr>
+        <tr><td>10月（21日まで）</td><td><b>14</b>記事</td></tr>
+      </table>
+    </div>
+    <div class="it g"><div class="d">2026年10月15日</div><div class="h">ホームページから見積り依頼のメールを獲得</div><p>取り組みを始めてから、ホームページ経由の見積り依頼が<b>1</b>件届きました。</p></div>
+    <div class="it"><div class="d">2026年10月22日</div><div class="h">本日：3か月の成果と、次の一手のご確認</div><p>このレポートで、7月から10月までのデータを並べてご確認いただきます。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>2 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>3か月でここまで変わりました</h2><span class="plain-tag">成果サマリー</span></div>
+  <p class="lead">取り組み前の<b>7月</b>と、取り組み後の数字を並べました。</p>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="t">検索から来た方の平均滞在時間</div><div class="v"><b>24</b>秒<span class="arrow">▶</span><b>1</b>分<b>27</b>秒</div><div class="n">7月 → 10月。約<b>3.6</b>倍。検索で記事を見つけた方が、じっくり読んでくれるようになっています。</div></div>
+    <div class="kpi"><div class="t">サイト全体の訪問数（月）</div><div class="v"><b>95</b><span class="arrow">▶</span><b>208</b>／<b>192</b></div><div class="n">7月 → 8月／9月。10月は20日間で<b>140</b>（ひと月に換算すると約<b>217</b>）。約<b>2</b>倍の水準が続いています。</div></div>
+    <div class="kpi"><div class="t">検索からの訪問数（月）</div><div class="v"><b>37</b><span class="arrow">▶</span><b>110</b></div><div class="n">7月 → 8月で約<b>3</b>倍。9月は<b>59</b>、10月は20日間で<b>40</b>（月換算 約<b>62</b>）と、7月を上回る水準です。</div></div>
+    <div class="kpi g"><div class="t">ホームページからの見積り依頼</div><div class="v"><b>0</b>件<span class="arrow">▶</span><b>1</b>件</div><div class="n">10月15日に見積り依頼のメールを獲得しました。</div></div>
+  </div>
+  <div class="block-title">サイト全体の平均滞在時間も伸びています</div>
+  <div class="bars">
+    <div class="row"><div class="m">7月</div><div class="b"><div class="f" style="width:42%"></div></div><div class="v"><b>13</b>秒</div></div>
+    <div class="row"><div class="m">8月</div><div class="b"><div class="f" style="width:42%"></div></div><div class="v"><b>13</b>秒</div></div>
+    <div class="row"><div class="m">9月</div><div class="b"><div class="f" style="width:81%"></div></div><div class="v"><b>25</b>秒</div></div>
+    <div class="row"><div class="m">10月</div><div class="b"><div class="f g" style="width:100%"></div></div><div class="v"><b>31</b>秒</div></div>
+  </div>
+  <p class="note2">出典：Googleアナリティクス（GA4）。セッションあたりの平均エンゲージメント時間。10月は10/1〜10/20の数値です。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>3 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>月ごとの数字</h2><span class="plain-tag">データ比較</span></div>
+  <div class="block-title">訪問数と流入経路</div>
+  <table class="data">
+    <tr><th>月</th><th>訪問数</th><th>検索から</th><th>検索の割合</th><th>直接</th><th>他サイトから</th></tr>
+    <tr><td>7月</td><td><b>95</b></td><td><b>37</b></td><td><b>38.95%</b></td><td><b>54</b></td><td><b>4</b></td></tr>
+    <tr><td>8月</td><td><b>208</b></td><td><b>110</b></td><td><b>52.88%</b></td><td><b>87</b></td><td><b>11</b></td></tr>
+    <tr><td>9月</td><td><b>192</b></td><td><b>59</b></td><td><b>30.73%</b></td><td><b>125</b></td><td><b>7</b></td></tr>
+    <tr><td>10月（20日間）</td><td><b>140</b></td><td><b>40</b></td><td><b>28.57%</b></td><td><b>96</b></td><td><b>4</b></td></tr>
+  </table>
+  <div class="block-title">検索から来た方の様子</div>
+  <table class="data">
+    <tr><th>月</th><th>検索からの訪問</th><th>しっかり見てくれた割合</th><th>平均滞在時間</th></tr>
+    <tr><td>7月</td><td><b>37</b></td><td><b>67.57%</b></td><td><b>24</b>秒</td></tr>
+    <tr><td>8月</td><td><b>110</b></td><td><b>76.36%</b></td><td><b>18</b>秒</td></tr>
+    <tr><td>9月</td><td><b>59</b></td><td><b>64.41%</b></td><td><b>56</b>秒</td></tr>
+    <tr><td>10月（20日間）</td><td><b>40</b></td><td><b>82.5%</b></td><td><b>1</b>分<b>27</b>秒</td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>8月は記事の公開を始めた直後で、検索からの訪問が<b>110</b>回まで一気に増えました。9月以降は訪問の数が落ち着いた一方で、<b>1回あたりの滞在時間が大きく伸び</b>、10月は検索から来た方の<b>82.5%</b>がしっかりページを見ています。「なんとなく来た人」から「外構工事を本気で調べている人」に、来てくれる方の質が変わってきていると考えられます。</p>
+  <p>「直接」の訪問は、すでに会社名をご存じの方からの訪問が中心ですが、平均<b>8</b>秒前後と短く、中身が見られていない訪問も含まれている可能性があります。</p>
+  <p class="note2">※「しっかり見てくれた割合」はGA4のエンゲージメント率（10秒以上の閲覧、または2ページ以上の閲覧などがあった訪問の割合）。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>4 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>よく読まれたページと検索順位</h2><span class="plain-tag">データ比較</span></div>
+  <div class="block-title">よく見られたページ（各月の上位）</div>
+  <table class="data">
+    <tr><th style="width:16%">月</th><th>よく見られたページ（表示回数・平均滞在時間）</th></tr>
+    <tr><td>7月</td><td>トップ <b>77</b>回（<b>8</b>秒）／会社概要 <b>35</b>回（<b>15</b>秒）／お問い合わせ <b>21</b>回／施工実績 <b>13</b>回</td></tr>
+    <tr><td>8月</td><td>トップ <b>128</b>回（<b>9</b>秒）／会社概要 <b>62</b>回／お問い合わせ <b>44</b>回／ブログ記事 <b>27</b>回・<b>22</b>回／ブログ一覧 <b>15</b>回</td></tr>
+    <tr><td>9月</td><td>トップ <b>108</b>回／お問い合わせ <b>44</b>回／ブログ一覧 <b>34</b>回（<b>21</b>秒）／業務案内 <b>13</b>回（<b>34</b>秒）／ブログ記事 <b>10</b>回（<b>42</b>秒）</td></tr>
+    <tr><td>10月</td><td>トップ <b>75</b>回／会社概要 <b>36</b>回（<b>1</b>分<b>39</b>秒）／お問い合わせ <b>22</b>回／ブログ記事 <b>15</b>回（<b>25</b>秒）・<b>5</b>回（<b>40</b>秒）</td></tr>
+  </table>
+  <p>8月以降、ブログ記事とブログ一覧が上位に入るようになりました。10月は<b>会社概要が平均1分39秒</b>見られており、記事をきっかけに「どんな会社か」を確かめる方が増えていると考えられます。</p>
+  <div class="block-title">現在の検索順位（2026年10月21日時点）</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google</th><th>Yahoo!</th></tr>
+    <tr><td>八千代市 外構工事 業者</td><td><b>7位</b></td><td>－</td></tr>
+    <tr><td>八千代市 エクステリア工事</td><td><b>9位</b></td><td><b>6位</b></td></tr>
+    <tr><td>八千代市 外構工事</td><td>10位より下</td><td>11位以下</td></tr>
+    <tr><td>八千代市 外構 費用</td><td>10位より下</td><td>11位以下</td></tr>
+  </table>
+  <p>「八千代市 外構工事 業者」「八千代市 エクステリア工事」で<b>1ページ目</b>に入っています。いちばん検索される「八千代市 外構工事」は、あと一歩の位置です。</p>
+  <p class="note2">※7月時点の順位と、検索で表示された回数（Search Console）は、閲覧権限がないため確認できていません。権限をいただければ、月ごとの表示回数・クリック数も比較できます。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>5 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>見えてきた次の課題</h2><span class="plain-tag">受け皿の状態</span></div>
+  <div class="def-box">ブログで「見つけてもらう入口」は広がりました。次は、来てくれた方が「この会社に頼もう」と決められる「受け皿」の番です。</div>
+  <p>10月は検索から来た方が平均<b>1</b>分<b>27</b>秒も読んでくれている一方で、ホームページからの見積り依頼はまだ<b>1</b>件です。読んだ方が最後のひと押しを見つけられていない可能性があります。</p>
+  <table class="data">
+    <tr><th style="width:28%">項目</th><th>いまの状態</th></tr>
+    <tr><td>施工実績</td><td>施工実績ページには、ブログ記事の案内が<b>5</b>件並んでいるだけで、実際の工事の写真・内容・費用の事例は載っていません。</td></tr>
+    <tr><td>料金の目安</td><td>「見積り無料」の記載のみで、工事ごとの費用の目安はありません（ブログ記事では相場を解説しています）。</td></tr>
+    <tr><td>よくある質問</td><td>ページやコーナーはありません。</td></tr>
+    <tr><td>会社の信頼材料</td><td>代表者名はありますが、代表の顔写真・あいさつ、建設業許可、資格、スタッフ紹介は載っていません（業歴<b>30</b>年以上・平成<b>19</b>年設立はトップに記載）。</td></tr>
+    <tr><td>表示速度</td><td>スマホ<b>34</b>点／PC<b>61</b>点（PageSpeed Insights）。スマホで表示に時間がかかりやすい状態です。</td></tr>
+    <tr><td>サイト開設</td><td><b>2022</b>年<b>7</b>月の開設から約<b>4</b>年が経っています。</td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>ブログで「八千代市の外構工事の費用は？」「業者の選び方は？」と調べた方が、御社のサイトにたどり着いて記事を読み、会社概要まで確認しています。ところが、<b>実際に御社がどんな工事をして、いくらくらいで、どんな人がやってくれるのか</b>を確かめられるページがまだ少ないため、問い合わせの手前で比較に戻ってしまっている可能性があります。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>6 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>受け皿を整えるリニューアル ＋ ブログの継続</h3>
+    <p>3か月で、検索から来た方の滞在時間は<b>24</b>秒→<b>1</b>分<b>27</b>秒に伸び、見積り依頼も<b>1</b>件生まれました。入口が広がった今こそ、施工事例・料金の目安・よくある質問・代表のあいさつなど「頼む決め手」になるページを用意すると、読んでくれた方を問い合わせにつなげやすくなります。</p>
+    <p>あわせてブログを続けることで、「八千代市 外構工事」などの言葉でも上位を狙っていけます。更新を止めると、せっかく上がってきた順位や訪問が元に戻ってしまう可能性があります。</p>
+  </div>
+  <div class="block-title">リニューアルで用意したいページ（例）</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>施工事例</h4><p>工事内容・地域・工期・費用の目安を文章付きで。ブログから施工事例へ案内する流れを作ります。</p></div>
+    <div class="seed-card"><h4>料金の目安・よくある質問</h4><p>カーポート・フェンス・土間コンなど、工事ごとの目安と、お客様からよく聞かれる質問をまとめます。</p></div>
+    <div class="seed-card"><h4>選ばれる理由・代表あいさつ</h4><p>業歴30年以上の経験、近隣への配慮、アフターフォローを、顔の見える形で伝えます。</p></div>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <p>スマホの表示速度の改善、お客様の声、各市（佐倉市・船橋市・習志野市など）の施工エリアページなども、受け皿が整ったあとに順に足していける候補です。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>7 / 8</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">3か月の取り組みで、御社のサイトには「見つけてもらえる入口」と「読んでもらえる記事」ができました。これを問い合わせにつなげる準備が整ってきています。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">📝</div><div class="t">記事が59本に</div><div class="d">7月の0本から、地域×工事の記事が積み上がりました</div></div>
+    <div class="strength-card"><div class="icon">⏱️</div><div class="t">滞在時間 約3.6倍</div><div class="d">検索から来た方が平均1分27秒読んでいます</div></div>
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">1ページ目に入る言葉</div><div class="d">「外構工事 業者」7位・「エクステリア工事」9位</div></div>
+    <div class="strength-card"><div class="icon">📩</div><div class="t">見積り依頼 1件</div><div class="d">10月15日にホームページから獲得</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>10/15の見積り依頼が、どの記事・どのページから来たか</td><td>依頼内容と、見ていたページを一緒に確認します</td></tr>
+    <tr><td>検索での表示回数・クリック数の月ごとの推移</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+    <tr><td>施工事例に使える写真・工事の情報</td><td>社長にお聞きします</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社グリーンエース様 ブログ対策 成果レポート</span><span>8 / 8</span></div>
+</div>
+</body>
+</html>
