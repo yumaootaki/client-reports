@@ -1,0 +1,274 @@
+{
+  "company": {
+    "name": "有限会社協進建設",
+    "url": "https://kyoshinkensetu.my.canva.site/",
+    "industry": "上下水道工事",
+    "services": "水道引込工事・水道凍結断水工事・下水公共ます新設・敷地内下水切回し・舗装工事(セメコン・アスファルト・インターロッキング)",
+    "area": "東京都23区内(本社:足立区西新井本町、営業所:足立区竹の塚)",
+    "area_short": "足立区",
+    "date": "2026-10-21",
+    "competitor_hint": "",
+    "job_title": "水道工事の作業員"
+  },
+  "slug": "aio-mc92ye",
+  "sites_note": "御社のサイトはスライド形式(全14ページ)のため、14ページすべてを開いて確認しています。",
+  "unconfirmed": [
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する(今回は表示された範囲のみ確認)"
+    },
+    {
+      "item": "Gemini の再試行",
+      "confirm_how": "おすすめ型・費用の質問で初回は「対応できません」と返答されたため、再試行の回答を記録した"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "足立区で水道引込工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "拓進設備工業株式会社",
+          "株式会社REXIA",
+          "株式会社江四住宅設備"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "足立区 水道引込工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "足立区で水道引込工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社田辺水道工事店",
+          "株式会社仕上舎",
+          "株式会社クラシアン"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "足立区 水道引込工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "足立区で水道引込工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社久保水道",
+          "有限会社田辺水道工事店",
+          "有限会社梅沢水道工業"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "足立区 水道引込工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "足立区で水道工事の作業員として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社REXIA",
+          "株式会社松江電機",
+          "株式会社カレント"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "足立区で水道工事の作業員として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社愛和",
+          "株式会社蓬莱組",
+          "株式会社聡建"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "足立区で水道工事の作業員として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社聡建",
+          "株式会社愛和",
+          "株式会社ライフエナジー"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "株式会社REXIA",
+        "count": 2
+      },
+      {
+        "name": "有限会社田辺水道工事店",
+        "count": 2
+      },
+      {
+        "name": "株式会社愛和",
+        "count": 2
+      },
+      {
+        "name": "株式会社聡建",
+        "count": 2
+      }
+    ],
+    "judge": "×",
+    "score": 0,
+    "hit_count": 0,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 0,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "足立区で道路工事や上下水道の引込・舗装復旧など、生活インフラを支える土木工事を行う会社と説明されていました。所在地(竹の塚・西新井本町)・代表者名・資本金・従業員約7〜8人・設立2005年・現場は23区中心まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "足立区の地域密着型の建設会社として、土木・舗装・とび土工・水道施設工事などを手がけ、東京都知事許可を持つと説明されていました。",
+        "accuracy": "一部誤り・情報不足",
+        "issues": "建設会社の一覧サイトをもとにした一般的な説明で、東京都指定の上下水道工事店であること・水道引込や下水ますの工事が中心であることは説明されていませんでした。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "足立区で道路工事や下水道・水道管の引込みを手がける土木・インフラの会社として、設立2005年・代表者名・所在地・建設業許可・23区中心の事業内容が表示されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "△",
+      "facts": "会社概要に設立平成17年・従業員7名・建設業許可番号(第124958号)・東京都指定給水装置/排水設備工事事業者の指定番号、資格者(二級土木施工管理技士1名・二級管工事施工管理技士1名・給水装置工事主任技術者2名・排水設備工事責任技術者2名)が掲載されています。代表者の顔写真とメッセージ、スタッフ紹介はありません(5点中3点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": true,
+        "numbers": true,
+        "license": true,
+        "staff": false
+      },
+      "score": 4
+    },
+    "cases": {
+      "judge": "△",
+      "facts": "施工事例は7件(水道引込・凍結断水・下水ます新設・敷地内下水切回し・舗装3種)で、各事例に工事内容の文章と写真の説明があります。件数は20件未満で、掲載日の記載はありません。",
+      "count": 7,
+      "has_text": true,
+      "latest": "",
+      "score": 4
+    },
+    "price": {
+      "judge": "×",
+      "facts": "工事の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "×",
+      "facts": "サイトのソースに、会社情報を伝える設定は書かれていません。",
+      "score": 0
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップに「有限会社協進建設」(業種:建設会社・竹の塚の営業所)として登録があり、口コミは2件・平均4.5です(いずれも8年前)。ウェブサイトと営業時間は登録されていません。",
+      "reviews": 2,
+      "rating": 4.5,
+      "replies": null,
+      "competitors": [],
+      "score": 5
+    },
+    "articles": {
+      "judge": "△",
+      "facts": "「足立区 水道工事 おすすめ」のGoogle検索上位10件は、ほとんどが一般家庭向けの水漏れ修理の比較サイトでした。御社が載っていたのは、東京都下水道局の「東京都指定排水設備工事事業者(足立区)」の一覧の1件で、「感謝状贈呈」のマークも付いています。",
+      "articles_in_top10": 9,
+      "self_listed": [
+        "東京都下水道局「東京都指定排水設備工事事業者(足立区)」"
+      ],
+      "competitor_listed": [],
+      "score": 5
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 5,
+    "internal": 8,
+    "external": 10,
+    "total": 23,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 18,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "社名を聞かれればAIは御社を正しく説明できますが、「足立区で水道引込工事のおすすめの会社は?」「足立区で水道工事の仕事に就きたい」という質問では、ホームページや求人情報の多い会社が挙げられていました。指定工事店・感謝状・資格者といった強みがAIに伝わりにくい状態が続くと、AIで依頼先や就職先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくい状態が続く可能性があると考えられます。"
+  }
+}
