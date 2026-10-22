@@ -1,0 +1,278 @@
+{
+  "company": {
+    "name": "株式会社I.T.B",
+    "url": "https://itb-yokohama.jp/",
+    "industry": "外壁塗装・屋根塗装",
+    "services": "外壁塗装・屋根塗装・防水工事・内装リフォーム・墓石工事",
+    "area": "横浜市戸塚区を中心に神奈川県内(本社:戸塚区名瀬町)",
+    "area_short": "戸塚区",
+    "date": "2026-10-22",
+    "competitor_hint": "",
+    "job_title": "塗装職人"
+  },
+  "slug": "aio-agyvpv",
+  "unconfirmed": [
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する(今回は表示された範囲のみ確認)"
+    },
+    {
+      "item": "ChatGPT の再試行",
+      "confirm_how": "おすすめ型・費用の質問で初回は「この回答を読み込めませんでした」と表示されたため、再試行の回答を記録した"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "戸塚区で外壁塗装のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社平成リフォーム横浜",
+          "株式会社Tホーム 戸塚本店",
+          "株式会社池田興商"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "戸塚区 外壁塗装 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明と比較サイトの案内のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "戸塚区で外壁塗装のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社篠塚塗装",
+          "フレッシュハウス",
+          "リズムペイント"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "戸塚区 外壁塗装 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "戸塚区で外壁塗装のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社池田興商",
+          "フレッシュハウス",
+          "キートス合同会社(けいちゃんペイント)"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "戸塚区 外壁塗装 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "戸塚区で塗装職人として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社信和塗装",
+          "株式会社装建",
+          "株式会社金子塗装"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "戸塚区で塗装職人として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社HAMA塗装",
+          "株式会社ファベル",
+          "株式会社森田塗装"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "戸塚区で塗装職人として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社永田建装",
+          "株式会社G.B.S",
+          "株式会社森田塗装"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "株式会社池田興商",
+        "count": 2
+      },
+      {
+        "name": "フレッシュハウス",
+        "count": 2
+      },
+      {
+        "name": "株式会社森田塗装",
+        "count": 2
+      }
+    ],
+    "hit_count": 0,
+    "test_count": 9,
+    "judge": "×",
+    "score": 0,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 0,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "戸塚区で外壁・屋根塗装、防水、シーリング、住宅リフォーム、墓石クリーニングなどを手がける会社と説明されていました。所在地(名瀬町22-1)・法人番号・公式サイトも案内され、自社施工をアピールしていると紹介されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "戸塚区名瀬町の地域密着型の塗装会社として、外壁・屋根塗装、防水・内装工事、墓石工事(戒名彫刻・墓石クリーニング・墓参り代行)まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "御社のサイトをもとにした説明で、内容は一致していました。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "所在地・法人番号・事業内容(外壁塗装・防水・内装)と、自社一貫施工であることが表示されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容とおおむね一致していました(「塗装経験20年以上」は外部サイトの情報です)。"
+      }
+    ],
+    "judge": "○",
+    "score": 10
+  },
+  "internal": {
+    "trust": {
+      "facts": "会社概要に建設業許可(神奈川県知事許可(般-6)第92881号)が掲載されています。代表者の顔写真とメッセージ、保有資格、創業年数・施工件数などの数字、スタッフ紹介はありません(5点中1点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": false,
+        "license": true,
+        "staff": false
+      },
+      "score": 0,
+      "judge": "×"
+    },
+    "cases": {
+      "facts": "施工事例は11件あり、最新は2026年10月18日です。各事例は写真とタイトルのみで、工事内容・期間・費用などの説明文はありません。",
+      "count": 11,
+      "has_text": false,
+      "latest": "2026-10-18",
+      "score": 4,
+      "judge": "△"
+    },
+    "price": {
+      "facts": "工事の料金の目安に関する記載はありません。",
+      "score": 0,
+      "judge": "×"
+    },
+    "faq": {
+      "facts": "よくある質問のページがあり、10個の質問と回答が掲載されています。",
+      "score": 8,
+      "judge": "○"
+    },
+    "jsonld": {
+      "judge": "△",
+      "facts": "トップページに会社情報を伝える設定(Organization・WebSite)が書かれています。ただし、よくある質問のページの設定には書き方の誤りが1か所あり、AIが読み取れない状態です。",
+      "score": 4
+    }
+  },
+  "external": {
+    "gbp": {
+      "facts": "Googleマップに「株式会社I.T.B」(業種:リフォーム業)として登録があり、口コミは2件・平均5.0で、2件とも返信しています。近くの塗装会社(Tホーム 戸塚本店)は口コミ54件・平均4.5です。",
+      "reviews": 2,
+      "rating": 5,
+      "replies": 2,
+      "competitors": [
+        {
+          "name": "株式会社Tホーム 戸塚本店",
+          "reviews": 54,
+          "rating": 4.5
+        }
+      ],
+      "score": 5,
+      "judge": "△"
+    },
+    "articles": {
+      "facts": "「戸塚区 外壁塗装 おすすめ」のGoogle検索上位10件のうち9件が比較サイト・おすすめ記事でした。御社が載っていたのは、ヌリカエの「戸塚区のその他の塗装業者一覧」の1件だけで、おすすめのランキングには入っていませんでした。",
+      "articles_in_top10": 9,
+      "self_listed": [
+        "ヌリカエ(戸塚区のその他の塗装業者一覧)"
+      ],
+      "competitor_listed": [
+        "株式会社池田興商",
+        "リズムペイント"
+      ],
+      "score": 5,
+      "judge": "△"
+    }
+  },
+  "competitor": null,
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "社名を聞かれればAIは御社を正しく説明できますが、「戸塚区で外壁塗装のおすすめの会社は?」「戸塚区で塗装職人として働きたい」という質問では、施工事例の説明や口コミ・紹介記事の多い会社が挙げられていました。自社一貫施工・丁寧な対応といった強みがAIに伝わりにくい状態が続くと、AIで依頼先や就職先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくい状態が続く可能性があると考えられます。"
+  },
+  "scores": {
+    "current": 10,
+    "internal": 16,
+    "external": 10,
+    "total": 36,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 26,
+    "unconfirmed_zero": []
+  }
+}
