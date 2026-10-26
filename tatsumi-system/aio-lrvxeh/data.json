@@ -1,0 +1,268 @@
+{
+  "company": {
+    "name": "株式会社タツミ",
+    "url": "http://tatsumi-system.com/",
+    "industry": "消防設備・建築設備の点検と工事",
+    "services": "消防設備点検・防火対象物点検・建築設備定期検査・消防設備工事・ビルメンテナンス(空調・給排水・昇降機・非常用発電機・清掃・植栽)",
+    "area": "横浜市を中心に神奈川県(本社:横浜市瀬谷区竹村町、愛知支店あり)",
+    "area_short": "横浜市",
+    "date": "2026-10-26",
+    "competitor_hint": "",
+    "job_title": "消防設備点検スタッフ"
+  },
+  "slug": "aio-lrvxeh",
+  "unconfirmed": [
+    {
+      "item": "Gemini の費用・求職者の質問",
+      "confirm_how": "調査日に Gemini が回答を返さなかった(「対応できません」・応答停止)ため未確認。日を改めて再確認する"
+    },
+    {
+      "item": "AIが参考にしたサイトの全件確認",
+      "confirm_how": "各回答の参考サイト一覧を開いて全件確認する(今回は表示された範囲のみ確認)"
+    },
+    {
+      "item": "比較サイト「ゼヒトモ」への掲載",
+      "confirm_how": "ページを読み込めなかったため未確認"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "横浜市で消防設備点検のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "東宝企業株式会社",
+          "有限会社旭総合メンテナンス",
+          "有限会社消防設備サービス"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "横浜市 消防設備点検 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "note": "費用相場の説明が中心で、料金を公開している他社が例として挙がっていました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "横浜市で消防設備点検のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "うた防災株式会社",
+          "アンエレック株式会社",
+          "株式会社LIS"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "横浜市 消防設備点検 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "回答が得られませんでした(未確認)"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "横浜市で消防設備点検のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "MDI株式会社",
+          "パシフィック通工株式会社",
+          "有限会社消防設備サービス"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "横浜市 消防設備点検 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした(料金を公開している他社のサイトが参考にされていました)"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "横浜市で消防設備点検スタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社東京ファシリティサービス",
+          "有限会社消防設備サービス",
+          "有限会社DSS"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "横浜市で消防設備点検スタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "回答が得られませんでした(未確認)"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "横浜市で消防設備点検スタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社アイタン",
+          "株式会社横浜ライテック",
+          "株式会社藤建ビルテクノス"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      }
+    ],
+    "hit_count": 0,
+    "test_count": 9,
+    "judge": "×",
+    "score": 0,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 0,
+        "total": 3
+      }
+    },
+    "frequent_competitors": [
+      {
+        "name": "有限会社消防設備サービス",
+        "count": 3
+      }
+    ]
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "横浜市瀬谷区で消防設備・建築設備の点検・保守、設備工事、ビルメンテナンス全般を手がける会社と説明されていました。所在地・設立2005年・資本金・代表者名・建設業許可(電気工事業・消防施設工事業)まで案内されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "「配管の支持金具や金属加工製品の製造・販売を手がける金属加工メーカー」と説明されていました。",
+        "accuracy": "誤り",
+        "issues": "御社の事業(消防設備・建築設備の点検と工事)とまったく違う内容でした。「タツミ」という同じ名前の会社が多く、AIが別の会社と取り違えていると考えられます。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "消防設備・建築設備の保守点検と工事、ビルメンテナンスを手がける会社として、所在地・設立2005年・資本金・電話番号が表示されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "△",
+      "facts": "会社概要に建設業許可(電気工事業・消防施設業 神奈川県知事許可 第80346号)と、2005年の設立からの沿革が掲載されています。代表者の顔写真とメッセージ、保有資格(消防設備士など)、スタッフ紹介はありません(5点中2点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": true,
+        "license": true,
+        "staff": false
+      },
+      "score": 4
+    },
+    "cases": {
+      "judge": "×",
+      "facts": "施工事例・点検実績のページはありません。事業内容のページは点検・工事の項目の一覧のみです。",
+      "count": 0,
+      "has_text": false,
+      "latest": "",
+      "score": 0
+    },
+    "price": {
+      "judge": "×",
+      "facts": "点検・工事の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "×",
+      "facts": "サイトのソースに、会社情報を伝える設定は書かれていません。",
+      "score": 0
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップでは竹村町に「Tatsumi」という名前で登録がありますが、口コミは0件で、電話番号・ウェブサイトは表示されていません。「タツミ」で検索すると、同じ名前の別の会社が10件ほど並びます。",
+      "reviews": 0,
+      "rating": null,
+      "replies": null,
+      "competitors": [],
+      "score": 5
+    },
+    "articles": {
+      "judge": "×",
+      "facts": "「横浜市 消防設備点検 おすすめ」のGoogle検索上位9件のうち4件が比較サイト・おすすめ記事・業者一覧でした。御社はどれにも載っておらず、他社(MDI・有限会社消防設備サービス・アンエレックなど)が紹介されていました。",
+      "articles_in_top10": 4,
+      "self_listed": [],
+      "competitor_listed": [
+        "MDI株式会社",
+        "有限会社消防設備サービス",
+        "アンエレック株式会社"
+      ],
+      "score": 0
+    }
+  },
+  "competitor": null,
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "ChatGPTとGoogleオーバービューは社名を聞かれれば御社を正しく説明できますが、Geminiは同じ名前の別の会社と取り違えていました。また「横浜市で消防設備点検のおすすめの会社は?」「消防設備点検の仕事に就きたい」という質問では、点検実績や料金、求人情報を公開している会社が挙げられていました。点検・工事の幅広さや2005年からの実績がAIに伝わりにくい状態が続くと、AIで依頼先や就職先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくい状態が続く可能性があると考えられます。"
+  },
+  "overview_shot": "overview.png",
+  "overview_shot_query": "横浜市で消防設備点検のおすすめの会社を教えて",
+  "scores": {
+    "current": 5,
+    "internal": 4,
+    "external": 5,
+    "total": 14,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 9,
+    "unconfirmed_zero": []
+  }
+}
