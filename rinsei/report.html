@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜凛成株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用・集客の両面からのサイト診断 〜</div>
+  <div class="company">凛成株式会社 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://rinsei.pro/</td></tr>
+    <tr><td>集計期間</td><td>2026年9月1日〜9月30日</td></tr>
+    <tr><td>主な目的（推定）</td><td>採用（現場スタッフ・営業スタッフ）／解体工事の集客</td></tr>
+    <tr><td>対応エリア</td><td>東京都・埼玉県を中心に関東全域（本社：埼玉県川越市）</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">応募やお問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">仕事を探している方・工事を頼みたい方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的に応募・お問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。ホームページのタイトルや設定されているキーワードがすべて求人に関するものだったため、今回は「現場スタッフ・営業スタッフの採用」を主な目的として見ていきます（解体工事のお問い合わせもあわせて確認します）。</p>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">仕事を探している方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>川越市 解体 求人</td><td><b>16位</b>（採用情報ページ）</td></tr>
+    <tr><td>埼玉県 解体工事 求人</td><td>20位以内に表示なし</td></tr>
+    <tr><td>解体工事 営業 求人 埼玉</td><td>10位以内に表示なし</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※ホームページに設定されているキーワード3つを、Google検索で確認しました（2026年10月26日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>いちばん身近な「川越市 解体 求人」では<b>16位</b>と、検索結果の2ページ目に採用情報ページが表示されています。ほかの2つのキーワードでは、まだ上位に出てきていません。</p>
+  <p>3つのキーワードとも、上位は Indeed・スタンバイ・ハローワーク・タウンワークなどの求人サイトが並んでいます。求人サイトと同じ土俵で戦うよりも、「凛成で働くとどうなるか」（現場の様子・先輩の声・営業職の働き方）が分かるページを厚くし、求人サイトから来た方にもしっかり読んでもらえる受け皿をつくることが近道です。</p>
+  <p>なお、「川越市 解体工事」で検索すると、上位は解体業者の比較サイトと市役所のページで、御社はまだ1ページ目に入っていません。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="block-title">確認したいこと</div>
+  <p>いま、求人サイト（Indeed など）には掲載されていますか？ 応募はどこから来ることが多いかを教えていただけると、ホームページとの役割分担を考えやすくなります。</p>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1で「川越市 解体 求人」が<b>16位</b>に表示されていることは確認できています。また、ブログは約<b>410</b>件と記事がたくさんあるため、どの記事がどんな言葉で表示され、どれだけクリックされているかが分かると、伸ばすべき記事がはっきりします。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年9月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>696</b></td><td><b>84.47%</b></td><td><b>2秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>115</b></td><td><b>13.96%</b></td><td><b>1分01秒</b></td></tr>
+    <tr><td>他サイトのリンク</td><td><b>9</b></td><td><b>1.09%</b></td><td><b>7秒</b></td></tr>
+    <tr><td>AI（ChatGPT など）</td><td><b>2</b></td><td><b>0.24%</b></td><td><b>55秒</b></td></tr>
+    <tr><td>合計</td><td><b>824</b></td><td>100%</td><td><b>11秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>9月の訪問は<b>824</b>回ありましたが、そのうち<b>696</b>回（<b>84.47%</b>）が「直接」の訪問で、平均<b>2秒</b>と極端に短くなっています。中身を見ていない自動的なアクセスや営業目的の訪問が多く混ざっている可能性があり、実際に興味を持って見に来た方の数は、見かけより少ないと考えられます。</p>
+  <p>一方で、検索から来た方は<b>115</b>回と少ないものの、平均<b>1分01秒</b>しっかり読んでいます。<b>来てくれた人にはきちんと読まれている</b>ので、検索からの訪問を増やすことが一番の伸びしろです。ChatGPT などのAIから来た訪問も<b>2</b>回ありました。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年9月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>11秒</b>でした（2秒の「直接」の訪問に引き下げられています）。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>お問い合わせ</td><td><b>112</b></td><td><b>9秒</b></td></tr>
+    <tr><td>トップページ</td><td><b>110</b></td><td><b>24秒</b></td></tr>
+    <tr><td>会社概要</td><td><b>66</b></td><td><b>22秒</b></td></tr>
+    <tr><td>施工実績</td><td><b>12</b></td><td><b>49秒</b></td></tr>
+    <tr><td>採用情報（現場スタッフ）</td><td><b>10</b></td><td><b>36秒</b></td></tr>
+    <tr><td>凛成について（採用）</td><td><b>10</b></td><td><b>22秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>採用のいちばん大切なページである「採用情報（現場スタッフ）」は、ひと月の表示が<b>10</b>回と、まだ多くの方に届いていません。ただ、見た方は平均<b>36秒</b>読んでいて、関心を持って見られています。施工実績も<b>49秒</b>とよく読まれています。</p>
+  <p>また、以前のホームページのページ（「2022年の記事一覧」など）にも、ひと月に数十回のアクセスが残っています。古いページから今のページへ正しく案内できているか、確認しておくと安心です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的に応募・お問い合わせまで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>9月にお問い合わせフォームから送られたのは<b>23件</b>でした（GA4で計測。お電話は含みません）。経路別では「直接」が<b>19件</b>、「検索」が<b>4件</b>です。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>件数は多く見えますが、「直接」の訪問は平均<b>2秒</b>のものが大半で、その経路から<b>19件</b>が送られています。営業の連絡や自動送信が含まれている可能性があるため、23件の中身（工事のご依頼・応募・営業）を教えていただけると、より正確に判断できます。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:26%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>ヘッダーに電話番号（営業電話お断り）とお問い合わせボタンがあります。採用は「現場スタッフ」「営業スタッフ」「凛成について」の3ページで、応募フォームもあります。</td></tr>
+    <tr><td>採用コンテンツ</td><td>月給<b>25万〜50万</b>円・賞与年<b>2</b>回・資格取得費用の全額負担・OJT研修が載っています。<b>先輩の声・1日の流れ・現場写真の説明</b>はまだありません。</td></tr>
+    <tr><td>施工実績</td><td>事例は<b>10</b>件以上あり、作業の進め方の説明があります。費用・工期・建物の規模、掲載日は載っていません。</td></tr>
+    <tr><td>会社情報・ブログ</td><td>代表あいさつ・建設業許可番号あり。ブログは約<b>410</b>件で、10/17から毎日更新されています（求人向けの記事が中心）。</td></tr>
+    <tr><td>表示速度・制作年</td><td>スマホ<b>57</b>点／PC<b>60</b>点（PageSpeed Insights）。ドメイン取得は<b>2019</b>年で、約<b>7</b>年が経っています。</td></tr>
+  </table>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">AIには<span class="gold">「川越市で解体工として働くならここ」</span>と名前が挙がるのに、<br>検索で見つけてもらう入口と、採用ページの中身がまだ追いついていない状態です</div>
+  <div class="good-point"><b>良い点：</b>ChatGPTに「川越市で解体工として就職したい」と質問すると、御社が<b>2番目</b>に紹介されました。「川越市で解体工事を頼みたい」でも<b>4番目</b>に紹介され、社名で聞くと所在地・代表者・許可番号まで正確に説明されます。AIにはすでに名前が届いています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 検索からの入口が細い（アプローチ）</h4>
+        <p>「川越市 解体 求人」は<b>16位</b>、ほかの求人キーワードは上位に出ていません。検索からの訪問は全体の<b>13.96%</b>（月<b>115</b>回）です。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 採用ページが働くイメージまで伝えきれていない（コンバージョン）</h4>
+        <p>採用情報は月<b>10</b>回の表示。条件は載っていますが、先輩の声・1日の流れ・現場写真がなく、応募の決め手が少ない状態です。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：ブログのテーマが「内装」寄りになっています</h4>
+    <p>毎日更新されているブログの直近<b>10</b>件は、求人向けが<b>8</b>件と採用には合っていますが、タイトルは「内装」を含むものが多く、主力の「解体」の記事は少なめです。解体の仕事・費用・アスベストの記事を増やし、記事の最後から採用ページやお問い合わせへ案内すると、毎日の更新がより成果につながります。</p></div>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>「凛成で働きたい」と思ってもらえる採用ページを軸に、サイト全体を見直す</h3>
+    <p>求人キーワードは<b>16位</b>〜圏外（Step1）、検索からの訪問は<b>13.96%</b>（Step3）、採用情報ページは月<b>10</b>回（Step4）と、3つのStepが要改善でした。ドメイン取得から約<b>7</b>年が経ち、以前のページへのアクセスも残っているため、採用ページを中心にサイト全体を見直すタイミングです。</p>
+    <p>具体的には、先輩の声・1日の流れ・現場写真、未経験から一人前になるまでの道筋、営業スタッフの働き方と収入の目安など、求人サイトでは伝えきれない「凛成で働く中身」を厚くしていくイメージです。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>ブログのテーマを整える</h4><p>毎日の更新を「解体の仕事」「解体工事の費用・アスベスト」に寄せ、記事の最後から採用ページ・お問い合わせへ案内します。</p></div>
+    <div class="seed-card"><h4>施工実績の充実</h4><p>建物の種類・規模・工期・費用の目安を添えると、工事を頼みたい方にも、仕事を知りたい求職者にも役立ちます。</p></div>
+    <div class="seed-card"><h4>AIに伝わる情報</h4><p>すでにAIに紹介されている強み（アスベスト対応・資格取得支援）を、よくある質問などで分かりやすく載せると、紹介される機会がさらに増えます。</p></div>
+  </div>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、採用と集客を伸ばすための材料がそろっています。これを検索からも見つけてもらい、しっかり見せていくだけで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AIに名前が挙がる</div><div class="d">「川越市で解体工として就職」で2番目に紹介</div></div>
+    <div class="strength-card"><div class="icon">📖</div><div class="t">検索の人はよく読む</div><div class="d">検索から来た方は平均1分01秒</div></div>
+    <div class="strength-card"><div class="icon">💴</div><div class="t">魅力的な条件</div><div class="d">月給25万〜50万円・資格取得費用は全額会社負担</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">毎日のブログ更新</div><div class="d">約410件の記事の積み重ね</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>9月のお問い合わせ<b>23件</b>の中身（ご依頼・応募・営業）</td><td>社長にお聞きします</td></tr>
+    <tr><td>求人サイトの掲載状況と、応募の多い経路</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+    <tr><td>以前のページ（2022年の記事一覧など）の表示内容</td><td>実際に開いて確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>凛成株式会社様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
