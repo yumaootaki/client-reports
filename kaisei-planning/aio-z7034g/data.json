@@ -1,0 +1,296 @@
+{
+  "company": {
+    "name": "株式会社カイセイプランニング",
+    "url": "https://kaisei-planning.jp/",
+    "industry": "原状回復工事・ハウスクリーニング",
+    "services": "賃貸物件の原状回復工事、ハウスクリーニング、退去立会い代行、壁紙・床材の張り替え、不用品回収",
+    "area": "埼玉県南部・東京都内が中心(拠点:埼玉県草加市住吉)",
+    "area_short": "草加市",
+    "date": "2026-11-04",
+    "competitor_hint": "",
+    "job_title": "ハウスクリーニングスタッフ"
+  },
+  "slug": "aio-z7034g",
+  "unconfirmed": [
+    {
+      "item": "Geminiでの紹介状況・社名での説明(4回分)",
+      "confirm_how": "調査日はGeminiの回答が途中で止まり、内容のある回答が得られませんでした。日を改めて同じ質問をして確認します"
+    },
+    {
+      "item": "公式ホームページ(kaisei-planning.com)の内容",
+      "confirm_how": "調査日は表示できなかったため、今回は kaisei-planning.jp の内容で判定しています。表示できるようになったら改めて確認します"
+    }
+  ],
+  "score_note": "Geminiは調査日に回答が途中で止まり、内容のある回答が得られなかったため「未確認」としています(紹介なしと同じ扱いで計算)。",
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "草加市で原状回復工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社フロンティア",
+          "有限会社新栄商会",
+          "合同会社BeeWorkers"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "草加市 原状回復工事 費用",
+        "mentioned": true,
+        "rank": 3,
+        "others": [
+          "株式会社シュウエイ",
+          "合同会社BeeWorkers",
+          "株式会社エブリス"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "草加市で原状回復工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "回答が途中で止まり、内容のある回答が得られませんでした"
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "草加市 原状回復工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "回答が途中で止まり、内容のある回答が得られませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "草加市で原状回復工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社新栄商会",
+          "株式会社LML",
+          "ワイザー株式会社"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "草加市 原状回復工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社LML",
+          "インテリアエージェント 草加支店"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明が中心で、参考先として他社のサイトが挙がっていました"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "草加市でハウスクリーニングスタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社アーム",
+          "株式会社ハイビスカス",
+          "おそうじ革命 草加駅前店"
+        ],
+        "cited_self": false
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "草加市でハウスクリーニングスタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "回答が途中で止まり、内容のある回答が得られませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "草加市でハウスクリーニングスタッフとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社CaSy",
+          "株式会社ベアーズ",
+          "有限会社アーム"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "有限会社新栄商会",
+        "count": 2
+      },
+      {
+        "name": "合同会社BeeWorkers",
+        "count": 2
+      },
+      {
+        "name": "株式会社LML",
+        "count": 2
+      },
+      {
+        "name": "有限会社アーム",
+        "count": 2
+      }
+    ],
+    "judge": "△",
+    "score": 3,
+    "hit_count": 1,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 1,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 0,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "埼玉県草加市を拠点に、ハウスクリーニングと賃貸物件の原状回復工事を中心に手がける会社と説明されていました。所在地・代表者名・電話番号のほか、退去立会い代行、外壁塗装などのリフォーム、不用品回収まで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      },
+      {
+        "ai": "Gemini",
+        "summary": "調査日は回答が途中で止まり、内容のある回答が得られませんでした。",
+        "accuracy": "未確認",
+        "issues": "日を改めて確認します。"
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "草加市住吉の、ハウスクリーニングや賃貸物件の原状回復工事を中心に行う会社と説明されていました。退去立会い代行・不用品回収、営業時間、東京都・埼玉県を中心とした対応エリアまで説明されていました。",
+        "accuracy": "正確",
+        "issues": "サイトの内容と一致していました。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "×",
+      "facts": "サイト(kaisei-planning.jp)には、代表者の顔写真とメッセージ、資格の記載、創業年数や施工件数などの数字、建設業許可番号、スタッフ紹介のいずれも見当たりませんでした(作業中のスタッフの写真が1枚あります)。5点中0点です。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": false,
+        "license": false,
+        "staff": false
+      },
+      "score": 0
+    },
+    "cases": {
+      "judge": "×",
+      "facts": "施工事例のページはありません。「新着情報」に不用品回収とゴミ屋敷の清掃の記事が2件あり、説明文はありますが、最新は2022年6月です。",
+      "count": 2,
+      "has_text": true,
+      "latest": "2022-06",
+      "score": 0
+    },
+    "price": {
+      "judge": "×",
+      "facts": "料金の目安の記載はありません。「見積もり無料」「安心価格」というご案内のみです。",
+      "count": null,
+      "score": 0
+    },
+    "faq": {
+      "judge": "△",
+      "facts": "「よくある質問」のページがあり、見積もり料金や東京都内の現場への対応など4問が載っています。",
+      "count": 4,
+      "score": 4
+    },
+    "jsonld": {
+      "judge": "×",
+      "facts": "トップページとよくある質問のページを確認しましたが、Googleに会社情報を伝える設定はありませんでした。",
+      "types": [],
+      "errors": "",
+      "score": 0
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップに「株式会社カイセイプランニング」が登録されています(業種:ハウスクリーニング業、住所・電話番号・営業時間あり)。口コミは1件・平均5.0で、口コミへの返信もされています。なお、登録されているホームページは「kaiseiplanning.com」で、今回確認したサイトとは異なります。比較として、AIに紹介された有限会社新栄商会は口コミ1件・平均1.0です。",
+      "reviews": 1,
+      "rating": 5,
+      "replies": true,
+      "competitors": [
+        {
+          "name": "有限会社新栄商会",
+          "reviews": 1,
+          "rating": 1
+        }
+      ],
+      "score": 5
+    },
+    "articles": {
+      "judge": "×",
+      "facts": "「草加市 原状回復工事 おすすめ」のGoogle検索上位10件のうち、比較・まとめ系のページは5件(ツクリンク、家仲間コム、リノデュース、ハピすむ、ビズリスト)でした。御社の掲載は確認できませんでした。AIに紹介された有限会社新栄商会と株式会社LMLは、それぞれ1件に掲載されていました。",
+      "articles_in_top10": 5,
+      "self_listed": [],
+      "competitor_listed": [
+        {
+          "name": "有限会社新栄商会",
+          "count": 1
+        },
+        {
+          "name": "株式会社LML",
+          "count": 1
+        }
+      ],
+      "score": 0
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 8,
+    "internal": 4,
+    "external": 5,
+    "total": 17,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 9,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "業者を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。賃貸物件を管理する会社やオーナーの方が、原状回復の依頼先を探す場面でも同じ変化が考えられます。",
+    "current": "",
+    "causes": "",
+    "forecast": "AIは社名を聞かれれば御社を正しく説明でき、ChatGPTは費用の質問で御社の名前を挙げていました。一方で、おすすめの原状回復工事の会社を聞く質問では、有限会社新栄商会や株式会社LMLなど他社の名前が挙がっていました。料金の目安や施工事例、会社の実績など、AIが判断に使える情報がサイトに少ないままだと、AIで依頼先を探す人が増えるにつれて、そうした方々の候補に御社が入りにくく、競合に相談が流れやすくなる可能性があると考えられます。"
+  },
+  "overview_shot": "overview.png",
+  "overview_shot_query": "草加市で原状回復工事のおすすめの会社を教えて"
+}
