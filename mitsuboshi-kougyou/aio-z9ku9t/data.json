@@ -1,0 +1,269 @@
+{
+  "company": {
+    "name": "株式会社三ツ星工業(株式会社MBdesign)",
+    "url": "https://mb-design88.co.jp/",
+    "industry": "左官工事",
+    "services": "左官仕上工事・モールテックス(MORTEX)などの特殊左官・リフォーム・外構",
+    "area": "習志野市を拠点に千葉県・東京都・神奈川県・埼玉県(本社:習志野市東習志野)",
+    "area_short": "習志野市",
+    "date": "2026-11-04",
+    "competitor_hint": "",
+    "job_title": "左官職人"
+  },
+  "slug": "aio-z9ku9t",
+  "unconfirmed": [
+    {
+      "item": "ChatGPT・Gemini の一部の質問",
+      "confirm_how": "調査日(11/4)は ChatGPT が「この回答を読み込めませんでした」と表示し、Gemini も回答が止まる状態だったため、ChatGPT 3問・Gemini 4問は紹介なしとして計算しました。後日聞き直すと点数が上がる可能性があります"
+    },
+    {
+      "item": "2サイトを合わせて確認",
+      "confirm_how": "個人のお客様向けのMBdesign(mb-design88.co.jp)を中心に、三ツ星工業(mitsuboshikougyou.co.jp)のサイトも合わせて確認しました。AIへの質問では、どちらの社名が出ても「紹介あり」として数えています"
+    },
+    {
+      "item": "施工事例の掲載日",
+      "confirm_how": "事例に日付の記載がないため、最新の掲載時期は確認できていません"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "習志野市で左官工事のおすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 1,
+        "others": [
+          "有限会社マツカワ",
+          "有限会社フロンティア左官",
+          "株式会社作新建装"
+        ],
+        "cited_self": false,
+        "note": "三ツ星工業が1番目に紹介されました。紹介の内容は許可業者の名簿にもとづくもので、デザイン左官の強みには触れられていませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "習志野市 モールテックス 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため(調査日に「この回答を読み込めませんでした」と表示)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "習志野市で左官工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため(調査日に回答が止まる状態)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "習志野市 モールテックス 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため(調査日に回答が止まる状態)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "習志野市で左官工事のおすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 1,
+        "others": [
+          "杉山建設工業株式会社",
+          "有限会社マツカワ",
+          "ゆうきホーム株式会社"
+        ],
+        "cited_self": true,
+        "ai_overview_shown": true,
+        "note": "三ツ星工業が「特におすすめの左官専門会社」として1番目に紹介され、大型施設の実績やモールテックスの正規代理店であることまで説明されていました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "習志野市 モールテックス 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明のみで、会社名の紹介はありませんでした。参考にされていたのは他県の工務店の費用解説ページでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "習志野市で左官職人として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため(調査日に「この回答を読み込めませんでした」と表示)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "習志野市で左官職人として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため(調査日に回答が止まる状態)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "習志野市で左官職人として就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 1,
+        "others": [
+          "有限会社川原建設",
+          "平田工業株式会社"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "三ツ星工業が1番目に紹介されましたが、参考にされていたのはInstagramで、採用情報のページはありませんでした"
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "有限会社マツカワ",
+        "count": 2
+      }
+    ],
+    "judge": "△",
+    "score": 10,
+    "hit_count": 3,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 2,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 1,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "調査日にChatGPTから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "Gemini",
+        "summary": "調査日にGeminiから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "株式会社MBdesignについて、モールテックスやビールストーンなどの特殊材料を使ったデザイン左官、リフォーム・外構、材料販売まで説明され、所在地・電話番号・対応エリア(千葉・東京・神奈川・埼玉)も表示されていました。",
+        "accuracy": "正確",
+        "issues": "ホームページの内容と一致していました。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "○",
+      "facts": "MBdesignのサイトに代表の顔写真と代表挨拶、建設業許可(千葉県知事許可(般-3)第28216号)が載っています。三ツ星工業のサイトには「一級左官技能士15名」「従業員55名」と、資格と数字がはっきり書かれています。スタッフ紹介はありません(2サイト合わせて5点中4点)。",
+      "checks": {
+        "rep_photo_message": true,
+        "qualifications": true,
+        "numbers": true,
+        "license": true,
+        "staff": false
+      },
+      "score": 8
+    },
+    "cases": {
+      "judge": "△",
+      "facts": "MBdesignの施工実績は約40件、三ツ星工業の施工事例は18件あり、件数は十分です。ただし各事例は写真と材料名(MORTEX・BEALSTONE など)だけで、どんな依頼でどう仕上げたかの説明文や施工時期はありません。",
+      "count": 40,
+      "has_text": false,
+      "latest": "",
+      "score": 4
+    },
+    "price": {
+      "judge": "×",
+      "facts": "工事や材料の料金の目安に関する記載は、どちらのサイトにもありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーは、どちらのサイトにもありません。",
+      "count": 0,
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "×",
+      "facts": "どちらのサイトにも、Googleに会社情報を伝える設定はありません。",
+      "types": [],
+      "errors": "",
+      "score": 0
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "△",
+      "facts": "Googleマップに三ツ星工業(口コミ2件・平均5.0)とMBdesign(口コミなし)の両方が登録され、どちらも会社の説明文が入っています。口コミの件数はまだ少ない状態です。",
+      "reviews": 2,
+      "rating": 5,
+      "replies": 0,
+      "competitors": [],
+      "score": 5
+    },
+    "articles": {
+      "judge": "○",
+      "facts": "「習志野市 左官工事 おすすめ」のGoogle検索上位10件のうち9件が比較・一覧サイトでした。三ツ星工業は「建設みらい」「建設マップ」の左官工事会社一覧の2件に載っていました。MBdesignはどの記事にも載っていませんでした。",
+      "articles_in_top10": 9,
+      "self_listed": [
+        "建設みらい(習志野市の左官工事業の許可業者一覧)",
+        "建設マップ(習志野市の左官工事会社一覧)"
+      ],
+      "competitor_listed": [],
+      "score": 10
+    }
+  },
+  "competitor": null,
+  "scores": {
+    "current": 15,
+    "internal": 12,
+    "external": 15,
+    "total": 42,
+    "label": "AIに紹介されにくい状態",
+    "prep60": 27,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "リフォームやデザイン施工の依頼先を探すときに、Googleで検索するだけでなく、ChatGPTなどのAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "Googleオーバービューでは、左官工事のおすすめでも就職先のおすすめでも三ツ星工業が1番目に紹介されており、地域の左官会社としてAIにしっかり認識されています。一方で、紹介されているのは主に三ツ星工業の名前で、個人のお客様向けのMBdesignはおすすめに出てきませんでした。また「モールテックス 費用」のような費用の質問では、他県の工務店の解説ページが参考にされていました。施工事例の説明や費用の目安、よくある質問が増えないままだと、デザイン左官を探す個人のお客様がAIに相談したとき、MBdesignが候補に入りにくい状態が続く可能性があると考えられます。"
+  },
+  "overview_shot": "overview.png",
+  "overview_shot_query": "習志野市で左官工事のおすすめの会社を教えて"
+}
