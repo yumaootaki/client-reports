@@ -1,0 +1,268 @@
+{
+  "company": {
+    "name": "株式会社ブレイブ",
+    "url": "https://brave-k-works.com/",
+    "industry": "ダンプ運搬",
+    "services": "ダンプトラックによる建材・残土・産業廃棄物の運搬、重機オペレーター(根切り工事)、基礎・躯体工事の現場作業",
+    "area": "多摩市を拠点に東京都多摩地域(本社:多摩市和田)",
+    "area_short": "多摩市",
+    "date": "2026-11-05",
+    "competitor_hint": "",
+    "job_title": "ダンプドライバー"
+  },
+  "slug": "aio-okh7a6",
+  "unconfirmed": [
+    {
+      "item": "ChatGPT・Gemini の質問",
+      "confirm_how": "調査日(11/5)は ChatGPT が「この回答を読み込めませんでした」と表示し、Gemini も回答を返さない状態だったため、ChatGPT 3問・Gemini 3問と社名の質問は紹介なしとして計算しました。後日聞き直すと点数が上がる可能性があります"
+    },
+    {
+      "item": "採用サイトの社名",
+      "confirm_how": "採用情報は「勇運総業」の名前の採用サイト(同じ住所・電話番号)につながっています。AIへの質問では「勇運総業」の名前で紹介された場合も「紹介あり」として数えています"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "多摩市でダンプ運搬のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため(調査日に「この回答を読み込めませんでした」と表示)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "多摩市 残土処分 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため(調査日に「この回答を読み込めませんでした」と表示)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "多摩市でダンプ運搬のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため(調査日に「お手伝いできません」と表示)、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "多摩市 残土処分 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "多摩市でダンプ運搬のおすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 2,
+        "others": [
+          "小林運輸株式会社",
+          "多摩運送株式会社",
+          "大久保興業株式会社"
+        ],
+        "cited_self": true,
+        "ai_overview_shown": true,
+        "note": "株式会社ブレイブが2番目に紹介され、ホームページが参考にされていました。ただし紹介文は「ダンプでの運搬や重機オペレーターの現場作業」だけで、実績や強みには触れられていませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "多摩市 残土処分 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "有限会社松田興業",
+          "らくらく本舗",
+          "困りごと解決本舗"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "費用相場の説明で、近くの残土受入センターや便利屋のページが参考にされていました。ブレイブの紹介はありませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "多摩市でダンプドライバーとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "多摩市でダンプドライバーとして就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "多摩市でダンプドライバーとして就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 1,
+        "others": [
+          "巴山興業株式会社",
+          "大久保興業株式会社"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "「勇運総業」の名前で1番目に紹介され、残業の少なさが評価されていました。参考にされていたのは求人サイト(スタンバイ)で、「株式会社ブレイブ」の名前やホームページは出てきませんでした"
+      }
+    ],
+    "hit_count": 2,
+    "test_count": 9,
+    "judge": "△",
+    "score": 7,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 1,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 1,
+        "total": 3
+      }
+    },
+    "frequent_competitors": [
+      {
+        "name": "大久保興業株式会社",
+        "count": 2
+      }
+    ]
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "調査日にChatGPTから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "Gemini",
+        "summary": "調査日にGeminiから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "建材運搬・土木工事・産業廃棄物の運搬を行う会社として、ダンプでの運搬や重機オペレーター業務が説明されていました。一方で、同じ名前の人材派遣会社(医療・介護・保育の派遣)と並べて紹介され、「同名または関連の会社が2つある」と説明されていました。",
+        "accuracy": "一部誤り・情報不足",
+        "issues": "仕事の内容はホームページと一致していましたが、別の人材派遣会社と混ざって説明されており、対応エリアや実績の説明もありませんでした。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "×",
+      "facts": "代表者の名前・顔写真・メッセージ、保有資格、実績の数字、許可番号の記載はありません。スタッフ紹介の欄は「準備中」になっています(5点中0点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": false,
+        "license": false,
+        "staff": false
+      },
+      "score": 0
+    },
+    "cases": {
+      "judge": "×",
+      "facts": "施工事例(WORKS)のページはありますが、掲載は「準備中」の1件だけで、写真や説明はまだありません。",
+      "count": 0,
+      "has_text": false,
+      "latest": "",
+      "score": 0
+    },
+    "price": {
+      "judge": "×",
+      "facts": "運搬や処分の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "count": 0,
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "○",
+      "facts": "トップページと会社概要ページに、Googleに会社情報を伝える設定(会社情報・ページの階層)が入っており、読み取りの誤りもありませんでした。",
+      "types": [
+        "Organization",
+        "BreadcrumbList",
+        "WebPage",
+        "WebSite"
+      ],
+      "errors": "",
+      "score": 8
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "×",
+      "facts": "Googleマップで「株式会社ブレイブ」「勇運総業」を検索しましたが、多摩市和田の会社としての登録は見つかりませんでした(同じ名前の別の会社が表示されます)。",
+      "reviews": 0,
+      "rating": null,
+      "replies": 0,
+      "competitors": [],
+      "score": 0
+    },
+    "articles": {
+      "judge": "×",
+      "facts": "「多摩市 ダンプ運搬 おすすめ」のGoogle検索上位では、ブレイブのホームページが2番目に表示されていました。上位にあった会社一覧・まとめサイト3件(運送会社一覧・電話帳・廃品回収のランキング)には、ブレイブは載っていませんでした。",
+      "articles_in_top10": 3,
+      "self_listed": [],
+      "competitor_listed": [],
+      "score": 0
+    }
+  },
+  "competitor": null,
+  "outlook": {
+    "trend": "建設会社や工務店が運搬・残土処分の協力会社を探すとき、また求職者が職場を探すときに、Googleで検索するだけでなくAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "Googleオーバービューでは、ダンプ運搬のおすすめで株式会社ブレイブが2番目に、就職先のおすすめでは「勇運総業」の名前で1番目に紹介されており、ホームページを公開して間もないながら、AIに認識され始めています。一方で、紹介文は仕事の内容だけで、実績・保有車両・資格・対応エリアといった選ぶ理由になる情報は出てきませんでした。また社名で聞くと同じ名前の人材派遣会社と混ざって説明されていました。施工事例やスタッフ紹介が「準備中」のまま、Googleマップの登録もない状態が続くと、AIが他社と比べて選ぶ材料が少なく、より情報の多い同業他社が優先される可能性があると考えられます。"
+  },
+  "overview_shot": "overview.png",
+  "overview_shot_query": "多摩市でダンプ運搬のおすすめの会社を教えて",
+  "scores": {
+    "current": 12,
+    "internal": 8,
+    "external": 0,
+    "total": 20,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 8,
+    "unconfirmed_zero": []
+  }
+}
