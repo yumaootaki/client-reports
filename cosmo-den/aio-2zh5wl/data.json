@@ -1,0 +1,286 @@
+{
+  "company": {
+    "name": "COSMO電設",
+    "url": "https://www.cosmo-den.com/",
+    "industry": "電気工事",
+    "services": "オフィスビル・商業施設・病院・マンションなどの新築・改修の電気工事(配線・配管・幹線・盤・仮設)、計装工事、一般家庭のエアコン・家電の取り付けやコンセント工事",
+    "area": "志木市を拠点に埼玉・千葉・東京・神奈川(本社:埼玉県志木市本町)",
+    "area_short": "志木市",
+    "date": "2026-11-05",
+    "competitor_hint": "",
+    "job_title": "電気工事士"
+  },
+  "slug": "aio-2zh5wl",
+  "unconfirmed": [
+    {
+      "item": "ChatGPT・Gemini への質問",
+      "confirm_how": "調査日(11/5)は ChatGPT と Gemini から回答が表示されなかったため、両方の質問(各3問)と社名の質問は紹介なしとして計算しました。後日聞き直すと点数が上がる可能性があります"
+    },
+    {
+      "item": "採用サイトとの合算",
+      "confirm_how": "ホームページ(cosmo-den.com)と採用サイト(cosmo-den-lp.com)の2サイトを合わせて確認しました"
+    }
+  ],
+  "current1": {
+    "tests": [
+      {
+        "ai": "ChatGPT",
+        "type": "おすすめ型",
+        "query": "志木市で電気工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "費用・悩み型",
+        "query": "志木市 電気工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "おすすめ型",
+        "query": "志木市で電気工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "費用・悩み型",
+        "query": "志木市 電気工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "おすすめ型",
+        "query": "志木市で電気工事のおすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "株式会社市之瀨電設",
+          "ミツモア(比較サイト)",
+          "くらしのマーケット(比較サイト)"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "地元の専門会社として株式会社市之瀨電設(1948年創立)が1社だけ紹介され、あとは比較・マッチングサイトの案内でした。COSMO電設の紹介はありませんでした"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "費用・悩み型",
+        "query": "志木市 電気工事 費用",
+        "mentioned": false,
+        "rank": null,
+        "others": [
+          "くらしのマーケット(比較サイト)",
+          "ミツモア(比較サイト)",
+          "さいたま電気工事店"
+        ],
+        "cited_self": false,
+        "ai_overview_shown": true,
+        "note": "コンセント・照明・エアコンなど工事ごとの費用の目安が、料金を載せている業者や比較サイトを参考に説明されていました。COSMO電設の紹介はありませんでした"
+      },
+      {
+        "ai": "ChatGPT",
+        "type": "求職者型",
+        "query": "志木市で電気工事士として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "ChatGPTから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "Gemini",
+        "type": "求職者型",
+        "query": "志木市で電気工事士として就職したい。おすすめの会社を教えて",
+        "mentioned": false,
+        "rank": null,
+        "others": [],
+        "cited_self": false,
+        "unconfirmed": true,
+        "note": "Geminiから回答が表示されなかったため、紹介なしとして記録しました"
+      },
+      {
+        "ai": "AIによる概要",
+        "type": "求職者型",
+        "query": "志木市で電気工事士として就職したい。おすすめの会社を教えて",
+        "mentioned": true,
+        "rank": 3,
+        "others": [
+          "本幸電気株式会社",
+          "有限会社北斗電設",
+          "大森電設株式会社"
+        ],
+        "cited_self": true,
+        "ai_overview_shown": true,
+        "note": "COSMO電設が志木市内のおすすめ企業の3番目に紹介され、採用サイトが参考にされていました。「ゼネコンの高層ビルからLED照明交換まで案件が豊富」「仕事量が安定」「丁寧な指導体制」と説明されていました"
+      }
+    ],
+    "frequent_competitors": [
+      {
+        "name": "ミツモア(比較サイト)",
+        "count": 2
+      },
+      {
+        "name": "くらしのマーケット(比較サイト)",
+        "count": 2
+      }
+    ],
+    "judge": "△",
+    "score": 3,
+    "hit_count": 1,
+    "test_count": 9,
+    "by_type": {
+      "おすすめ型": {
+        "hits": 0,
+        "total": 3
+      },
+      "費用・悩み型": {
+        "hits": 0,
+        "total": 3
+      },
+      "求職者型": {
+        "hits": 1,
+        "total": 3
+      }
+    }
+  },
+  "current2": {
+    "answers": [
+      {
+        "ai": "ChatGPT",
+        "summary": "調査日にChatGPTから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "Gemini",
+        "summary": "調査日にGeminiから回答が表示されず、確認できませんでした。",
+        "accuracy": "",
+        "issues": ""
+      },
+      {
+        "ai": "AIによる概要",
+        "summary": "志木市本町の電気工事業者として、代表者・2019年設立・所在地(2026年10月の新事務所)・対応エリア(埼玉・千葉・東京・神奈川)・登録電気工事業者と建設業許可が説明されていました。ゼネコンの現場の電気工事から一般家庭のエアコン・コンセント工事まで対応していることも紹介されていました。",
+        "accuracy": "正確",
+        "issues": "ホームページの内容と一致していました。施工の実績や件数についての説明はありませんでした。"
+      }
+    ],
+    "judge": "△",
+    "score": 5
+  },
+  "internal": {
+    "trust": {
+      "judge": "×",
+      "facts": "建設業許可番号と登録電気工事業者の登録番号は会社概要に載っています。代表挨拶の文章はありますが顔写真はなく、保有資格・施工件数などの数字・スタッフ紹介の記載はありません(5点中1点)。",
+      "checks": {
+        "rep_photo_message": false,
+        "qualifications": false,
+        "numbers": false,
+        "license": true,
+        "staff": false
+      },
+      "score": 0
+    },
+    "cases": {
+      "judge": "△",
+      "facts": "施工実績のページに写真が57枚とカテゴリ4つが載っていますが、1件ごとの工事内容・地域・工期の説明はなく、掲載日も表示されていません。",
+      "count": 57,
+      "has_text": false,
+      "latest": "不明",
+      "score": 4
+    },
+    "price": {
+      "judge": "×",
+      "facts": "ホームページ・採用サイトのどちらにも、工事の料金の目安に関する記載はありません。",
+      "score": 0
+    },
+    "faq": {
+      "judge": "×",
+      "facts": "よくある質問のページやコーナーはありません。",
+      "count": 0,
+      "score": 0
+    },
+    "jsonld": {
+      "judge": "△",
+      "facts": "トップページにはサイト名の設定だけが入っており、会社名・住所・電話番号などの会社情報の設定はありません。会社概要ページには設定がありません。",
+      "types": [
+        "WebSite"
+      ],
+      "errors": "",
+      "score": 4
+    }
+  },
+  "external": {
+    "gbp": {
+      "judge": "×",
+      "facts": "Googleマップで「COSMO電設 志木市」を検索しましたが、COSMO電設の登録は見つかりませんでした。検索結果には市之瀨電設(口コミ3件・平均5.0)や北斗電設などが表示されます。",
+      "reviews": 0,
+      "rating": null,
+      "replies": 0,
+      "competitors": [
+        {
+          "name": "株式会社市之瀨電設",
+          "reviews": 3,
+          "rating": 5
+        },
+        {
+          "name": "有限会社北斗電設",
+          "reviews": 0,
+          "rating": null
+        }
+      ],
+      "score": 0
+    },
+    "articles": {
+      "judge": "△",
+      "facts": "「志木市 電気工事 おすすめ」のGoogle検索上位には、比較・マッチングサイトが7件ありました。そのうち建設業者のマッチングサイト(ツクリンク)の志木市の電気工事業者一覧にCOSMO電設が載っていました。ホームページも検索結果の5番目に表示されていました。",
+      "articles_in_top10": 7,
+      "self_listed": [
+        {
+          "title": "志木市でその他電気工事に対応できる建設業者一覧",
+          "site": "ツクリンク"
+        }
+      ],
+      "competitor_listed": [],
+      "score": 5
+    }
+  },
+  "competitor": null,
+  "overview_shot": "overview.png",
+  "overview_shot_query": "志木市で電気工事のおすすめの会社を教えて",
+  "scores": {
+    "current": 8,
+    "internal": 8,
+    "external": 5,
+    "total": 21,
+    "label": "AIの紹介対象にほぼ入っていない状態",
+    "prep60": 13,
+    "unconfirmed_zero": []
+  },
+  "outlook": {
+    "trend": "電気工事を頼みたい方や建設会社が協力業者を探すとき、また求職者が職場を探すときに、Googleで検索するだけでなくAIに質問して候補を絞る人が増えてきています。",
+    "current": "",
+    "causes": "",
+    "forecast": "Googleオーバービューでは、電気工事士の就職先としてCOSMO電設が志木市内の3番目に紹介され、採用サイトの内容がそのまま評価されていました。社名で聞いたときの説明も正確でした。一方で、志木市の電気工事のおすすめや費用の質問では、地元の老舗の電気工事会社や比較サイトが紹介され、COSMO電設の名前は出てきませんでした。施工事例の説明・料金の目安・よくある質問がなく、Googleマップの登録もない状態が続くと、AIがお客様に紹介する材料が少なく、情報の多い同業他社や比較サイトが優先される可能性があると考えられます。"
+  }
+}
