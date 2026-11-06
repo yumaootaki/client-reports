@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社ユウシン工業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用（鉄筋工の求人）の視点からのサイト診断 〜</div>
+  <div class="company">株式会社ユウシン工業 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>http://www.yushinkogyo.net/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日</td></tr>
+    <tr><td>主な目的</td><td>鉄筋工（現場スタッフ）の採用／協力会社の募集</td></tr>
+    <tr><td>対応エリア</td><td>関東一円（本社：埼玉県飯能市）</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">応募やお問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">仕事を探している方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的に応募・お問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。これまでのお打ち合わせで「次の世代を2〜3名採用したい」とうかがっているため、今回は「鉄筋工の採用」を主な目的として見ていきます（協力会社の募集もあわせて確認します）。</p>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">仕事を探している方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>埼玉県 鉄筋工事 求人</td><td>20位以内に表示なし</td></tr>
+    <tr><td>埼玉県飯能市 建設業 求人</td><td>20位以内に表示なし</td></tr>
+    <tr><td>埼玉県 鉄筋工 募集</td><td>20位以内に表示なし</td></tr>
+    <tr><td>（参考）飯能市 鉄筋工 求人</td><td><b>6位</b>（採用情報ページ）</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※ホームページに設定されているキーワード3つと、参考として地域を飯能市に絞ったキーワードを、Google検索で確認しました（2026年11月6日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>ホームページに設定されている「埼玉県」の3つのキーワードでは、検索結果の2ページ目まで（<b>20位</b>以内）に表示がありませんでした。地域を飯能市に絞った「飯能市 鉄筋工 求人」では<b>6位</b>で、1ページ目に入っています。</p>
+  <p>どのキーワードも、上位は Indeed・求人ボックス・スタンバイ・ハローワークなどの求人サイトが並んでいます。求人サイトと順位を争うよりも、求人サイトや動画で御社を知った方が社名で検索したときに「ここで働きたい」と思える中身を用意しておくことが、応募への近道です。</p>
+  <p>なお「飯能市 鉄筋工 求人」では、飯能市内の同業の会社が<b>5位</b>と、御社のひとつ上に表示されています。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="block-title">確認したいこと</div>
+  <p>いま求人サイト（Indeed・ハローワーク・ジモティーなど）に出している求人はありますか？ 応募はどこから来ることが多いかを教えていただけると、ホームページとの役割分担を考えやすくなります。</p>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>Step1で「飯能市 鉄筋工 求人」が<b>6位</b>に表示されていることは確認できています。検索結果には「採用情報 - 埼玉県飯能市で鉄筋工事なら建設業者ユウシン工業」という見出しで表示されており、何の求人なのかは伝わる形になっています。</p>
+  <p>どんな言葉で何回表示され、どれだけクリックされているかが分かると、伸ばすべきページや言葉がはっきりします。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>137</b></td><td><b>76.11%</b></td><td><b>16秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>42</b></td><td><b>23.33%</b></td><td><b>57秒</b></td></tr>
+    <tr><td>その他</td><td><b>1</b></td><td><b>0.56%</b></td><td><b>0秒</b></td></tr>
+    <tr><td>合計</td><td><b>180</b></td><td>100%</td><td><b>26秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>10月の訪問は<b>180</b>回で、そのうち<b>137</b>回（<b>76.11%</b>）が「直接」の訪問でした。すでに社名をご存じの方からの訪問が中心で、平均<b>16秒</b>と短めです。中身を見ていない自動的なアクセスも混ざっている可能性があります。</p>
+  <p>一方、検索から来た方は<b>42</b>回と少ないものの、<b>88.1%</b>の方がしっかりページを読み進め、平均<b>57秒</b>滞在しています。<b>新しく探して来てくれた方にはきちんと読まれている</b>ので、検索からの入口を広げることが大きな伸びしろです。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募まで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>26秒</b>でした。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>164</b></td><td><b>12秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>71</b></td><td><b>15秒</b></td></tr>
+    <tr><td>会社概要</td><td><b>52</b></td><td><b>25秒</b></td></tr>
+    <tr><td>採用情報</td><td><b>19</b></td><td><b>43秒</b></td></tr>
+    <tr><td>業務案内</td><td><b>15</b></td><td><b>42秒</b></td></tr>
+    <tr><td>施工実績</td><td><b>15</b></td><td><b>16秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>採用のいちばん大切なページである「採用情報」は、ひと月の表示が<b>19</b>回でした。見た方は平均<b>43秒</b>読んでいて関心は持たれていますが、トップページ（<b>164</b>回）から採用情報へ進む方は多くありません。</p>
+  <p>採用情報ページには給与・手当・寮や社宅などの条件と、先輩の声（<b>1</b>名）が載っています。ここに「1日の流れ」「よくある質問」「入社後に身につく技術」などがあると、読み進める理由が増え、応募の決め手にもなります。施工実績（<b>16秒</b>）は写真のみで説明がないため、見どころが伝わりにくくなっています。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的に応募・お問い合わせまで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>10月にお問い合わせフォームの送信完了まで進んだのは<b>34</b>回（<b>18</b>人）でした（GA4で計測。お電話・LINEは含みません）。経路別では「直接」が<b>32</b>回、「検索」が<b>2</b>回です。また、最近ホームページ経由の応募が<b>1</b>件あったとうかがっています。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>件数は多く見えますが、ほとんどが平均<b>16秒</b>の「直接」の訪問からで、営業の連絡や自動送信が含まれている可能性があります。実際のご依頼・応募が何件だったかを教えていただけると、より正確に判断できます。ホームページ経由の応募が<b>1</b>件あったことは、<b>ホームページが応募の窓口として働き始めている</b>良いサインです。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:24%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>ヘッダーに電話番号とメールフォーム、採用情報ページに応募フォームとLINE応募があり、応募の入口はそろっています。</td></tr>
+    <tr><td>採用コンテンツ</td><td>日給 経験者<b>14,000</b>円〜／未経験者<b>12,000</b>円〜、皆勤手当<b>20,000</b>円、資格取得の全額支援、寮・借り上げ社宅、賞与年<b>2</b>回が載っています。<b>1日の流れ・よくある質問・キャリアの道筋</b>はまだありません。</td></tr>
+    <tr><td>施工実績</td><td>写真<b>6</b>件。工事の内容・場所・規模の説明はありません。</td></tr>
+    <tr><td>ブログ・コラム</td><td>最新は<b>2026年9月9日</b>（求人）で、その前は<b>2025年9月9日</b>。協力会社向けのコラムは<b>2023年1月</b>で止まっています。</td></tr>
+    <tr><td>安全な通信（SSL）</td><td>アドレスが「http」のままで、ブラウザに「保護されていない通信」と表示されます。応募フォームに個人情報を入れる方が不安に感じる可能性があります。</td></tr>
+    <tr><td>表示速度・制作年</td><td>スマホ<b>35</b>点／PC<b>40</b>点（PageSpeed Insights）。ドメイン取得は<b>2021</b>年で、約<b>5</b>年が経っています。</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">AIには<span class="gold">「飯能市で鉄筋工事ならここ」</span>と1番目に紹介されるのに、<br>求職者が「ここで働きたい」と決めるための情報がまだ足りない状態です</div>
+  <div class="good-point"><b>良い点：</b>ChatGPTに「飯能市で鉄筋工事をお願いしたい」と質問すると、御社が<b>1番目</b>に「特におすすめ」として紹介されました（公共構造物の実績・1級鉄筋施工技能士・関東一円対応が理由）。「飯能市で鉄筋工の会社に就職したい」でも<b>2番目</b>に紹介され、社名で聞くと許可番号まで正確に説明されます。さらに最近、ホームページ経由の応募が<b>1</b>件ありました。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 探している人に届く入口が細い（アプローチ）</h4>
+        <p>「埼玉県」の求人キーワードは<b>20位</b>以内に表示がなく、検索からの訪問は月<b>42</b>回（<b>23.33%</b>）です。上位は求人サイトが並んでいます。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 応募の決め手が少ない（コンバージョン）</h4>
+        <p>採用情報は月<b>19</b>回の表示。条件は載っていますが、1日の流れ・よくある質問・現場の説明がなく、読み進める理由が少ない状態です。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：就職先の紹介では、同じ飯能市の会社が1番目でした</h4>
+    <p>ChatGPTの「就職したい」の質問で1番目に紹介されたのは、飯能市内の同業の会社でした。その会社は「未経験者は運搬・補助から始められる」「完全週休2日も選べる」「CADや積算も身につく」といった<b>働くイメージが湧く情報</b>を載せており、そこが紹介の理由になっていました。御社の「公共工事に携われる」「ベテランから学べる」という強みも、同じように具体的に載せることで十分に並べます。</p></div>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>「ユウシン工業で働きたい」と思ってもらえる採用ページを軸に、サイト全体を見直す</h3>
+    <p>求人キーワードは<b>20位</b>以内に表示なし（Step1）、検索からの訪問は<b>23.33%</b>（Step3）、採用情報ページは月<b>19</b>回（Step4）と、3つのStepが要改善でした。スマホの表示速度が<b>35</b>点、アドレスが「http」のままで、ドメイン取得から約<b>5</b>年が経っていることも踏まえると、サイト全体を見直すタイミングかもしれません。</p>
+    <p>具体的には、1日の流れ、先輩の声（年代の違う方を複数）、よくある質問、未経験から一人前になるまでの道筋、寮・社宅の様子、高速道路や橋脚など現場の写真と説明など、求人サイトでは伝えきれない「ユウシン工業で働く中身」を厚くしていくイメージです。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>入口を広げる</h4><p>ジモティーや求人サイト、動画から来た方の受け皿としてホームページを使い、ブログで「鉄筋工の仕事」「未経験からの1年」などを発信して検索からの入口も増やします。</p></div>
+    <div class="seed-card"><h4>施工実績に説明を</h4><p>工事の種類・場所・規模を添えると、元請けの企業様にも、仕事を知りたい求職者にも伝わります。</p></div>
+    <div class="seed-card"><h4>協力会社の募集ページ</h4><p>すでにあるコラムをまとめ、求める会社像・取引の流れを載せた募集ページにすると、協力会社からの連絡も受けやすくなります。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、採用を伸ばすための材料がそろっています。これを求職者にしっかり見せていくだけで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AIに1番目に紹介</div><div class="d">「飯能市で鉄筋工事」でChatGPTが特におすすめ</div></div>
+    <div class="strength-card"><div class="icon">🌉</div><div class="t">公共工事の実績</div><div class="d">鉄道・高速道路・橋脚・浄水場の鉄筋工事</div></div>
+    <div class="strength-card"><div class="icon">🏠</div><div class="t">手厚い待遇</div><div class="d">寮・借り上げ社宅、資格取得は全額支援</div></div>
+    <div class="strength-card"><div class="icon">📩</div><div class="t">応募の実績</div><div class="d">ホームページ経由の応募が1件</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>10月のフォーム送信<b>34</b>回の中身（ご依頼・応募・営業）</td><td>社長にお聞きします</td></tr>
+    <tr><td>ホームページ経由の応募<b>1</b>件が、どこから来たか</td><td>社長にお聞きします</td></tr>
+    <tr><td>求人サイトの掲載状況と、応募の多い経路</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社ユウシン工業様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
