@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社一工業</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 プール工事・外構工事のご依頼を増やす視点からのサイト診断 〜</div>
+  <div class="company">株式会社一工業 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://ichikougyou-2015.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日</td></tr>
+    <tr><td>主な目的（推定）</td><td>プール工事・外構工事のご依頼を増やす（あわせて職人の採用）</td></tr>
+    <tr><td>対応エリア</td><td>千葉県（東金市・山武市ほか）・東京都・茨城県</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせやお見積もりのご依頼は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">プール・外構の会社を探している方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わずお問い合わせまで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせ・お見積もり依頼まで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。ホームページの内容（プール工事・外構工事のご案内、カーポートなどのキャンペーンページ、求人募集）から、今回は「東金市を中心としたプール工事・外構工事のご依頼を増やすこと」を主な目的と<b>推定</b>し、あわせて採用の状況も見ていきます。</p>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">プール・外構の会社を探している方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>東金市 プール工事</td><td><b>1位</b>（<b>2</b>位・<b>3</b>位・<b>6</b>位も御社のページ）</td></tr>
+    <tr><td>千葉 プール工事</td><td><b>2位</b></td></tr>
+    <tr><td>東金市 外構工事</td><td>20位以内に表示なし</td></tr>
+    <tr><td>東金市 エクステリア工事</td><td>20位以内に表示なし</td></tr>
+    <tr><td>山武市 外構工事</td><td>10位以内に表示なし</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※ホームページに設定されているキーワード（外構工事・エクステリア工事・プール工事＋東金市）などを、Google検索で確認しました（2026年11月9日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p><b>プール工事は非常に強い状態です。</b>「東金市 プール工事」では1ページ目の上位を御社のページが占め、「千葉 プール工事」でも<b>2</b>位に表示されています。</p>
+  <p>一方、外構・エクステリア工事は、東金市・山武市とも上位に表示がありません。上位には、ダイカワ・岩建エクステリアなどの外構専門店と、リホームナビ・Houzzなどの比較サイトが並んでいます。上位の専門店は、施工事例を写真付きで数多く載せているのが共通点です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="block-title">確認したいこと</div>
+  <p>いま力を入れたいのはプールと外構のどちらでしょうか。また、外構のご依頼はどこから来ることが多いですか？（紹介・元請け・ホームページなど）</p>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索から来た方は10月に<b>64</b>回で、全体の<b>40.8%</b>です。プール工事で上位に出ていることに加え、毎日更新しているコラム記事からの訪問も含まれていると考えられます。</p>
+  <p>どの言葉で何回表示され、どれだけクリックされているかが分かると、「表示はされているのに選ばれていない」ページや、伸ばすべき言葉がはっきりします。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>85</b></td><td><b>54.1%</b></td><td><b>20秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>64</b></td><td><b>40.8%</b></td><td><b>46秒</b></td></tr>
+    <tr><td>他のサイトのリンク</td><td><b>4</b></td><td><b>2.5%</b></td><td><b>19秒</b></td></tr>
+    <tr><td>AI（ChatGPTなど）</td><td><b>2</b></td><td><b>1.3%</b></td><td><b>16秒</b></td></tr>
+    <tr><td>合計</td><td><b>157</b></td><td>100%</td><td><b>30秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>10月の訪問は<b>157</b>回で、そのうち検索からが<b>64</b>回（<b>40.8%</b>）でした。検索から来た方の<b>60.9%</b>がしっかりページを読み進め、平均<b>46</b>秒滞在しています。「直接」の訪問（平均<b>20</b>秒）より倍以上長く、<b>新しく探して来た方にきちんと読まれている</b>状態です。</p>
+  <p>AIから来た方も<b>2</b>回ありました。まだ少ないものの、AIで業者を探す方も出てきています。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わずお問い合わせまで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>30秒</b>でした。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>93</b></td><td><b>12秒</b></td></tr>
+    <tr><td>コラム記事（<b>60</b>記事の合計）</td><td><b>96</b></td><td>—</td></tr>
+    <tr><td>会社概要</td><td><b>56</b></td><td><b>14秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>23</b></td><td><b>39秒</b></td></tr>
+    <tr><td>ページが見つかりません</td><td><b>19</b></td><td><b>9秒</b></td></tr>
+    <tr><td>業務案内</td><td><b>11</b></td><td><b>24秒</b></td></tr>
+    <tr><td>プール工事</td><td><b>10</b></td><td><b>35秒</b></td></tr>
+    <tr><td>キャンペーン（カーポート・フェンス等）</td><td><b>10</b></td><td><b>51秒</b></td></tr>
+    <tr><td>施工実績（一覧）</td><td><b>3</b></td><td>—</td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>コラム記事は合計<b>96</b>回読まれ、全体の約<b>27%</b>を占める入口になっています。キャンペーンページ（平均<b>51</b>秒）やプール工事（<b>35</b>秒）もよく読まれています。</p>
+  <p>一方、外構を検討する方がいちばん見たい施工実績は<b>6</b>件で、最新は<b>2025年12月</b>です。一覧の表示も月<b>3</b>回にとどまっています。また「ページが見つかりません」が<b>19</b>回表示されており、どこかに切れたリンクがある可能性があります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的にお問い合わせ・お見積もり依頼まで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>10月にお問い合わせフォームの送信完了まで進んだのは<b>3</b>回（<b>2</b>人）でした（GA4で計測。お電話・LINEは含みません）。経路別では「検索」が<b>2</b>回、「直接」が<b>1</b>回です。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索から来た方がフォーム送信まで進んでおり、検索からの入口がご依頼につながっています。ただ、同じ方が複数回送信している可能性もあるため、実際のご依頼の件数と内容（プール・外構・求人・営業）を教えていただけると、より正確に判断できます。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:24%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>全ページの上部に電話番号とメールフォームのボタンがあり、問い合わせしやすい作りです。LINEの友だち追加も会社概要に載っています。</td></tr>
+    <tr><td>施工実績・発信</td><td>施工実績<b>6</b>件（最新<b>2025年12月</b>）。コラムは11月に入ってほぼ毎日更新されています。スタッフ紹介は<b>2024年8月</b>の<b>1</b>件です。</td></tr>
+    <tr><td>選ばれる理由</td><td>マジラインプール正規施工販売店、2級土木施工管理技士、建設業許可が載っています。<b>外構の費用の目安・工事の流れ・よくある質問</b>のページはありません。</td></tr>
+    <tr><td>採用</td><td>月給・年収モデル・休日まで具体的に書かれた、充実した採用ページです（10月の表示は<b>4</b>回）。</td></tr>
+    <tr><td>表示速度・制作年</td><td>スマホ<b>64</b>点／PC<b>97</b>点（PageSpeed Insights）。ブログの最初の記事は<b>2023年11月</b>です。</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">プール工事では千葉でトップクラスに見つけてもらえているのに、<br><span class="gold">外構工事ではまだ探している方に届いていない</span>状態です</div>
+  <div class="good-point"><b>良い点：</b>「東金市 プール工事」で<b>1</b>位、「千葉 プール工事」で<b>2</b>位と、プールは検索で強い状態です。検索からの訪問が全体の<b>40.8%</b>あり、その方々が平均<b>46</b>秒しっかり読んで、お問い合わせにもつながっています。採用ページも給与・休日まで具体的で充実しています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 外構の入口が細い（アプローチ）</h4>
+        <p>「東金市 外構工事」「東金市 エクステリア工事」で<b>20</b>位以内に表示がありません。上位は施工事例の多い外構専門店と比較サイトです。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 外構で「ここに頼もう」と決める材料が少ない（コンバージョン）</h4>
+        <p>施工実績は<b>6</b>件。外構の費用の目安・工事の流れ・よくある質問がありません。切れたリンクの表示も月<b>19</b>回あります。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：AIは外構でもプールでも御社の名前を出しませんでした</h4>
+    <p>ChatGPTに「東金市で外構工事をお願いしたい」と聞くと、岩建エクステリア・平本建業・ダイカワなど<b>5</b>社が紹介され、御社は入っていませんでした。「千葉県で自宅にプールを作りたい」では、ティーエムアドヴァンス・日暮ホームプール・マジラインプールカンパニーなど<b>4</b>社が紹介されました。このとき<b>御社のプール工事ページの写真が、別の会社の紹介画像として使われていました</b>。AIは御社のページを見ているのに、御社の名前としては紹介していない状態です。</p></div>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>外構の施工事例を増やし、「外構の一工業」としての中身を厚くする</h3>
+    <p>プールは検索で上位に出ている一方、外構は東金市・山武市とも上位に表示がありません（Step1）。施工実績は<b>6</b>件で、外構の費用の目安・工事の流れ・よくある質問もありません（Step4）。毎日のコラムで入口は増えているので、その先で「この会社に頼もう」と決められる外構の中身を足していくのが効果的です。</p>
+    <p>具体的には、現場ごとにビフォー・アフターの写真と、工事内容・地域（東金市・山武市など）・おおよその費用感を添えた施工事例を積み上げていくイメージです。あわせて、切れたリンク（「ページが見つかりません」）を直します。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>AIに名前で紹介される</h4><p>会社名と工事内容・地域がセットで書かれたページが増えると、ChatGPTなどが御社の名前で紹介しやすくなります。</p></div>
+    <div class="seed-card"><h4>プールの強みをさらに活かす</h4><p>マジラインプール正規施工販売店であることと、家庭用プールの施工事例・費用の目安を前面に出し、千葉県全域からのご相談を受け止めます。</p></div>
+    <div class="seed-card"><h4>採用ページへの入口を増やす</h4><p>充実した採用ページが月<b>4</b>回しか見られていないため、トップやコラムからの導線を強めます。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、ご依頼を増やすための材料がそろっています。プールで築いた強さを、外構にも広げていくことで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🏊</div><div class="t">プール工事で検索上位</div><div class="d">東金市1位・千葉2位</div></div>
+    <div class="strength-card"><div class="icon">🏅</div><div class="t">マジラインプール</div><div class="d">正規施工販売店</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">毎日のコラム</div><div class="d">月96回読まれる入口</div></div>
+    <div class="strength-card"><div class="icon">👷</div><div class="t">充実した採用ページ</div><div class="d">給与・年収モデル・休日まで具体的</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>10月のフォーム送信<b>3</b>回の中身（ご依頼・求人・営業）</td><td>社長にお聞きします</td></tr>
+    <tr><td>力を入れたい工事（プール／外構）と、ご依頼の多い経路</td><td>社長にお聞きします</td></tr>
+    <tr><td>載せられる外構の施工写真があるか</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社一工業様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
