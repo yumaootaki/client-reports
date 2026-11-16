@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社白晃</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用（工場スタッフ・ルート配送）と法人のご依頼の視点からのサイト診断 〜</div>
+  <div class="company">株式会社白晃 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://www.hakukou.co.jp/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日</td></tr>
+    <tr><td>主な目的（推定）</td><td>工場スタッフ・ルート配送スタッフの採用（あわせて法人の業務用クリーニングのご依頼）</td></tr>
+    <tr><td>対応エリア</td><td>埼玉県越谷市を拠点に埼玉県一円・東京都・神奈川県・千葉県・茨城県・栃木県</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">ご応募や法人からのお問い合わせは、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">仕事を探している方・クリーニング業者を探している企業の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にご応募・お問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。ホームページの内容（各種スタッフ募集中のご案内、11月のブログがすべて越谷の求人をテーマにした記事であること）から、今回は「工場スタッフ・ルート配送スタッフなどの採用」を主な目的と<b>推定</b>し、あわせて法人の業務用クリーニングのご依頼の状況も見ていきます。</p>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">仕事を探している方・クリーニング業者を探している企業の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>目的</th><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>法人のご依頼</td><td>業務用クリーニング 埼玉</td><td><b>1位</b></td></tr>
+    <tr><td>法人のご依頼</td><td>作業服 クリーニング 埼玉</td><td><b>1位</b>（<b>8</b>位も御社のページ）</td></tr>
+    <tr><td>法人のご依頼</td><td>越谷 業務用クリーニング</td><td><b>1位</b>（<b>4</b>位・<b>8</b>位も御社のページ）</td></tr>
+    <tr><td>法人のご依頼</td><td>ユニフォーム クリーニング 法人 関東</td><td>20位以内に表示なし</td></tr>
+    <tr><td>採用</td><td>越谷 クリーニング工場 求人</td><td><b>13位</b>・<b>19位</b>（どちらもブログ記事）</td></tr>
+    <tr><td>採用</td><td>越谷市 クリーニング 求人</td><td>20位以内に表示なし</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Google検索で確認しました（2026年11月16日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p><b>法人のご依頼の入口はとても強い状態です。</b>「業務用クリーニング 埼玉」「作業服 クリーニング 埼玉」「越谷 業務用クリーニング」のどれでも<b>1</b>位に表示されています。</p>
+  <p>一方、採用の言葉では1ページ目に表示がありません。上位はIndeed・タウンワーク・求人ボックスなどの求人サイトがほぼ独占しています。毎日のブログ記事が<b>13</b>位・<b>19</b>位に入ってきているので、あと一歩で1ページ目に届く位置です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>　<span style="font-size:8.3pt;color:#5c6478;">（法人のご依頼＝良好／採用＝もう一歩）</span>
+  <div class="block-title">確認したいこと</div>
+  <p>いま一番力を入れたいのは、どの職種の採用でしょうか（工場内作業・ルート配送・事務・夜間）。求人サイトにも掲載されていますか？</p>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索から来た方は10月に<b>292</b>回で、全体の<b>44.9%</b>です。業務用クリーニングで<b>1</b>位に出ていることに加え、毎日更新しているブログ記事（全<b>282</b>ページが見られています）からの訪問も多く含まれていると考えられます。</p>
+  <p>どの言葉で何回表示され、どれだけクリックされているかが分かると、「表示はされているのに選ばれていない」記事や、伸ばすべき求人の言葉がはっきりします。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>342</b></td><td><b>52.6%</b></td><td><b>5秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>292</b></td><td><b>44.9%</b></td><td><b>1分02秒</b></td></tr>
+    <tr><td>他のサイトのリンク</td><td><b>9</b></td><td><b>1.4%</b></td><td><b>1分27秒</b></td></tr>
+    <tr><td>AI（ChatGPTなど）</td><td><b>3</b></td><td><b>0.5%</b></td><td><b>16秒</b></td></tr>
+    <tr><td>合計</td><td><b>650</b></td><td>100%</td><td><b>32秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>10月の訪問は<b>650</b>回で、そのうち検索からが<b>292</b>回（<b>44.9%</b>）でした。検索から来た方の<b>68.2%</b>がしっかりページを読み進め、平均<b>1分02秒</b>滞在しています。<b>新しく探して来た方に、記事がきちんと読まれている</b>状態です。</p>
+  <p>「直接」の訪問は<b>342</b>回ありますが、平均<b>5</b>秒と短く、すでに御社をご存じの方が電話番号や所在地を確かめに来ている訪問が中心と考えられます。AIから来た方も<b>3</b>回ありました。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募・お問い合わせまで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>32秒</b>でした。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>153</b></td><td><b>10秒</b></td></tr>
+    <tr><td>記事「クリーニング業界の繁忙期・閑散期の違い」</td><td><b>107</b></td><td><b>48秒</b></td></tr>
+    <tr><td>会社概要</td><td><b>89</b></td><td><b>13秒</b></td></tr>
+    <tr><td>記事「クリーニング工場の求人 きつさや暑さのリアル」</td><td><b>87</b></td><td><b>2分17秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>85</b></td><td><b>4秒</b></td></tr>
+    <tr><td>採用情報</td><td><b>37</b></td><td><b>21秒</b></td></tr>
+    <tr><td>各種クリーニング</td><td><b>33</b></td><td><b>12秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>求人の記事は、長いもので平均<b>2分17秒</b>もじっくり読まれています。仕事を探している方が、御社の記事で「働くイメージ」を確かめている様子がうかがえます。</p>
+  <p>ところが、その先の<b>採用情報ページは月37回・平均21秒</b>にとどまっています。採用ページの募集要項には仕事内容・時間・休日はありますが、<b>給与の記載がなく</b>、働く人の写真や先輩の声もありません。記事で興味を持った方が、決め手を見つけられずに離れている可能性があります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的にご応募・お問い合わせまで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>10月にGA4で反響として計測されたのは<b>5</b>回（検索から<b>3</b>回・直接<b>2</b>回）でした。内訳は、お問い合わせ<b>6</b>回（<b>3</b>人）、スマホからの電話タップ<b>4</b>回（<b>2</b>人）です。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索から来た方が反響まで進んでいて、入口はきちんと機能しています。ただ、これが法人のご依頼なのか、ご応募なのか、営業の連絡なのかはGA4だけでは分かりません。10月のご応募・お問い合わせの件数と内容を教えていただけると、より正確に判断できます。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:22%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>全ページの上部に電話番号とメールフォームのボタンがあり、採用情報ページから直接応募できるフォームもあります。</td></tr>
+    <tr><td>発信</td><td>ブログをほぼ毎日更新（11月は越谷の求人がテーマ）。お客様の声（<b>5</b>社）と設備紹介も載っています。</td></tr>
+    <tr><td>採用</td><td>4職種の募集要項と応募フォームあり。<b>給与・職場の写真・先輩の声・1日の流れはありません</b>。</td></tr>
+    <tr><td>会社の歴史</td><td>昭和<b>27</b>年創業。沿革に「業界初 ユニホーム自動たたみ機（平成<b>5</b>年）・自動仕訳ライン（平成<b>10</b>年）を開発」とあります。</td></tr>
+    <tr><td>表示速度</td><td>スマホ<b>56</b>点／PC<b>75</b>点（PageSpeed Insights）。</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">法人のお客様には埼玉で一番に見つけてもらえているのに、<br><span class="gold">仕事を探している方を、記事から応募まで運びきれていない</span>状態です</div>
+  <div class="good-point"><b>良い点：</b>「業務用クリーニング 埼玉」など法人向けの言葉で<b>1</b>位。ChatGPTに「埼玉県で作業服の業務用クリーニングをお願いしたい」と聞くと、<b>御社が1番目に紹介</b>されました。社名で聞いても、創業・沿革・設備・1都5県の配送網まで正確に説明されます。毎日のブログで、検索からの訪問は月<b>292</b>回あり、平均<b>1分02秒</b>読まれています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 求人の言葉では1ページ目に届いていない（アプローチ）</h4>
+        <p>「越谷市 クリーニング 求人」では<b>20</b>位以内に表示がなく、上位は求人サイトです。ブログ記事が<b>13</b>位・<b>19</b>位まで来ています。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 記事の先の「決め手」が足りない（コンバージョン）</h4>
+        <p>記事は最長<b>2分17秒</b>読まれるのに、採用情報ページは月<b>37</b>回・<b>21</b>秒。給与・写真・先輩の声がありません。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：AIは求人の質問で御社の場所を間違えていました</h4>
+    <p>ChatGPTに「越谷市でクリーニング工場の仕事をしている会社に就職したい」と聞くと、ユウアイ・ワタキューセイモアに続いて<b>3</b>番目に「クリーニング白晃グループ」が出ました。ただし所在地は<b>松伏町</b>と紹介され、「工場作業員の募集状況は確認できない」とされていました。社名で聞いたときも「給与・福利厚生などの最新条件は公開情報では確認できない」との回答でした。<b>採用ページに書いていないことは、AIも求職者に伝えられない</b>状態です。</p></div>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>「求職者のみなさまへ」ページをつくり、記事から応募までの受け皿を厚くする</h3>
+    <p>ブログで求職者の入口はすでにできていて、記事は最長<b>2分17秒</b>読まれています（Step3・4）。一方で採用情報ページは月<b>37</b>回・<b>21</b>秒で、給与や働く人の様子が分かりません（Step4）。入口を増やすより先に、受け皿を厚くするのが一番効果的です。</p>
+    <p>具体的には、給与・1日の流れ・職場の写真・先輩の声を載せ、昭和<b>27</b>年の創業から「業界初」の機械を生み出してきた歴史を、働く人の物語として伝えるページをつくるイメージです。あわせて、すべての求人記事から採用ページへの案内を目立たせます。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>求人の言葉で1ページ目へ</h4><p>13位・19位まで来ている求人記事を、採用ページと結びつけて強めることで、「越谷 クリーニング工場 求人」の1ページ目を狙えます。</p></div>
+    <div class="seed-card"><h4>AIに正しく紹介される</h4><p>所在地・職種・給与・働き方がまとまったページがあると、ChatGPTなどが御社を正しい情報で求職者に紹介しやすくなります。</p></div>
+    <div class="seed-card"><h4>法人向けの強みを関東へ</h4><p>埼玉では1位なので、「ユニフォーム クリーニング 法人 関東」など1都5県の配送網を活かした言葉にも広げられます。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、採用を伸ばすための材料がそろっています。毎日の記事で集めた求職者の関心を、応募につなげるページを用意するだけで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🥇</div><div class="t">業務用クリーニングで1位</div><div class="d">埼玉・越谷とも検索1位、ChatGPTでも1番目</div></div>
+    <div class="strength-card"><div class="icon">🏭</div><div class="t">昭和27年創業</div><div class="d">業界初の自動たたみ機・自動仕訳ラインを開発</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">毎日のブログ</div><div class="d">検索から月292回、平均1分02秒読まれる</div></div>
+    <div class="strength-card"><div class="icon">🚚</div><div class="t">1都5県の配送網</div><div class="d">グループで築いたクリーニング配送</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>10月のお問い合わせ<b>6</b>回・電話タップ<b>4</b>回の中身（ご依頼・ご応募・営業）</td><td>社長にお聞きします</td></tr>
+    <tr><td>力を入れたい職種と、最近のご応募の数・経路</td><td>社長にお聞きします</td></tr>
+    <tr><td>採用ページに載せられる給与・写真・先輩の声</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社白晃様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
