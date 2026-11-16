@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社ジャブ・ジャ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 各店舗のご利用を増やす視点からのサイト診断 〜</div>
+  <div class="company">株式会社ジャブ・ジャ 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>http://www.jabuja.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日</td></tr>
+    <tr><td>主な目的</td><td>各店舗（越谷・吉川・草加ほか）のご利用を増やす</td></tr>
+    <tr><td>対応エリア</td><td>埼玉県越谷市・吉川市・草加市、東京都江東区</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お店へのご来店は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて「このお店に行ってみよう」という行動につながります。今回のレポートでは、この5つのStepをひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">近くのコインランドリーを探している方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、店舗・料金・使い方を迷わず確かめられているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にご来店・お問い合わせにつながったか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。4月にお伺いした際のお話（吉川店のリニューアル、各店舗のページ、使い方やコインランドリーの歴史のページ）も踏まえて、「各店舗のご利用を増やすこと」を目的として見ていきます。</p>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">近くのコインランドリーを探している方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>越谷 コインランドリー</td><td><b>5位</b></td></tr>
+    <tr><td>越谷 布団 コインランドリー</td><td><b>4位</b></td></tr>
+    <tr><td>ジャブジャ コインランドリー</td><td><b>1位</b></td></tr>
+    <tr><td>吉川 コインランドリー</td><td>20位以内に表示なし</td></tr>
+    <tr><td>草加 コインランドリー</td><td>20位以内に表示なし</td></tr>
+    <tr><td>江東区 大島 コインランドリー</td><td>10位以内に表示なし</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Google検索で確認しました（2026年11月16日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p><b>越谷市では上位に出ています。</b>「越谷 コインランドリー」で<b>5</b>位、「越谷 布団 コインランドリー」で<b>4</b>位です。</p>
+  <p>一方、吉川・草加・江東区大島のお店は、地名で探すと出てきません。上位には、マンマチャオ・Baluko・ランドリーカーサなどの<b>店舗ごとのページ</b>と、ナビタイムなどの店舗一覧が並んでいます。御社は5店舗の情報が1ページにまとまっているため、Googleからは「越谷の会社」としか見えていない可能性があります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="block-title">確認したいこと</div>
+  <p>サイトには5店舗（越谷大房・越谷相模町・吉川・青柳・江東区大島）が載っています。現在の店舗構成と合っていますか？</p>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索から来た方は10月に<b>74</b>回で、全体の<b>31.5%</b>です。越谷で<b>4〜5</b>位に表示されていることを考えると、もう少し多くてもよい数字です。</p>
+  <p>検索結果に表示されるサイトのタイトルは「株式会社ジャブ・ジャ – 株式会社ジャブジャ｜埼玉県越谷市・ほかの大型コインランドリー」です。店舗名や「布団が洗える」「天然素材の洗剤」といった選ぶ理由が見えないため、他店の店舗ページと並んだときに選ばれにくい可能性があります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション</th><th>構成比</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマークなど）</td><td><b>161</b></td><td><b>68.5%</b></td><td><b>20秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>74</b></td><td><b>31.5%</b></td><td><b>44秒</b></td></tr>
+    <tr><td>合計</td><td><b>235</b></td><td>100%</td><td><b>28秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>10月の訪問は<b>235</b>回で、そのうち検索からが<b>74</b>回（<b>31.5%</b>）でした。検索から来た方は<b>85.1%</b>がページを読み進め、平均<b>44</b>秒滞在しています。<b>探して来た方には、しっかり見られている</b>状態です。</p>
+  <p>「直接」の訪問が<b>161</b>回と全体の約7割を占めています。すでに御社をご存じの方からの訪問が中心で、新しくお店を探している方の入口はまだ細いと言えます。5店舗を構える規模からすると、月<b>235</b>回は伸ばせる余地の大きい数字です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、店舗・料金・使い方を迷わず確かめられているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>1回の訪問あたりの平均エンゲージメント時間は<b>28秒</b>でした。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>145</b></td><td><b>26秒</b></td></tr>
+    <tr><td>店舗情報（5店舗を1ページで掲載）</td><td><b>116</b></td><td><b>22秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>90</b></td><td><b>9秒</b></td></tr>
+    <tr><td>会社概要</td><td><b>58</b></td><td><b>3秒</b></td></tr>
+    <tr><td>ご利用のお客さまへ（料金・目安・注意事項）</td><td><b>52</b></td><td><b>41秒</b></td></tr>
+    <tr><td>BLOG（一覧）</td><td><b>7</b></td><td><b>11秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>「ご利用のお客さまへ」は平均<b>41</b>秒と、いちばん長く読まれています。料金やダブル毛布が何枚入るかの目安は、来店前に知りたい情報だと分かります。店舗情報も<b>116</b>回見られており、関心は高い状態です。</p>
+  <p>ただ、店舗ごとの写真・駐車場・アクセス・地図はなく、使い方の説明やよくある質問もありません。ブログの最後の更新は<b>2022年4月</b>です。「行ってみよう」と決めるための材料が少なく、平均<b>28</b>秒で離れてしまっています。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的にご来店・お問い合わせにつながったか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>10月にお問い合わせフォームの送信完了まで進んだのは<b>66</b>回（<b>51</b>人）でした（GA4で計測）。すべて「直接」の訪問からで、検索から来た方の送信は<b>0</b>回です。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>コインランドリーは来店して使うお店のため、フォームのお問い合わせが月<b>66</b>回というのは多い数字です。すべてが「直接」の訪問からであることから、営業の連絡や機械的な送信が含まれている可能性があります。<b>見かけ上の数字</b>として扱い、実際に届いているお問い合わせの中身を確認させてください。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:22%">項目</th><th>状態</th></tr>
+    <tr><td>安全な接続（https）</td><td><b>対応していません</b>。ブラウザによっては「保護されていない通信」と表示され、AIや一部のツールがサイトを読めない原因にもなっています。</td></tr>
+    <tr><td>制作年・更新</td><td><b>2020年12月</b>にリニューアル（約<b>6</b>年）。ブログは全<b>8</b>記事で、最後の更新は<b>2022年4月</b>です。</td></tr>
+    <tr><td>店舗・料金</td><td>5店舗の住所・営業時間・設備台数、料金表、利用の目安があり、基本情報はそろっています。</td></tr>
+    <tr><td>足りないページ</td><td>店舗ごとのページ（写真・地図・駐車場）、使い方、よくある質問、会社の歴史。</td></tr>
+    <tr><td>表示速度</td><td>スマホ<b>72</b>点／PC<b>68</b>点（PageSpeed Insights）。</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">越谷では見つけてもらえているのに、<br><span class="gold">吉川・草加・江東区のお店はネットの上でまだ「見えていない」</span>状態です</div>
+  <div class="good-point"><b>良い点：</b>「越谷 コインランドリー」で<b>5</b>位、「越谷 布団 コインランドリー」で<b>4</b>位です。検索から来た方の<b>85.1%</b>がしっかり読み進めていて、料金や利用の目安のページは平均<b>41</b>秒読まれています。天然素材の洗剤、大型機、吉川店の早朝5時〜深夜2時営業など、選ばれる理由もはっきりしています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 店舗のある地名で見つからない（アプローチ）</h4>
+        <p>「吉川」「草加」「江東区 大島」＋コインランドリーでは上位に表示がありません。上位は店舗ごとのページを持つチェーン店です。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 「行ってみよう」の材料が少ない（コンバージョン）</h4>
+        <p>平均<b>28</b>秒。店舗ごとの写真・地図・使い方・よくある質問がなく、更新は<b>2022年4月</b>で止まっています。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>気になった点：AIは御社のお店を1つも紹介できませんでした</h4>
+    <p>ChatGPTに「越谷市で大きい布団を洗いたい」と聞くと、りらくランドリー北越谷店・たみちゃんランドリー東越谷店・マンマチャオ南越谷店など<b>5</b>店が紹介され、御社は入っていませんでした。「吉川市でおすすめのコインランドリー」でも、ランドリーカーサ・プードルなど<b>4</b>店で、御社はありません。社名で聞くと<b>「公式サイトを取得できなかった」</b>と答え、店舗名や場所は一つも出てきませんでした。https に対応していないことで、<b>AIが御社のサイトを読めていない</b>可能性があります。</p></div>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>サイトを見直し、店舗ごとのページで「その町のコインランドリー」として見つけてもらう</h3>
+    <p>越谷では上位に出ている一方、吉川・草加・江東区のお店は地名で探しても出てきません（Step1）。サイト内でも決め手が少なく平均<b>28</b>秒で離れており（Step4）、制作から約<b>6</b>年・https 非対応・更新停止と、全体を見直すサインが重なっています。</p>
+    <p>具体的には、安全な接続（https）に切り替えたうえで、店舗ごとに写真・地図・駐車場・設備・営業時間をまとめた独立ページをつくるイメージです。吉川店のリニューアル後は、そのページの写真だけを差し替えれば済む形にしておけます。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>使い方・よくある質問</h4><p>初めての方が不安に思う「どう使うの？」「何枚入る？」を、動画つきの使い方とよくある質問で先回りして解消します。</p></div>
+    <div class="seed-card"><h4>コインランドリーの歴史</h4><p>「コインランドリー 発祥」の検索上位は赤羽の歴史記事ばかりです。4月に社長から伺った御社のコインランドリーの歩みと、30年動き続ける機械の話は、他社にはない話題になります。</p></div>
+    <div class="seed-card"><h4>AIに店舗で紹介される</h4><p>読めるサイトに店舗ごとの情報が載ると、ChatGPTなどが「吉川ならジャブジャ吉川店」と紹介しやすくなります。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、ご利用を増やすための材料がそろっています。それぞれのお店の魅力と、ジャブ・ジャならではの歴史を見せていくだけで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🔍</div><div class="t">越谷で検索上位</div><div class="d">越谷 5位・越谷 布団 4位</div></div>
+    <div class="strength-card"><div class="icon">🌿</div><div class="t">天然素材の洗剤</div><div class="d">衣類・肌・環境にやさしい</div></div>
+    <div class="strength-card"><div class="icon">🏪</div><div class="t">個性のある店舗</div><div class="d">吉川店は5時〜翌2時・精米機併設</div></div>
+    <div class="strength-card"><div class="icon">📜</div><div class="t">長い歴史と機械の知識</div><div class="d">30年動き続けるエレクトロラックスの機械</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>10月のフォーム送信<b>66</b>回の中身</td><td>届いているメールを社長と確認します</td></tr>
+    <tr><td>現在の店舗構成（サイトは<b>5</b>店舗）と吉川店のリニューアル時期</td><td>社長にお聞きします</td></tr>
+    <tr><td>各店舗の写真・歴史のエピソード（開業の年・当時の機械など）</td><td>社長にお聞きします</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社ジャブ・ジャ様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
