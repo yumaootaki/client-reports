@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート｜株式会社NKSTYLE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+<body>
+
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 リニューアル後の現状と、外壁塗装のご依頼を増やす視点からの診断 〜</div>
+  <div class="company">株式会社NKSTYLE 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://nk-style.info/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日（比較：2025年10月）</td></tr>
+    <tr><td>主な目的</td><td>集客（外壁塗装の受注、ラプター塗装・内装塗装のPR）</td></tr>
+    <tr><td>対応エリア</td><td>埼玉県入間市を中心に、県内および都内</td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>反響が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">お問い合わせやお見積もりのご依頼は、いきなり生まれるものではありません。以下の<b>5つのStep</b>を一段ずつ上りきって、初めて反響として実を結びます。今回のレポートでは、9月10日にリニューアルしたホームページが、この5つのStepでどこまで来ているかを確認します。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">塗装を頼みたい方の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わずお問い合わせまで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的にお問い合わせ・お見積もり依頼まで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">リニューアルでは、ラプター塗装・外壁塗装・内装塗装・リフォームを<b>それぞれ1ページ</b>にし、施工実績・よくあるご質問・料金の目安を載せた「受け皿」を整えました。次のページから、その受け皿に<b>人がどれだけ来ているか</b>、来た人が<b>どう動いているか</b>を、実際のデータで見ていきます。</p>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">塗装を頼みたい方の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード</th><th>Google順位</th></tr>
+    <tr><td>ラプター塗装 入間市</td><td><b>1</b>位（1ページ目に御社のページが<b>4</b>件）</td></tr>
+    <tr><td>ラプター塗装 埼玉</td><td><b>6</b>位（1ページ目）</td></tr>
+    <tr><td>入間市 内装塗装</td><td><b>11</b>位（2ページ目の先頭）</td></tr>
+    <tr><td>入間市 外壁塗装</td><td>20位以内に表示なし</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※Google検索で確認しました（2026年11月24日時点）。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>ラプター塗装は「入間市」で<b>1</b>位、「埼玉」でも<b>6</b>位と、すでにしっかり見つけてもらえています。対応している会社が少ない仕事なので、専用ページを作った効果がそのまま出ています。</p>
+  <p>一方で、いちばん受注を取りたい<b>外壁塗装</b>は「入間市 外壁塗装」で<b>20</b>位以内に表示がありませんでした。上位にはヒトミ塗装・ぬりかえ・建塗など地元の塗装専門店が並び、どこも<b>塗装のコラムや施工事例を何十件・何百件と積み重ねている</b>会社です。外壁塗装は競合が多い言葉なので、ページを1つ作るだけでは届かず、<b>記事を継続的に増やして「入間市の塗装に詳しいサイト」とGoogleに認めてもらう</b>ことが必要です。内装塗装は<b>11</b>位で、あと一歩で1ページ目に入れる位置です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>検索結果に何回表示され、何回クリックされたかは「Google Search Console」というツールで確認します。今回の調査では、このサイトの Search Console のデータを確認する権限がなく、数値を取得できませんでした。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索結果に出る見出しは「埼玉県入間市の外壁塗装や内装塗装で住まいを彩る｜株式会社NKSTYLE」です。地名と仕事が入っていて分かりやすい一方、「一級塗装技能士」「3回塗りを省かない」「現場歴25年」といった<b>選ばれる理由</b>は見出しには入っていません。</p>
+  <p>リニューアル後、どんな言葉で何回表示され、どれだけクリックされているかが分かると、記事で狙う言葉をより正確に決められます。</p>
+  <div class="block-title">評価</div>
+  <span class="badge na">データなし</span>
+  <div class="block-title">確認したいこと</div>
+  <p>Search Console の閲覧権限をいただければ、検索されている言葉・表示回数・クリック率を詳しく確認できます。</p>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（リニューアル前後の10月を比較）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>2025年10月</th><th>2026年10月</th><th>2026年10月の平均エンゲージメント時間</th></tr>
+    <tr><td>直接（URL入力・ブックマーク・SNSのリンクなど）</td><td><b>87</b></td><td><b>136</b>（<b>68.69%</b>）</td><td><b>37秒</b></td></tr>
+    <tr><td>検索（Google・Yahoo!）</td><td><b>82</b></td><td><b>51</b>（<b>25.76%</b>）</td><td><b>42秒</b></td></tr>
+    <tr><td>その他（他のサイト・SNS・AIなど）</td><td><b>0</b></td><td><b>11</b>（<b>5.55%</b>）</td><td>―</td></tr>
+    <tr><td>合計</td><td><b>169</b></td><td><b>198</b></td><td><b>40秒</b>（前年は<b>8秒</b>）</td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>いちばん大きな変化は<b>読まれる時間</b>です。1回の訪問あたりの平均が、前年10月の<b>8秒</b>から<b>40秒</b>へ、約<b>5</b>倍になりました。検索から来た方の<b>68.63%</b>がページを読み進めており、来てくれた方に中身が伝わるサイトになっています。ChatGPTなどAIからの訪問も出始めました。</p>
+  <p>一方で、検索からの訪問は<b>82</b>回から<b>51</b>回に減っています。リニューアルでページのURLが変わると、Googleが新しいページを評価し直すまで、一時的に検索からの訪問が減ることがよくあります。10月には「ページが見つかりません」の画面が<b>28</b>回表示されており、古いURLから来た方がいることも分かります。<b>ここから記事を増やして評価を取り戻し、さらに伸ばしていく</b>段階です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わずお問い合わせまで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>ひと月で<b>158</b>人が、あわせて<b>589</b>ページを見ています（1人あたり約<b>3.7</b>ページ）。</p>
+  <table class="data">
+    <tr><th>ページ</th><th>表示回数</th><th>平均エンゲージメント時間</th></tr>
+    <tr><td>トップページ</td><td><b>144</b></td><td><b>16秒</b></td></tr>
+    <tr><td>お知らせ（旧サイトのURL）</td><td><b>54</b></td><td><b>15秒</b></td></tr>
+    <tr><td>施工実績（一覧）</td><td><b>42</b></td><td><b>31秒</b></td></tr>
+    <tr><td>お問い合わせ</td><td><b>42</b></td><td><b>10秒</b></td></tr>
+    <tr><td>ページが見つかりません</td><td><b>28</b></td><td><b>4秒</b></td></tr>
+    <tr><td>施工実績（2・3ページ目）</td><td><b>30</b></td><td><b>2分〜5分</b>台</td></tr>
+    <tr><td>ラプター塗装</td><td><b>15</b></td><td><b>52秒</b></td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p><b>施工実績</b>がよく読まれています。2・3ページ目まで進んだ方は<b>2〜5</b>分かけて写真を見ており、検討中の方にとって一番の判断材料になっています。ラプター塗装のページも<b>52</b>秒と、しっかり読まれています。</p>
+  <p>一方、<b>外壁塗装・内装塗装のページ</b>は表示回数の上位に入っていません。Step1のとおり、外壁塗装を探している方がまだサイトにたどり着けていないためです。せっかく作った受け皿に人を連れてくる<b>入口（記事）</b>が、次の一手になります。</p>
+  <div class="block-title">評価</div>
+  <span class="badge mid">改善余地あり</span>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>Step5　反響 ＋ サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">最終的にお問い合わせ・お見積もり依頼まで到達できたか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <p>10月に電話番号がタップされたのは<b>3</b>回でした（GA4で計測）。お問い合わせフォームは、入力内容の確認画面まで<b>12</b>回進んでいますが、<b>送信完了</b>は今の設定では数えられていません。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>確認画面まで<b>12</b>回進んでいるので、フォームからのお問い合わせも来ている可能性があります。実際にメールや電話で何件ご依頼があったかを教えていただけると、より正確に判断できます。今後の効果を数字で見るために、フォームの<b>送信完了</b>を計測する設定を追加するのがおすすめです。</p>
+  <span class="badge na">要確認</span>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th style="width:24%">項目</th><th>状態</th></tr>
+    <tr><td>導線・構成</td><td>ヘッダーに担当者直通の電話と無料相談ボタン、各ページの最後にお問い合わせがあり、連絡の入口はそろっています。</td></tr>
+    <tr><td>仕事の紹介</td><td>ラプター塗装・現金負担0円リフォーム・外壁塗装・内装塗装・リフォームをそれぞれ1ページで紹介。ラプター塗装は料金の目安まで載っています。</td></tr>
+    <tr><td>信頼の材料</td><td>一級塗装技能士、現場歴<b>25</b>年、施工<b>600</b>件以上、「どんな現場でも3回塗る」という代表メッセージ。強みがはっきり伝わります。</td></tr>
+    <tr><td>ブログ</td><td>過去の記事は<b>80</b>件以上ありますが、最後の記事は<b>2025年8月21日</b>で、リニューアル後は「リニューアルしました」のお知らせ<b>1</b>件のみです。</td></tr>
+    <tr><td>表示速度</td><td>スマホ<b>57</b>点／PC<b>80</b>点（PageSpeed Insights）。</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box">リニューアルで<span class="gold">「読まれるサイト」</span>になり、ラプター塗装はGoogleでもAIでも1番。<br>あとは本命の外壁塗装で<span class="gold">「見つけてもらう入口」</span>をつくる段階です</div>
+  <div class="good-point"><b>良い点：</b>ChatGPTに「入間市あたりで車やフェンスのラプター塗装をお願いしたい」と質問すると、御社が<b>1</b>番目に「特におすすめ」と紹介され、料金の目安まで公式サイトから引用されていました。「株式会社NKSTYLEについて教えて」と聞いても、代表のお名前・一級塗装技能士・現場歴<b>25</b>年・3回塗りのこだわり・現金負担0円リフォームまで<b>正確に</b>説明されました。リニューアルしたサイトの内容が、AIにもそのまま伝わっています。</div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card"><h4>① 外壁塗装で見つけてもらえていない（アプローチ）</h4>
+        <p>「入間市 外壁塗装」は<b>20</b>位以内に表示がなく、ChatGPTの「入間市で外壁塗装のおすすめ」でも、建塗・ヒトミ塗装・TRUSTなど5社が紹介され、御社は出てきませんでした。</p></div>
+    </div>
+    <div class="col">
+      <div class="issue-card"><h4>② 検索からの訪問が前年より少ない（アプローチ）</h4>
+        <p>検索からの訪問は<b>82</b>回→<b>51</b>回。リニューアル直後の評価の引き継ぎ中で、ブログも2025年8月から止まっています。</p></div>
+    </div>
+  </div>
+  <div class="issue-card"><h4>上位の会社との違い：記事の量と続け方</h4>
+    <p>「入間市 外壁塗装」で上位の会社は、塗料の選び方・費用の相場・劣化のサイン・施工事例などの記事を<b>継続して</b>出しています。Googleは「その地域・その仕事について詳しく、今も更新されているサイト」を上に出します。御社は職人としての中身（一級技能士・3回塗り・多彩模様塗装の耐久性など）では負けていないので、<b>それを記事にして発信するかどうか</b>が差になっています。</p></div>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>ブログ（コラム記事）を毎月続けて、外壁塗装の「入口」をつくる</h3>
+    <p>受け皿（業務ページ・施工実績・料金の目安）はリニューアルで整いました。いま足りないのは、外壁塗装を探している方をサイトまで連れてくる<b>入口</b>です。</p>
+    <p>「入間市 外壁塗装 費用」「外壁塗装 何年ごと」「多彩模様塗装 耐用年数」「入間市 内装塗装」「ラプター塗装 フェンス 料金」のように、お客様が実際に調べる言葉ごとに記事を書き、外壁塗装・内装塗装のページへつなげます。記事が増えるほどGoogleの評価が上がり、AIに紹介される材料にもなります。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開</div>
+  <div class="seed-list">
+    <div class="seed-card"><h4>ラプター塗装をさらに広げる</h4><p>すでに1位の強みを活かし、「車種別」「フェンス・門扉」「荷台」などの記事で、埼玉・都内からの相談を増やせます。</p></div>
+    <div class="seed-card"><h4>1月の閑散期に備える</h4><p>記事の効果が出るまでには数か月かかります。年内に始めると、春の塗り替えシーズンに間に合わせやすくなります。</p></div>
+    <div class="seed-card"><h4>効果を数字で見る</h4><p>フォーム送信完了の計測と Search Console を整えると、記事から何件のお問い合わせにつながったかを毎月確認できます。</p></div>
+  </div>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">リニューアルで、ご依頼を増やすための受け皿はそろいました。あとはそこに人を連れてくる発信を続けることで、伸ばせる余地は大きいと考えられます。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AIに1番で紹介</div><div class="d">ラプター塗装でChatGPTが「特におすすめ」</div></div>
+    <div class="strength-card"><div class="icon">🥇</div><div class="t">検索1位</div><div class="d">「ラプター塗装 入間市」でGoogle1位</div></div>
+    <div class="strength-card"><div class="icon">⏱️</div><div class="t">読まれる時間5倍</div><div class="d">平均8秒→40秒（前年10月比）</div></div>
+    <div class="strength-card"><div class="icon">🎨</div><div class="t">一級塗装技能士</div><div class="d">現場歴25年・施工600件以上・3回塗り</div></div>
+  </div>
+  <div class="block-title">確認が必要な項目</div>
+  <table class="data">
+    <tr><th>項目</th><th>確認方法</th></tr>
+    <tr><td>リニューアル後のお問い合わせ件数（電話・メール・フォーム）と、その中身</td><td>社長にお聞きします</td></tr>
+    <tr><td>来年の事業形態の変更で、増やしたい仕事・減らしたい仕事</td><td>社長にお聞きします</td></tr>
+    <tr><td>フォームの送信完了の計測と、旧サイトURLの転送</td><td>当社で設定を確認します</td></tr>
+    <tr><td>検索での表示回数・クリック率</td><td>Search Console の閲覧権限をいただき確認します</td></tr>
+  </table>
+  <p class="closing">ご不明な点や、進め方について、いつでもご相談ください。</p>
+  <div class="footer-note"><span>株式会社NKSTYLE様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+</body>
+</html>
