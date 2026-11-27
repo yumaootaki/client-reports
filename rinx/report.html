@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サイト現状分析レポート（2026年10月）｜株式会社RINX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a2f5e;
+    --navy-light:#2c4576;
+    --gold:#c9a84c;
+    --green:#2e8b57;
+    --orange:#d98c1e;
+    --red:#c0392b;
+    --bg-soft:#f4f6fa;
+    --text:#26324a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:9pt;
+    color:var(--text);
+    background:#ddd;
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .page{
+    width:210mm;
+    height:297mm;
+    background:#fff;
+    margin:0 auto 6mm auto;
+    position:relative;
+    overflow:hidden;
+    page-break-after:always;
+    padding:12mm 14mm;
+  }
+  .page:last-child{page-break-after:auto;}
+  section{page-break-inside:avoid;}
+  b, strong{font-weight:700;}
+  h1,h2,h3,h4{margin:0;font-weight:700;}
+  p{margin:0 0 4pt 0;line-height:1.55;}
+  .num{font-weight:700;color:var(--navy);}
+
+  .cover{
+    background:var(--navy);
+    color:#fff;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .cover .kicker{letter-spacing:0.3em;font-size:9pt;color:var(--gold);margin-bottom:14pt;}
+  .cover h1{font-size:28pt;letter-spacing:0.06em;margin-bottom:10pt;}
+  .cover .sub{font-size:12pt;color:#dfe6f2;margin-bottom:36pt;}
+  .cover .company{font-size:15pt;font-weight:700;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:10pt 24pt;margin-bottom:30pt;}
+  .cover table{border-collapse:collapse;font-size:9.5pt;width:135mm;}
+  .cover table td{padding:7pt 10pt;border-bottom:1px solid rgba(255,255,255,0.25);text-align:left;}
+  .cover table td:first-child{color:var(--gold);width:32mm;font-weight:500;}
+
+  .page-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--navy);padding-bottom:6pt;margin-bottom:12pt;}
+  .page-head h2{font-size:15pt;color:var(--navy);}
+  .page-head .step-tag{font-size:8.5pt;color:#fff;background:var(--navy);padding:3pt 10pt;border-radius:3pt;}
+  .page-head .plain-tag{font-size:8.5pt;color:var(--navy);}
+  .lead{font-size:9.5pt;color:var(--navy);margin-bottom:10pt;}
+  .def-box{background:var(--bg-soft);border-left:4px solid var(--gold);padding:7pt 10pt;font-size:9pt;margin-bottom:10pt;}
+  .badge{display:inline-block;font-size:9pt;font-weight:700;padding:4pt 14pt;border-radius:14pt;color:#fff;}
+  .badge.good{background:var(--green);}
+  .badge.mid{background:var(--orange);}
+  .badge.bad{background:var(--red);}
+  .badge.na{background:#8b93a3;}
+
+  .block-title{font-size:10pt;font-weight:700;color:var(--navy);margin:10pt 0 5pt 0;padding-left:8pt;border-left:4pt solid var(--navy);}
+  table.data{width:100%;border-collapse:collapse;font-size:8.3pt;margin-bottom:6pt;}
+  table.data th{background:var(--navy);color:#fff;padding:5pt 6pt;font-weight:500;text-align:left;}
+  table.data td{padding:5pt 6pt;border-bottom:1px solid #dfe3ea;}
+  table.data tr:nth-child(even) td{background:#f7f8fb;}
+
+  .footer-note{position:absolute;bottom:8mm;left:14mm;right:14mm;font-size:7.5pt;color:#8b93a3;border-top:1px solid #e2e5ec;padding-top:4pt;display:flex;justify-content:space-between;}
+
+  .flow-wrap{display:flex;gap:6pt;margin-top:16pt;}
+  .flow-group{flex:1;border-radius:6pt;padding:10pt;}
+  .flow-group.approach{background:#eef2fb;border:1px solid #c7d3ee;}
+  .flow-group.conversion{background:#fbf5e8;border:1px solid #ecdcb2;}
+  .flow-group h3{font-size:10.5pt;margin-bottom:8pt;}
+  .flow-group.approach h3{color:var(--navy);}
+  .flow-group.conversion h3{color:#8a6d1f;}
+  .flow-step{background:#fff;border-radius:5pt;padding:8pt 9pt;margin-bottom:8pt;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+  .flow-step .num-badge{display:inline-block;width:16pt;height:16pt;line-height:16pt;text-align:center;border-radius:50%;color:#fff;font-size:8.5pt;margin-right:6pt;}
+  .flow-group.approach .num-badge{background:var(--navy);}
+  .flow-group.conversion .num-badge{background:var(--gold);}
+  .flow-step .step-name{font-weight:700;font-size:9pt;}
+  .flow-step .step-def{font-size:8pt;color:#5c6478;margin-top:3pt;}
+  .arrow-down{text-align:center;color:#aab2c3;font-size:11pt;margin:2pt 0;}
+
+  .diag-box{background:var(--navy);color:#fff;border-radius:6pt;padding:12pt 16pt;font-size:11pt;font-weight:700;text-align:center;margin:10pt 0 14pt 0;}
+  .diag-box .gold{color:var(--gold);}
+  .two-col{display:flex;gap:10pt;}
+  .two-col .col{flex:1;}
+  .issue-card{border:1px solid #e2e5ec;border-radius:6pt;padding:9pt 10pt;margin-bottom:8pt;}
+  .issue-card h4{color:var(--navy);font-size:9.5pt;margin-bottom:4pt;}
+  .good-point{background:#eef7f0;border-left:4pt solid var(--green);padding:8pt 10pt;font-size:8.7pt;margin-bottom:10pt;}
+
+  .priority-box{background:linear-gradient(135deg,var(--navy),var(--navy-light));color:#fff;border-radius:8pt;padding:14pt 16pt;margin-bottom:12pt;}
+  .priority-box .tag{display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:8pt;padding:2pt 9pt;border-radius:10pt;margin-bottom:6pt;}
+  .priority-box h3{font-size:13pt;margin-bottom:6pt;}
+  .priority-box p{font-size:9pt;color:#eef1f8;}
+  .seed-list{display:flex;gap:8pt;}
+  .seed-card{flex:1;background:var(--bg-soft);border-radius:6pt;padding:9pt 10pt;font-size:8.3pt;}
+  .seed-card h4{font-size:9pt;color:var(--navy);margin-bottom:4pt;}
+
+  .strength-grid{display:flex;gap:8pt;margin:12pt 0;}
+  .strength-card{flex:1;text-align:center;background:var(--bg-soft);border-radius:6pt;padding:12pt 8pt;}
+  .strength-card .icon{font-size:20pt;margin-bottom:6pt;}
+  .strength-card .t{font-weight:700;font-size:9pt;color:var(--navy);margin-bottom:3pt;}
+  .strength-card .d{font-size:8pt;color:#5c6478;}
+  .closing{text-align:center;margin-top:24pt;font-size:10pt;color:var(--navy);}
+
+  @media print{
+    @page{size:A4 portrait;margin:0;}
+    body{background:#fff;}
+    .page{margin:0;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1 表紙 -->
+<div class="page cover">
+  <div class="kicker">SITE  DIAGNOSTIC  REPORT</div>
+  <h1>サイト現状分析レポート</h1>
+  <div class="sub">〜 採用視点でのサイト診断（2026年10月） 〜</div>
+  <div class="company">株式会社RINX 様</div>
+  <table>
+    <tr><td>対象サイトURL</td><td>https://rinx-123.com/</td></tr>
+    <tr><td>集計期間</td><td>2026年10月1日〜10月31日</td></tr>
+    <tr><td>主な目的</td><td>採用（土木作業員・重機オペレーター）※サイト内容から推定</td></tr>
+    <tr><td>対応エリア</td><td>東京・神奈川・千葉・埼玉（拠点：神奈川県川崎市川崎区）</td></tr>
+  </table>
+</div>
+
+<!-- 2 全体図 -->
+<div class="page">
+  <div class="page-head"><h2>応募が生まれるまでの道すじ</h2><span class="plain-tag">全体図</span></div>
+  <p class="lead">応募・問い合わせは、以下の<b>5つのStep</b>を一段ずつ上りきって、初めて生まれます。今回のレポートでは、この5つのStepを10月のデータでひとつずつ確認していきます。</p>
+  <div class="flow-wrap">
+    <div class="flow-group approach">
+      <h3>① アプローチ：見つけてもらう</h3>
+      <div class="flow-step"><span class="num-badge">1</span><span class="step-name">検索順位・媒体選定</span><div class="step-def">仕事を探している人の画面に、そもそも出ているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">2</span><span class="step-name">クリック率</span><div class="step-def">表示されても、「ここだ」と選んでもらえているか</div></div>
+    </div>
+    <div class="flow-group conversion">
+      <h3>② コンバージョン：受け皿で活かす</h3>
+      <div class="flow-step"><span class="num-badge">3</span><span class="step-name">流入の質</span><div class="step-def">サイトに来ているのは、新しく探している人か</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">4</span><span class="step-name">サイト内での進み方</span><div class="step-def">来てくれた人が、迷わず応募まで進めているか</div></div>
+      <div class="arrow-down">↓</div>
+      <div class="flow-step"><span class="num-badge">5</span><span class="step-name">反響</span><div class="step-def">最終的に応募・お問い合わせまで到達できたか</div></div>
+    </div>
+  </div>
+  <p style="margin-top:16pt;font-size:8.7pt;color:#5c6478;">次のページから、この5つのStepについて実際のデータをひとつずつ確認していきます。</p>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3 Step1 -->
+<div class="page">
+  <div class="page-head"><h2>Step1　検索順位・媒体選定</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">仕事を探している人の画面に、そもそも出ているか</div>
+  <div class="block-title">データで確認できたこと</div>
+  <table class="data">
+    <tr><th>キーワード（サイトで狙っている言葉）</th><th>Google順位（11/27確認）</th><th>10月の平均掲載順位</th></tr>
+    <tr><td>重機オペレーター 求人 川崎</td><td>1ページ目になし</td><td><b>44.0</b>位</td></tr>
+    <tr><td>土木作業員 求人 川崎</td><td>1ページ目になし</td><td><b>28.0</b>位</td></tr>
+    <tr><td>川崎 土木工事 求人</td><td>1ページ目になし</td><td><b>57.0</b>位</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※平均掲載順位はSearch Consoleの値です。Yahoo!の順位は未確認です。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>3つの言葉とも、検索結果の1ページ目は<b>Indeed・タウンワーク・スタンバイ・リクナビ</b>などの求人サイトがほぼ独占しています。会社のサイトが単独で割って入るのは難しい言葉で、現状は平均<b>28〜57位</b>と、仕事を探している人の目にはほとんど触れていない状態です。</p>
+  <p>一方で、ブログの記事からは「重機オペレーター 一人 親方」（平均<b>6.44</b>位）、「重機オペレーター 年収」（<b>4.2</b>位）など、仕事選びの悩みに近い言葉で1ページ目に表示され始めています。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="block-title">確認したいこと</div>
+  <p>今、応募はどこから来ることが多いでしょうか（求人サイト・紹介・ハローワークなど）。求人サイトとホームページの役割分担を一緒に確認できればと思います。</p>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4 Step2 -->
+<div class="page">
+  <div class="page-head"><h2>Step2　クリック率</h2><span class="step-tag">アプローチ</span></div>
+  <div class="def-box">表示されても、「ここだ」と思って選んでもらえているか</div>
+  <div class="block-title">データで確認できたこと（Search Console・10月のクエリ全83件）</div>
+  <table class="data">
+    <tr><th>クエリ</th><th>クリック数</th><th>表示回数</th><th>平均掲載順位</th></tr>
+    <tr><td>株式会社rinx（社名）</td><td><b>13</b></td><td><b>257</b></td><td><b>5.10</b></td></tr>
+    <tr><td>リンクス 川崎／リンクス川崎</td><td><b>4</b></td><td><b>174</b></td><td>5.3〜6.5</td></tr>
+    <tr><td>重機オペレーター 一人 親方</td><td style="color:var(--red);"><b>0</b></td><td>16</td><td>6.44</td></tr>
+    <tr><td>重機オペレーター 年収</td><td style="color:var(--red);"><b>0</b></td><td>5</td><td>4.20</td></tr>
+    <tr><td>土木作業員 求人 川崎</td><td style="color:var(--red);"><b>0</b></td><td>4</td><td>28.00</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※合計：表示回数<b>727</b>回、クリック<b>17</b>件（CTR<b>2.34%</b>）、平均掲載順位<b>10.00</b>。クリックはすべて社名での検索からです。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>クリック<b>17</b>件はすべて社名（RINX・リンクス）で探した方からでした。気になるのは、<b>社名で検索しても平均5位前後</b>にとどまっている点です。同じ「リンクス」という名前の会社が多く、社名で探してくれた求職者が、別の会社のページに流れている可能性があります。</p>
+  <p>社名以外の言葉では、表示はされていてもクリックはまだ0件です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5 Step3 -->
+<div class="page">
+  <div class="page-head"><h2>Step3　流入の質</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">サイトに入ってきているのは、新しく探している人か</div>
+  <div class="block-title">データで確認できたこと（2026年10月・セッション数）</div>
+  <table class="data">
+    <tr><th>流入経路</th><th>セッション数</th><th>構成比</th><th>エンゲージメント率</th><th>平均時間</th></tr>
+    <tr><td>すでに接点のある方からの訪問（Direct）</td><td>430</td><td>57.95%</td><td>41.63%</td><td>2秒</td></tr>
+    <tr><td>他サイト経由（Referral）</td><td>184</td><td>24.8%</td><td>55.98%</td><td>13秒</td></tr>
+    <tr><td>検索エンジン経由（オーガニック検索）</td><td><b>127</b></td><td><b>17.12%</b></td><td><b>79.53%</b></td><td><b>1分03秒</b></td></tr>
+    <tr><td>その他</td><td>1</td><td>0.13%</td><td>0%</td><td>6秒</td></tr>
+    <tr><td><b>合計</b></td><td><b>742</b></td><td>100%</td><td>51.75%</td><td>15秒</td></tr>
+  </table>
+  <div class="block-title">そこから考えられること</div>
+  <p>検索エンジンからの訪問は<b>17.12%</b>で、「良好」の基準（50%以上）を大きく下回っています。ただし数字の中身を見ると、Direct（平均<b>2秒</b>）やReferral（<b>13秒</b>）には、海外（中国など）からの機械的なアクセスがかなり含まれているとみられ、実際の人の訪問はもっと少ないと考えられます。</p>
+  <p>反対に、検索から来た方はエンゲージメント率<b>79.53%</b>・平均<b>1分03秒</b>としっかり見てくれています。<b>来てくれた人の質は高く、入口の数が足りていない</b>状態です。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6 Step4 -->
+<div class="page">
+  <div class="page-head"><h2>Step4　サイト内での進み方</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="def-box">来てくれた人が、迷わず応募まで進めているか</div>
+  <div class="block-title">データで確認できたこと（2026年10月）</div>
+  <p>アクティブユーザーあたりの平均エンゲージメント時間：<b>16秒</b>（検索から来た方に限ると<b>1分03秒</b>）</p>
+  <table class="data">
+    <tr><th>よく見られているページ</th><th>表示回数</th><th>平均時間</th></tr>
+    <tr><td>トップページ</td><td><b>480</b></td><td>14秒</td></tr>
+    <tr><td>会社概要（/information）</td><td><b>194</b></td><td>29秒</td></tr>
+    <tr><td>お問い合わせ（/contact）</td><td><b>95</b></td><td>13秒</td></tr>
+    <tr><td>業務案内（/work）</td><td><b>57</b></td><td>17秒</td></tr>
+    <tr><td>施工実績（/jisseki）</td><td><b>45</b></td><td>14秒</td></tr>
+    <tr><td>ブログ一覧（/blog）</td><td><b>36</b></td><td>21秒</td></tr>
+  </table>
+  <p style="font-size:8.3pt;color:#5c6478;">※採用情報（/recruit）は上位10ページに入っていません。</p>
+  <div class="block-title">そこから考えられること</div>
+  <p>全体の<b>16秒</b>は機械的なアクセスに引き下げられていますが、採用情報ページが上位に入っていない点は気になります。トップページには「経験不問！スタッフ求人募集中！」の案内があるものの、詳しい条件（日給・寮・資格支援など）は採用ページと別の「特設採用」サイトに分かれており、求職者が迷わず条件までたどり着けているかは確認したいところです。</p>
+  <div class="block-title">評価</div>
+  <span class="badge bad">要改善</span>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7 Step5＋サイト診断 -->
+<div class="page">
+  <div class="page-head"><h2>Step5　反響／サイトの現状診断</h2><span class="step-tag">コンバージョン</span></div>
+  <div class="block-title">Step5：期間中の反響件数</div>
+  <p>10月にお問い合わせフォームの送信完了まで進んだ方は<b>4人</b>（完了画面の表示は10回）でした。そのうち検索から来た方の反響は<b>4件</b>（反響率<b>3.15%</b>）と、来てくれた人からはきちんと反響が出ています。</p>
+  <p>ただし応募も同じお問い合わせフォームから受け付けているため、<b>応募か、工事のご依頼か、営業か</b>はデータからは分かりません。実際の中身を教えていただければ、本当の反響数を確認できます。</p>
+  <div style="text-align:center;margin:6pt 0;"><span class="badge mid">改善余地あり</span></div>
+  <div class="block-title">サイトの現状診断</div>
+  <table class="data">
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>サイトの作り</td><td>部品に2013年ごろの古い版のものが使われているなど、作られてから年数が経っているとみられます（制作年は要確認）</td></tr>
+    <tr><td>表示速度（PageSpeed）</td><td>スマホ<b>35点</b>／PC<b>46点</b>（50点未満）</td></tr>
+    <tr><td>採用情報</td><td>日給（土木作業員10,000〜13,000円／重機オペレーター14,000〜18,000円）、寮・日払い・資格取得支援・独立支援まで記載あり。応募はお問い合わせフォームと共用</td></tr>
+    <tr><td>ブログ</td><td>11月は<b>毎日</b>更新。年収・面接・独立など求職者向けの記事が中心。一部、横浜市・三重など対応エリア外の言葉でも表示されています</td></tr>
+  </table>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8 総合診断 -->
+<div class="page">
+  <div class="page-head"><h2>いまの状態を一言でいうと</h2><span class="plain-tag">総合診断</span></div>
+  <div class="diag-box"><span class="gold">来た人の質は高い</span>のに、入口がまだ狭い状態です</div>
+  <div class="good-point">
+    <b>良い点：</b>検索から来た方は平均<b>1分03秒</b>しっかり見て、反響率も<b>3.15%</b>と高めです。AI検索（ChatGPT）では「川崎市で土木作業員・重機オペレーターとして就職したい」と聞くと、<b>おすすめの1社目</b>として紹介され、社名で聞いた場合も事業内容・待遇・許可番号まで正確に説明されました。日給・寮・資格支援・独立支援など、求職者に響く材料もそろっています。
+  </div>
+  <div class="two-col">
+    <div class="col">
+      <div class="issue-card">
+        <h4>① まだ知らない人に届いていない（アプローチ）</h4>
+        <p style="font-size:8.5pt;">「求人 川崎」系の言葉は求人サイトが1ページ目を独占し、会社サイトは28〜57位。社名検索でも平均5位前後で、同じ名前の会社に埋もれがちです。</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="issue-card">
+        <h4>② 来た人を活かしきれていない（コンバージョン）</h4>
+        <p style="font-size:8.5pt;">スマホの表示速度が35点と遅く、採用条件はページと特設サイトに分かれています。応募がお問い合わせと共用のため、反響の中身も見えにくくなっています。</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:10pt;font-size:9pt;color:var(--navy);">AIに「おすすめの1社目」と言われるだけの中身はすでにあります。<b>見つけてもらう入口と、応募までの道を整えれば伸ばせる</b>、伸びしろの大きい状態です。</p>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9 打ち手 -->
+<div class="page">
+  <div class="page-head"><h2>これからの打ち手</h2><span class="plain-tag">推奨施策の方向性</span></div>
+  <div class="priority-box">
+    <span class="tag">最優先</span>
+    <h3>採用の受け皿を、スマホで見やすい形に整える</h3>
+    <p>Step1〜4のうち4つが「要改善」、スマホの表示速度も<b>35点</b>と、サイト全体を見直すタイミングかもしれません。特に採用では、検索から来た方の反響率が<b>3.15%</b>と高く、<b>来た人を応募まで確実に運べる受け皿</b>を作ることが一番効きます。求職者向けのページ（働く環境・先輩の声・条件・応募フォーム）を1か所にまとめて見せる形が考えられます。</p>
+  </div>
+  <div class="block-title">今後見えてくる展開（種まき）</div>
+  <div class="seed-list">
+    <div class="seed-card">
+      <h4>ブログで入口を広げる</h4>
+      <p>「一人親方」「年収」など悩みに近い言葉で1ページ目に出始めています。川崎・東京・神奈川など、働く場所に合わせた言葉に寄せると、応募につながる入口になります。</p>
+    </div>
+    <div class="seed-card">
+      <h4>求人サイトとの組み合わせ</h4>
+      <p>「求人 川崎」系は求人サイトが強い言葉です。求人サイトで見つけてもらい、ホームページで会社を知ってもらう役割分担が考えられます。</p>
+    </div>
+    <div class="seed-card">
+      <h4>社名で迷わせない</h4>
+      <p>社名検索で平均5位前後のため、Googleマップの会社情報（口コミ6件・評価5.0）を整えるなど、「RINX」で探した人を確実に迎える工夫ができます。</p>
+    </div>
+  </div>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10 まとめ -->
+<div class="page">
+  <div class="page-head"><h2>まず、ここから</h2><span class="plain-tag">まとめ</span></div>
+  <p class="lead">御社にはすでに、求職者に選ばれるための材料がしっかりとそろっています。</p>
+  <div class="strength-grid">
+    <div class="strength-card"><div class="icon">🤖</div><div class="t">AIで「おすすめの1社目」</div><div class="d">川崎市の土木作業員・重機オペレーターの就職先として最初に紹介されています</div></div>
+    <div class="strength-card"><div class="icon">💴</div><div class="t">求職者に響く条件</div><div class="d">日払い・寮・資格取得支援・独立支援まで用意されています</div></div>
+    <div class="strength-card"><div class="icon">📝</div><div class="t">毎日のブログ更新</div><div class="d">年収・面接・独立など、求職者の悩みに答える記事が増えています</div></div>
+  </div>
+  <p>検索から来た方は1分以上サイトを見て、きちんと反響につながっています。あとは、見つけてもらう入口を広げ、スマホで条件から応募まで迷わず進める形に整えることで、応募を増やせる余地が大きいと考えられます。まずは今回のデータを一緒に振り返りながら、どこから手をつけるか、無理のない範囲で考えていければと思います。</p>
+  <div class="closing">ご不明な点や、進め方について、いつでもご相談ください。</div>
+  <div class="footer-note"><span>株式会社RINX 様 サイト現状分析レポート</span><span>10 / 10</span></div>
+</div>
+
+</body>
+</html>
